@@ -5,6 +5,6 @@ import javax.swing.*;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
-        JFrame windowToDisplay = new EcranBienvenue( ) ;
+        JFrame windowToDisplay = new EcranBienvenue();
     }
 }
