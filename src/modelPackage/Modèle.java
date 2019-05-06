@@ -5,6 +5,7 @@ public class Modèle  {
     private int cylindree, cylindre, vitesses, poidAVide, nbPortes;
     private float consoMixte, consoUrbain, consoExtraUrbain;
     private String libelle, transmission, carburant;
+    private Marque marque;
 
     public Modèle(int cylindree, int cylindre, int vitesses, int poidAVide, int nbPortes, float consoMixte, float consoUrbain, float consoExtraUrbain, String libelle, String transmission, String carburant) {
         this.cylindree = cylindree;

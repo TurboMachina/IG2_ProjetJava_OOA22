@@ -7,6 +7,9 @@ public class Transaction {
     private String etat, couleur, description;
     private boolean estTVARecup;
     private GregorianCalendar dateArrivee, dateVente;
+    private Client client;
+    private FicheVéhicule ficheVéhicule;
+    private Commercial commercial;
 
     public Transaction(int kilometrage, int prixAchat, int prixDepart, int prixMin, int nbProprios, int dureeGarantie, int prixVente, String couleur, String description, boolean estTVARecup, GregorianCalendar dateArrivee, GregorianCalendar dateVente) {
         this.kilometrage = kilometrage;
