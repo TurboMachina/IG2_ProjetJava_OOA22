@@ -26,21 +26,23 @@ public class EcranBienvenue extends JFrame {
 
 
     private class BottomButtonsPanel extends JPanel {
-        private JButton ajoutVeh, vendreVeh, supprCommercial, listeTransac, listeVeh, listeClient;
+        private JButton ajoutVeh, vendreVeh, quitter, listeTransac, listeVeh, listeClient;
 
         public BottomButtonsPanel() {
             ajoutVeh = new JButton("Ajouter un nouveau véhicule au catalogue");
             vendreVeh = new JButton("Vendre un véhicule disponible");
-            supprCommercial = new JButton("Supprimer un commercial");
+            quitter = new JButton("Quitter");
             listeTransac = new JButton("Lister les transactions effectuées");
             listeVeh = new JButton("Lister les véhicules en stock");
             listeClient = new JButton("Lister les clients précédents");
+
+
 
             this.setLayout(new GridLayout(2, 3));
 
             this.add(ajoutVeh);
             this.add(vendreVeh);
-            this.add(supprCommercial);
+            this.add(quitter);
             this.add(listeTransac);
             this.add(listeVeh);
             this.add(listeClient);

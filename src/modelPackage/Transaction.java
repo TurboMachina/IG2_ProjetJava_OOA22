@@ -11,7 +11,10 @@ public class Transaction {
     private FicheVéhicule ficheVéhicule;
     private Commercial commercial;
 
-    public Transaction(int kilometrage, int prixAchat, int prixDepart, int prixMin, int nbProprios, int dureeGarantie, int prixVente, String couleur, String description, boolean estTVARecup, GregorianCalendar dateArrivee, GregorianCalendar dateVente) {
+    public Transaction(Client client, FicheVéhicule ficheVéhicule, Commercial commercial,int kilometrage, int prixAchat, int prixDepart, int prixMin, int nbProprios, int dureeGarantie, int prixVente, String couleur, String description, boolean estTVARecup, GregorianCalendar dateArrivee, GregorianCalendar dateVente) {
+        this.client = client;
+        this.ficheVéhicule = ficheVéhicule;
+        this.commercial = commercial;
         this.kilometrage = kilometrage;
         this.prixAchat = prixAchat;
         this.prixDepart = prixDepart;
@@ -24,5 +27,33 @@ public class Transaction {
         this.estTVARecup = estTVARecup;
         this.dateArrivee = dateArrivee;
         this.dateVente = dateVente;
+
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+        client.ajouteTransaction(this);
+    }
+
+    public FicheVéhicule getFicheVéhicule() {
+        return ficheVéhicule;
+    }
+
+    public void setFicheVéhicule(FicheVéhicule ficheVéhicule) {
+        this.ficheVéhicule = ficheVéhicule;
+        ficheVéhicule.ajouteTransaction(this);
+    }
+
+    public Commercial getCommercial() {
+        return commercial;
+    }
+
+    public void setCommercial(Commercial commercial) {
+        this.commercial = commercial;
+        commercial.ajouteTransactions(this);
     }
 }
