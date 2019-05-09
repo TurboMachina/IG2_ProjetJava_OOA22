@@ -124,9 +124,7 @@ public class PanelBienvenue extends JPanel {
             catch (Exception e){
                 System.out.println(e.getMessage());
             }
-            finally {
                 System.exit(0);
-            }
         }
     }
 

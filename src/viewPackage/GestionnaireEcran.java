@@ -24,7 +24,7 @@ public final class GestionnaireEcran extends JFrame {
         this.setVisible(true);
     }
 
-    public void setPanel(JPanel panel, String title){
+    void setPanel(JPanel panel, String title){
         getContentPane().removeAll();
         this.add(panel);
         setTitle(title); // Creer une interface panelTitle pour avoir la methode panel.getTitle() et une variable privée String title + bouton retour
@@ -46,9 +46,7 @@ public final class GestionnaireEcran extends JFrame {
             catch (Exception e){
                 System.out.println(e.getMessage());
             }
-            finally {
                 System.exit(0);
-            }
         }
     }
 

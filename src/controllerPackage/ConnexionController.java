@@ -4,13 +4,13 @@ import businessPackage.ConnexionManager;
 
 public class ConnexionController {
 
-    ConnexionManager manager;
+    private ConnexionManager manager;
 
     public ConnexionController(){
         setManager(new ConnexionManager());
     }
 
-    public void setManager(ConnexionManager manager){
+    private void setManager(ConnexionManager manager){
         this.manager = manager;
     }
 

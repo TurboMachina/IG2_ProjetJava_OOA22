@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class PanelLogin extends JPanel {
     private GestionnaireEcran ge;
-    public PanelLogin(GestionnaireEcran ge){
+    PanelLogin(GestionnaireEcran ge){
         this.ge = ge;
         this.setLayout(new FlowLayout());
         JLabel identifier = new JLabel("Veuillez entrer votre matricule");

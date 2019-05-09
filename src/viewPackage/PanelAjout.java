@@ -5,9 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PanelAjout extends JPanel {
+class PanelAjout extends JPanel {
     private GestionnaireEcran ge;
-        public PanelAjout(GestionnaireEcran ge){
+        PanelAjout(GestionnaireEcran ge){
             this.ge = ge;
             JLabel ligneBienvenue = new JLabel("Bienvenue.");
             JButton btnRetour = new JButton("Retour");

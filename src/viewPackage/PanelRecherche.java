@@ -2,8 +2,8 @@ package viewPackage;
 
 import javax.swing.*;
 
-public class PanelRecherche extends JPanel {
-    GestionnaireEcran ge;
+class PanelRecherche extends JPanel {
+    private GestionnaireEcran ge;
     PanelRecherche(GestionnaireEcran ge){
         this.ge = ge;
     }
