@@ -2,6 +2,7 @@ package viewPackage;
 import modelPackage.Transaction;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.*;
@@ -25,20 +26,21 @@ public class PanelBienvenue extends JPanel {
     class BottomButtonsPanel extends JPanel {
 
         BottomButtonsPanel() {
-            JButton ajoutVeh = new JButton("Ajouter un nouveau véhicule au catalogue");
-            JButton vendreVeh = new JButton("Vendre un véhicule disponible");
-            JButton modifierTransaction = new JButton("Modifier la transaction.");
+            JButton ajoutTransaction = new JButton("Ajouter une nouvelle transaction");
+            JButton supprimerTransaction = new JButton("Supprimer une transaction");
+            JButton modifierTransaction = new JButton("Modifier la transaction");
             JButton quitter = new JButton("Quitter");
 
-            ButtonAjoutListener listener = new ButtonAjoutListener();
-            ajoutVeh.addActionListener(listener);
-
+            ButtonAjoutListener listenerAjout = new ButtonAjoutListener();
+            ajoutTransaction.addActionListener(listenerAjout);
+            ButtonQuitterListener listenerQuitter = new ButtonQuitterListener();
+            quitter.addActionListener(listenerQuitter);
 
 
             this.setLayout(new GridLayout(2, 2)); // RESET
 
-            this.add(ajoutVeh);
-            this.add(vendreVeh);
+            this.add(ajoutTransaction);
+            this.add(supprimerTransaction);
             this.add(modifierTransaction);
             this.add(quitter);
         }
@@ -91,6 +93,15 @@ public class PanelBienvenue extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             ge.setPanel(new PanelAjout(ge), "Ajout d'un véhicule");
+        }
+    }
+
+    class ButtonQuitterListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Connection.close();
+            System.exit(0);
         }
     }
 
