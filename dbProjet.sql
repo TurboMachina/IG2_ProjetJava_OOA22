@@ -29,8 +29,8 @@ CREATE TABLE IF NOT EXISTS Modele
 	, consoUrbain FLOAT NOT NULL
 	, consoExtraUrbain FLOAT NOT NULL
 	, nbPortes INT NOT NULL CHECK (nbPortes > 1)
-	
 	, App_libelle VARCHAR(255) NOT NULL
+	 
 	, CONSTRAINT mod_carbu_chk CHECK (carburant IN ('essence','diesel','lpg','hybride','electrique'))
 	, CONSTRAINT mod_transmi_chk CHECK (transmission IN ('automatique','manuelle'))
 	, CONSTRAINT mod_mar_fk FOREIGN KEY (App_libelle) REFERENCES Marque(libelle)
