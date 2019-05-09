@@ -28,7 +28,7 @@ public class PanelLogin extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             ge.setPanel(new PanelBienvenue(ge), "Bienvenue");
-            // S'occuper de la recup du matricule
+            // S'occuper de la recup/vérif du matricule + ouverture de la BD
         }
     }
 

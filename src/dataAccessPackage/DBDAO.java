@@ -17,5 +17,9 @@ public class DBDAO implements DAO {
 
     public DBDAO() {}
 
+    @Override
+    public void closeConnexion() throws SQLException {
+        SingletonConnexion.closeConnection();
+    }
 
 }

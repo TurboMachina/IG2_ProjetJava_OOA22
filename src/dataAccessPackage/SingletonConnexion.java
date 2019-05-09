@@ -25,4 +25,8 @@ public class SingletonConnexion {
         }
         return uniqueConnexion;
     }
+
+    public static void closeConnection() throws SQLException {
+        uniqueConnexion.close();
+    }
 }

@@ -1,4 +1,6 @@
 package viewPackage;
+import controllerPackage.ConnexionController;
+import dataAccessPackage.SingletonConnexion;
 import modelPackage.Transaction;
 
 import javax.swing.*;
@@ -11,8 +13,10 @@ import java.util.ArrayList;
 public class PanelBienvenue extends JPanel {
 
     private GestionnaireEcran ge;
+    private ConnexionController controller;
 
     PanelBienvenue(GestionnaireEcran ge) {
+        setController(new ConnexionController());
         this.setLayout(new FlowLayout());
         JLabel ligneBienvenue = new JLabel("Bienvenue.");
         JLabel ligneSelection = new JLabel("Selectionnez une action à effectuer, sélectionnez une transaction pour la modifier.");
@@ -21,6 +25,10 @@ public class PanelBienvenue extends JPanel {
         this.add(ligneBienvenue);
         this.add(ligneSelection);
         this.add(new BottomButtonsPanel());
+    }
+
+    private void setController(ConnexionController controller){
+        this.controller = controller;
     }
 
     class BottomButtonsPanel extends JPanel {
@@ -33,8 +41,18 @@ public class PanelBienvenue extends JPanel {
 
             ButtonAjoutListener listenerAjout = new ButtonAjoutListener();
             ajoutTransaction.addActionListener(listenerAjout);
+
             ButtonQuitterListener listenerQuitter = new ButtonQuitterListener();
             quitter.addActionListener(listenerQuitter);
+
+            ButtonSupprimerListener listenerSupprimer = new ButtonSupprimerListener();
+            supprimerTransaction.addActionListener(listenerSupprimer);
+
+            ButtonModifierListener listenerModifier = new ButtonModifierListener();
+            modifierTransaction.addActionListener(listenerModifier);
+
+            //ButtonRechercheListener listenerRecherche = new ButtonRechercheListener();
+            //recherche.addActionListener(listenerRecherche);
 
 
             this.setLayout(new GridLayout(2, 2)); // RESET
@@ -92,16 +110,47 @@ public class PanelBienvenue extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            ge.setPanel(new PanelAjout(ge), "Ajout d'un véhicule");
+            ge.setPanel(new PanelAjout(ge), "Ajout d'une transaction");
         }
     }
 
     class ButtonQuitterListener implements ActionListener {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            // Connection.close();
-            System.exit(0);
+        public void actionPerformed(ActionEvent event) {
+            try{
+                controller.closeConnexion();
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+            finally {
+                System.exit(0);
+            }
+        }
+    }
+
+    class ButtonSupprimerListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            //Suppresion dans la table
+        }
+    }
+
+    class ButtonModifierListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            ge.setPanel(new PanelModifier(ge), "Modification d'une transaction");
+        }
+    }
+
+    class ButtonRechercheListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            ge.setPanel(new PanelRecherche(ge), "Recherche dans la base de données");
         }
     }
 

@@ -1,5 +1,7 @@
 package dataAccessPackage;
 
-public interface DAO {
+import java.sql.SQLException;
 
+public interface DAO {
+    public void closeConnexion() throws SQLException;
 }

@@ -1,4 +1,6 @@
+import dataAccessPackage.SingletonConnexion;
 import viewPackage.GestionnaireEcran;
+import dataAccessPackage.SingletonConnexion;
 import viewPackage.PanelBienvenue;
 import viewPackage.PanelLogin;
 
