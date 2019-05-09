@@ -1,5 +1,7 @@
 package dataAccessPackage;
 
+import exceptionPackage.*;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,6 +22,11 @@ public class DBDAO implements DAO {
     @Override
     public void closeConnexion() throws SQLException {
         SingletonConnexion.closeConnection();
+    }
+
+    public void verifierMatricule(String matricule) throws MatriculeException{
+        //Faire la requete et prepare statment etc etc
+        throw new MatriculeException();
     }
 
 }

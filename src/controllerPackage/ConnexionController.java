@@ -1,6 +1,9 @@
 package controllerPackage;
 
 import businessPackage.ConnexionManager;
+import exceptionPackage.*;
+
+import java.sql.SQLException;
 
 public class ConnexionController {
 
@@ -14,7 +17,11 @@ public class ConnexionController {
         this.manager = manager;
     }
 
-    public void closeConnexion()throws Exception{
+    public void closeConnexion()throws SQLException {
         manager.closeConnexion();
+    }
+
+    public void verifierMatricule(String matricule) throws MatriculeException{
+        manager.verifierMatricule(matricule);
     }
 }
