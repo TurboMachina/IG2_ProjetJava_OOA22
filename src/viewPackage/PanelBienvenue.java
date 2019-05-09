@@ -7,26 +7,20 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class EcranBienvenue extends JFrame {
+public class PanelBienvenue extends JPanel {
 
-    public EcranBienvenue() {
-        super("Acceuil");
-        setBounds(100, 100, 750, 500);
+    private GestionnaireEcran ge;
 
-        Container frameContainer = this.getContentPane();
-        PanelLander pl = new PanelLander();
-        BottomButtonsPanel bbp = new BottomButtonsPanel();
-        frameContainer.setLayout(new BorderLayout());
-
-        frameContainer.add(pl, BorderLayout.CENTER);
-        frameContainer.add(bbp, BorderLayout.SOUTH);
-
-        ClosingWindow closer = new ClosingWindow();
-        this.addWindowListener(closer);
-
-        setVisible(true);
+    PanelBienvenue(GestionnaireEcran ge) {
+        this.setLayout(new FlowLayout());
+        JLabel ligneBienvenue = new JLabel("Bienvenue.");
+        JLabel ligneSelection = new JLabel("Selectionnez une action à effectuer, sélectionnez une transaction pour la modifier.");
+        this.ge = ge;
+        // this.add(new ListingTransaction(getAllTransactions()));
+        this.add(ligneBienvenue);
+        this.add(ligneSelection);
+        this.add(new BottomButtonsPanel());
     }
-
 
     class BottomButtonsPanel extends JPanel {
 
@@ -48,20 +42,6 @@ public class EcranBienvenue extends JFrame {
             this.add(modifierTransaction);
             this.add(quitter);
         }
-    }
-
-    private class PanelLander extends JPanel {
-
-        PanelLander() {
-            this.setLayout(new FlowLayout());
-            JLabel ligneBienvenue = new JLabel("Bienvenue.");
-            JLabel ligneSelection = new JLabel("Selectionnez une action à effectuer, sélectionnez une transaction pour la modifier.");
-
-            // this.add(new ListingTransaction(getAllTransactions()));
-            this.add(ligneBienvenue);
-            this.add(ligneSelection);
-        }
-
     }
 
     private class ListingTransaction extends AbstractTableModel {
@@ -110,19 +90,7 @@ public class EcranBienvenue extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            removeAll();
-            // add(new EcranAjout());
-            // repaint();
-        }
-    }
-
-
-
-    private class ClosingWindow extends WindowAdapter
-    {
-        public void windowClosing(WindowEvent e)
-        {
-            System.exit(0);
+            ge.setPanel(new PanelAjout(ge), "Ajout d'un véhicule");
         }
     }
 

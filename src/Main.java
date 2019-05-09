@@ -1,12 +1,12 @@
-import viewPackage.EcranBienvenue;
+import viewPackage.GestionnaireEcran;
+import viewPackage.PanelBienvenue;
 
 import javax.swing.*;
 
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
-        JFrame windowToDisplay = new EcranBienvenue();
-        //JFrame windowLogin = new DPRLogin();
+        JFrame windowToDisplay = new GestionnaireEcran();
 
     }
 }
