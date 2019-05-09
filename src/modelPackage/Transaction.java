@@ -3,7 +3,7 @@ package modelPackage;
 import java.util.GregorianCalendar;
 
 public class Transaction {
-    private int kilometrage, prixAchat, prixDepart, prixMin, nbProprios, dureeGarantie, prixVente;
+    private int id, kilometrage, prixAchat, prixDepart, prixMin, nbProprios, dureeGarantie, prixVente;
     private String etat, couleur, description;
     private boolean estTVARecup;
     private GregorianCalendar dateArrivee, dateVente;
@@ -11,7 +11,8 @@ public class Transaction {
     private FicheVéhicule ficheVéhicule;
     private Commercial commercial;
 
-    public Transaction(Client client, FicheVéhicule ficheVéhicule, Commercial commercial,int kilometrage, int prixAchat, int prixDepart, int prixMin, int nbProprios, int dureeGarantie, int prixVente, String couleur, String description, boolean estTVARecup, GregorianCalendar dateArrivee, GregorianCalendar dateVente) {
+    public Transaction(int id, Client client, FicheVéhicule ficheVéhicule, Commercial commercial,int kilometrage, int prixAchat, int prixDepart, int prixMin, int nbProprios, int dureeGarantie, int prixVente, String couleur, String description, boolean estTVARecup, GregorianCalendar dateArrivee, GregorianCalendar dateVente) {
+        this.id = id;
         this.client = client;
         this.ficheVéhicule = ficheVéhicule;
         this.commercial = commercial;

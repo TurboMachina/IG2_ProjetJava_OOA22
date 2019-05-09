@@ -1,8 +1,12 @@
 package viewPackage;
+import modelPackage.Transaction;
 
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 public class EcranBienvenue extends JFrame {
 
     public EcranBienvenue() {
@@ -24,13 +28,17 @@ public class EcranBienvenue extends JFrame {
     }
 
 
-    private class BottomButtonsPanel extends JPanel {
+    class BottomButtonsPanel extends JPanel {
 
         BottomButtonsPanel() {
             JButton ajoutVeh = new JButton("Ajouter un nouveau véhicule au catalogue");
             JButton vendreVeh = new JButton("Vendre un véhicule disponible");
             JButton modifierTransaction = new JButton("Modifier la transaction.");
             JButton quitter = new JButton("Quitter");
+
+            ButtonAjoutListener listener = new ButtonAjoutListener();
+            ajoutVeh.addActionListener(listener);
+
 
 
             this.setLayout(new GridLayout(2, 2)); // RESET
@@ -48,19 +56,67 @@ public class EcranBienvenue extends JFrame {
             this.setLayout(new FlowLayout());
             JLabel ligneBienvenue = new JLabel("Bienvenue.");
             JLabel ligneSelection = new JLabel("Selectionnez une action à effectuer, sélectionnez une transaction pour la modifier.");
-            String [][] valuesTest = { {"Oui", "Non", "Laurent", "Antoine", "Bourgeur"},{"Oui", "Non", "Laurent", "Antoine", "Bourgeur"} };
-            String [] valuesTest2 = {"Oui quoi", "Non bonjoure", "Laurent ruquier", "Antoine canard", "Bourgeur de maison"};
-            JTable tableList = new JTable(valuesTest, valuesTest2);
 
-            // https://stackoverflow.com/questions/14974228/java-swing-multi-column-autocomplete-combobox
-
-
-            this.add(tableList);
+            // this.add(new ListingTransaction(getAllTransactions()));
             this.add(ligneBienvenue);
             this.add(ligneSelection);
         }
 
     }
+
+    private class ListingTransaction extends AbstractTableModel {
+
+        private ArrayList<String> columnNames;
+        private ArrayList<Transaction> transactions;
+
+        public ListingTransaction(ArrayList<String> contents){
+
+            columnNames.add("idTransaction");
+            columnNames.add("idClient");
+            columnNames.add("Numéro de chassis");
+            columnNames.add("idCommercial");
+            columnNames.add("Kilométrage");
+            columnNames.add("Prix d'achat");
+            columnNames.add("Prix de départ");
+            columnNames.add("Prix minimum");
+            columnNames.add("Nombre de proprios");
+            columnNames.add("Durée de la garantie");
+            columnNames.add("Prix de vente");
+            columnNames.add("Couleur");
+            columnNames.add("Description");
+            columnNames.add("TVA récupérable");
+            columnNames.add("Date d'arrivée");
+            columnNames.add("Date de vente");
+        }
+
+        @Override
+        public int getRowCount() {
+            return transactions.size();
+        }
+
+        @Override
+        public int getColumnCount() {
+            return columnNames.size();
+        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            return transactions.get(rowIndex);
+        }
+    }
+
+
+    class ButtonAjoutListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            removeAll();
+            // add(new EcranAjout());
+            // repaint();
+        }
+    }
+
+
 
     private class ClosingWindow extends WindowAdapter
     {
