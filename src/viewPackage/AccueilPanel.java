@@ -1,6 +1,8 @@
 package viewPackage;
 
 import javax.swing.*;
+import controllerPackage.*;
+import modelPackage.*;
 
 public class AccueilPanel extends JPanel {
     private PrincipalWindow w;

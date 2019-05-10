@@ -5,6 +5,7 @@ import java.util.Date;
 import modelPackage.*;
 
 import javax.swing.table.AbstractTableModel;
+import controllerPackage.*;
 
 public class AllTransactionsModel extends AbstractTableModel {
     private ArrayList<String> columnNames;

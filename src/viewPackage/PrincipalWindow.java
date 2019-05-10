@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import controllerPackage.*;
+import modelPackage.*;
 
 
 public class PrincipalWindow extends JFrame {

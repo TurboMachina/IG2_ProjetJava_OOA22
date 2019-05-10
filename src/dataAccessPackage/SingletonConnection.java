@@ -1,6 +1,7 @@
 package dataAccessPackage;
 
 import exceptionPackage.OtherException;
+import modelPackage.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
