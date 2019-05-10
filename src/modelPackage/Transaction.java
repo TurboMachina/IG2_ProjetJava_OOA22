@@ -59,7 +59,7 @@ public class Transaction {
     }
 
     public void setEstTVARecup(Integer estTVARecup) {
-        this.estTVARecup = (estTVARecup < 0 ? true : false);
+        this.estTVARecup = estTVARecup < 0;
     }
 
     public void setDateArrivee(GregorianCalendar dateArrivee) {
@@ -91,13 +91,13 @@ public class Transaction {
         client.ajouteTransaction(this);
     }
 
-    public FicheVehicule getFicheVéhicule() {
+    public FicheVehicule getFicheVehicule() {
         return ficheVehicule;
     }
 
-    public void setFicheVéhicule(FicheVehicule ficheVéhicule) {
-        this.ficheVehicule = ficheVéhicule;
-        ficheVéhicule.ajouteTransaction(this);
+    public void setFicheVehicule(FicheVehicule ficheVehicule) {
+        this.ficheVehicule = ficheVehicule;
+        ficheVehicule.ajouteTransaction(this);
     }
 
     public Commercial getCommercial() {

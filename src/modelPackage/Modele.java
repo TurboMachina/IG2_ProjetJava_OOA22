@@ -8,7 +8,7 @@ public class Modele {
     private float consoMixte, consoUrbain, consoExtraUrbain;
     private String libelle, transmission, carburant;
     private Marque marque;
-    private ArrayList<FicheVéhicule> fichesVéhicules;
+    private ArrayList<FicheVehicule> fichesVehicules;
 
     public Modele(Marque marque, int cylindree, int cylindre, int vitesses, int poidAVide, int nbPortes, float consoMixte, float consoUrbain, float consoExtraUrbain, String libelle, String transmission, String carburant) {
         setMarque(marque);
@@ -77,10 +77,10 @@ public class Modele {
         this.marque = marque;
     }
 
-    public void ajouteFicheVéhicule (FicheVéhicule newFicheVéhicule){
-        fichesVéhicules.add(newFicheVéhicule);
+    public void ajouteFicheVehicule (FicheVehicule newFicheVehicule){
+        fichesVehicules.add(newFicheVehicule);
     }
-    public FicheVéhicule getFicheVéhicule(int index){
-        return fichesVéhicules.get(index);
+    public FicheVehicule getFicheVehicule(int index){
+        return fichesVehicules.get(index);
     }
 }
