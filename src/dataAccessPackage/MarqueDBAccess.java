@@ -5,11 +5,11 @@ import modelPackage.*;
 import java.util.ArrayList;
 
 public class MarqueDBAccess implements MarqueDataAccess {
-    Marque getMarque(String libelleMarque){
-
+    public Marque getMarque(String libelleMarque){
+        return null;
     }
 
-    ArrayList<Marque> getAllMarques(){
-
+    public ArrayList<Marque> getAllMarques(){
+        return null;
     }
 }

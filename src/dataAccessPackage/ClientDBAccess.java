@@ -5,11 +5,11 @@ import modelPackage.*;
 import java.util.ArrayList;
 
 public class ClientDBAccess implements ClientDataAccess {
-    Client getClient(Integer idClient){
-
+    public Client getClient(Integer idClient){
+        return null;
     }
 
-    ArrayList<Client> getAllClients(){
-
+    public ArrayList<Client> getAllClients(){
+       return null;
     }
 }

@@ -5,23 +5,23 @@ import modelPackage.*;
 import java.util.ArrayList;
 
 public class TransactionDBAccess implements TransactionDataAccess {
-    Transaction getTransaction(Integer idTransaction){
+    public Transaction getTransaction(Integer idTransaction){
+        return null;
+    }
+
+    public ArrayList<Transaction> getAllTransactions(){
+        return null;
+    }
+
+    public void ajouteTransactions(Transaction newTransaction){
 
     }
 
-    ArrayList<Transaction> getAllTransactions(){
+    public void updateTransaction(Transaction upTransaction){
 
     }
 
-    void ajouteTransactions(Transaction newTransaction){
-
-    }
-
-    void updateTransaction(Transaction upTransaction){
-
-    }
-
-    void deleteTransaction(Transaction transaction){
+    public void deleteTransaction(Transaction transaction){
 
     }
 }

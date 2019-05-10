@@ -5,11 +5,11 @@ import modelPackage.*;
 import java.util.ArrayList;
 
 public class MagasinDBAccess implements MagasinDataAccess {
-    Magasin getMagasin(Integer idMagasin){
-
+    public Magasin getMagasin(Integer idMagasin){
+        return null;
     }
 
-    ArrayList<Magasin> getAllMagasins(){
-
+    public ArrayList<Magasin> getAllMagasins(){
+        return null;
     }
 }

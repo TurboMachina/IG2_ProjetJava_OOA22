@@ -5,11 +5,11 @@ import modelPackage.*;
 import java.util.ArrayList;
 
 public class FicheVehiculeDBAccess implements FicheVehiculeDataAccess {
-    FicheVehicule getFicheVeh(String numChassisFiche){
-
+    public FicheVehicule getFicheVeh(String numChassisFiche){
+        return null;
     }
 
-    ArrayList<FicheVehicule> getAllFichesVeh(){
-
+    public ArrayList<FicheVehicule> getAllFichesVeh(){
+        return null;
     }
 }

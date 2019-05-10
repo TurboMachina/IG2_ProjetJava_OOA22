@@ -5,11 +5,11 @@ import modelPackage.*;
 import java.util.ArrayList;
 
 public class ModeleDBAccess implements ModeleDataAccess {
-    Modele getModele(Integer idModele){
-
+    public Modele getModele(Integer idModele){
+        return null;
     }
 
-    ArrayList<Modele> getAllModeles(){
-
+    public ArrayList<Modele> getAllModeles(){
+        return null;
     }
 }

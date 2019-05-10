@@ -5,11 +5,11 @@ import modelPackage.*;
 import java.util.ArrayList;
 
 public class CommercialDBAccess implements CommercialDataAccess {
-    Commercial getCommercial(Integer matriculeCom){
-
+    public Commercial getCommercial(Integer matriculeCom){
+        return null;
     }
 
-    ArrayList<Commercial> getAllCommerciaux(){
-
+    public ArrayList<Commercial> getAllCommerciaux(){
+        return null;
     }
 }
