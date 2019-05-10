@@ -1,12 +1,10 @@
 package viewPackage;
 
-import modelPackage.Transaction;
-
-import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.Date;
+import modelPackage.*;
 
-public class AllTransactionsModel extends AbstractTableModel {
+public class AllTransactionsModel {
     private ArrayList<String> columnNames;
     private ArrayList<Transaction> contents;
 
@@ -85,47 +83,46 @@ public class AllTransactionsModel extends AbstractTableModel {
         }
     }
 
-        public Class getColumnClass(int columnIndex) {
-            Class c;
-            switch (columnIndex){
-                case 0 : c = Integer.class;
-                        break;
-                case 1 : c = Integer.class;
-                        break;
-                case 2 : c = String.class;
-                        break;
-                case 3 : c = Float.class;
-                        break;
-                case 4 : c = Float.class;
-                        break;
-                case 5 : c = Float.class;
-                        break;
-                case 6 : c = Integer.class;
-                        break;
-                case 7 : c = String.class;
-                        break;
-                case 8 : c = Date.class;
-                        break;
-                case 9 : c = Integer.class;
-                        break;
-                case 10 : c = Boolean.class;
-                        break;
-                case 11 : c = Float.class;
-                        break;
-                case 12 : c = Date.class;
-                        break;
-                case 13 : c = String.class;
-                        break;
-                case 14 : c = Integer.class;
-                        break;
-                case 15 : c = String.class;
-                        break;
-                case 16 : c = Integer.class;
-                        break;
-                default : c = String.class;
-                        break;
-            }
-            return c;
+    public Class getColumnClass(int columnIndex) {
+        Class c;
+        switch (columnIndex){
+            case 0 : c = Integer.class;
+                break;
+            case 1 : c = Integer.class;
+                break;
+            case 2 : c = String.class;
+                break;
+            case 3 : c = Float.class;
+                break;
+            case 4 : c = Float.class;
+                break;
+            case 5 : c = Float.class;
+                break;
+            case 6 : c = Integer.class;
+                break;
+            case 7 : c = String.class;
+                break;
+            case 8 : c = Date.class;
+                break;
+            case 9 : c = Integer.class;
+                break;
+            case 10 : c = Boolean.class;
+                break;
+            case 11 : c = Float.class;
+                break;
+            case 12 : c = Date.class;
+                break;
+            case 13 : c = String.class;
+                break;
+            case 14 : c = Integer.class;
+                break;
+            case 15 : c = String.class;
+                break;
+            case 16 : c = Integer.class;
+                break;
+            default : c = String.class;
+                break;
+        }
+        return c;
     }
 }
-

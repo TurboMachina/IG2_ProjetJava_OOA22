@@ -1,6 +1,7 @@
 package modelPackage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public class FicheVehicule {
     private String numChassis;
