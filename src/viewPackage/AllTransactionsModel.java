@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import modelPackage.*;
 
-public class AllTransactionsModel {
+import javax.swing.table.AbstractTableModel;
+
+public class AllTransactionsModel extends AbstractTableModel {
     private ArrayList<String> columnNames;
     private ArrayList<Transaction> contents;
 
