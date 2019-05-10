@@ -8,6 +8,6 @@ public interface TransactionDataAccess {
     Transaction getTransaction(Integer idTransaction);
     ArrayList<Transaction> getAllTransactions();
     void ajouteTransactions(Transaction newTransaction);
-    void updateClient(Transaction upTransaction);
-    void deleteClient(Transaction transaction);
+    void updateTransaction(Transaction upTransaction);
+    void deleteTransaction(Transaction transaction);
 }
