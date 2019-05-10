@@ -24,8 +24,8 @@ class PanelAjout extends JPanel {
     class ButtonRetourListener implements ActionListener {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            ge.setPanel(new PanelBienvenue(ge), "Bienvenue");
+        public void actionPerformed(ActionEvent event) {
+                ge.setPanel(new PanelBienvenue(ge), "Bienvenue");
         }
     }
 }

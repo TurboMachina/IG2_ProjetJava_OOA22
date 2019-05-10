@@ -1,13 +1,14 @@
 package viewPackage;
-import controllerPackage.ConnexionController;
-import dataAccessPackage.SingletonConnexion;
-import modelPackage.Transaction;
+import businessPackage.ConnexionManager;
+import controllerPackage.*;
+import modelPackage.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 public class PanelBienvenue extends JPanel {
@@ -15,7 +16,7 @@ public class PanelBienvenue extends JPanel {
     private GestionnaireEcran ge;
     private ConnexionController controller;
 
-    PanelBienvenue(GestionnaireEcran ge) {
+    PanelBienvenue(GestionnaireEcran ge){
         setController(new ConnexionController());
         this.setLayout(new FlowLayout());
         JLabel ligneBienvenue = new JLabel("Bienvenue.");
@@ -33,11 +34,13 @@ public class PanelBienvenue extends JPanel {
 
     class BottomButtonsPanel extends JPanel {
 
-        BottomButtonsPanel() {
+        BottomButtonsPanel(){
             JButton ajoutTransaction = new JButton("Ajouter une nouvelle transaction");
             JButton supprimerTransaction = new JButton("Supprimer une transaction");
             JButton modifierTransaction = new JButton("Modifier la transaction");
             JButton quitter = new JButton("Quitter");
+            JTable transactions;
+            JScrollPane transactions_scrollPane;
 
             ButtonAjoutListener listenerAjout = new ButtonAjoutListener();
             ajoutTransaction.addActionListener(listenerAjout);
@@ -67,9 +70,9 @@ public class PanelBienvenue extends JPanel {
     private class ListingTransaction extends AbstractTableModel {
 
         private ArrayList<String> columnNames;
-        private ArrayList<Transaction> transactions;
+        private ArrayList<Transaction> contents;
 
-        public ListingTransaction(ArrayList<String> contents){
+        public ListingTransaction(ArrayList<Transaction> transactions){
 
             columnNames.add("idTransaction");
             columnNames.add("idClient");
@@ -87,11 +90,12 @@ public class PanelBienvenue extends JPanel {
             columnNames.add("TVA récupérable");
             columnNames.add("Date d'arrivée");
             columnNames.add("Date de vente");
+            contents = transactions;
         }
 
         @Override
         public int getRowCount() {
-            return transactions.size();
+            return contents.size();
         }
 
         @Override
@@ -101,7 +105,7 @@ public class PanelBienvenue extends JPanel {
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            return transactions.get(rowIndex);
+            return contents.get(rowIndex);
         }
     }
 
@@ -119,7 +123,8 @@ public class PanelBienvenue extends JPanel {
         @Override
         public void actionPerformed(ActionEvent event) {
             try{
-                controller.closeConnexion();
+                setController(new ConnexionController());
+                controller.closeConnection();
             }
             catch (Exception e){
                 System.out.println(e.getMessage());

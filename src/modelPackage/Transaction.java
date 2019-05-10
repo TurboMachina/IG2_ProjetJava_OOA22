@@ -3,32 +3,83 @@ package modelPackage;
 import java.util.GregorianCalendar;
 
 public class Transaction {
-    private int id, kilometrage, prixAchat, prixDepart, prixMin, nbProprios, dureeGarantie, prixVente;
+    private Integer id, kilometrage, nbProprios, dureeGarantie;
+    private Float prixAchat, prixVente, prixMin, prixDepart;
     private String etat, couleur, description;
     private boolean estTVARecup;
     private GregorianCalendar dateArrivee, dateVente;
     private Client client;
-    private FicheVéhicule ficheVéhicule;
+    private FicheVehicule ficheVehicule;
     private Commercial commercial;
 
-    public Transaction(int id, Client client, FicheVéhicule ficheVéhicule, Commercial commercial,int kilometrage, int prixAchat, int prixDepart, int prixMin, int nbProprios, int dureeGarantie, int prixVente, String couleur, String description, boolean estTVARecup, GregorianCalendar dateArrivee, GregorianCalendar dateVente) {
-        this.id = id;
-        this.client = client;
-        this.ficheVéhicule = ficheVéhicule;
-        this.commercial = commercial;
-        this.kilometrage = kilometrage;
-        this.prixAchat = prixAchat;
-        this.prixDepart = prixDepart;
-        this.prixMin = prixMin;
-        this.nbProprios = nbProprios;
-        this.dureeGarantie = dureeGarantie;
-        this.prixVente = prixVente;
-        this.couleur = couleur;
-        this.description = description;
-        this.estTVARecup = estTVARecup;
-        this.dateArrivee = dateArrivee;
-        this.dateVente = dateVente;
+    public Transaction(Integer id, Integer km, String couleur, Float prixAchat, Float prixDepart, GregorianCalendar dateArrivee, Integer dureeGarantie, Integer estTVARecup, Float prixVente, GregorianCalendar dateVente, String etat) {
+         setId(id);
+         setKilometrage(km);
+         setCouleur(couleur);
+         setPrixAchat(prixAchat);
+         setPrixDepart(prixDepart);
+         setDateArrivee(dateArrivee);
+         setDureeGarantie(dureeGarantie);
+         setEstTVARecup(estTVARecup);
+         setPrixVente(prixVente);
+         setDateVente(dateVente);
+         setEtat(etat);
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setKilometrage(Integer kilometrage) {
+        this.kilometrage = kilometrage;
+    }
+
+    public void setDureeGarantie(Integer dureeGarantie) {
+        this.dureeGarantie = dureeGarantie;
+    }
+
+    public void setPrixAchat(Float prixAchat) {
+        this.prixAchat = prixAchat;
+    }
+
+    public void setPrixVente(Float prixVente) {
+        this.prixVente = prixVente;
+    }
+
+    public void setPrixDepart(Float prixDepart) {
+        this.prixDepart = prixDepart;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
+    public void setCouleur(String couleur) {
+        this.couleur = couleur;
+    }
+
+    public void setEstTVARecup(Integer estTVARecup) {
+        this.estTVARecup = (estTVARecup < 0 ? true : false);
+    }
+
+    public void setDateArrivee(GregorianCalendar dateArrivee) {
+        this.dateArrivee = dateArrivee;
+    }
+
+    public void setDateVente(GregorianCalendar dateVente) {
+        this.dateVente = dateVente;
+    }
+
+    public void setPrixMin(Float prixMin){
+        this.prixMin = prixMin;
+    }
+
+    public void setDescription(String description){
+        this.description = description;
+    }
+
+    public void setNbProprios(Integer nbProprios){
+        this.nbProprios = nbProprios;
     }
 
     public Client getClient() {
@@ -40,12 +91,12 @@ public class Transaction {
         client.ajouteTransaction(this);
     }
 
-    public FicheVéhicule getFicheVéhicule() {
-        return ficheVéhicule;
+    public FicheVehicule getFicheVéhicule() {
+        return ficheVehicule;
     }
 
-    public void setFicheVéhicule(FicheVéhicule ficheVéhicule) {
-        this.ficheVéhicule = ficheVéhicule;
+    public void setFicheVéhicule(FicheVehicule ficheVéhicule) {
+        this.ficheVehicule = ficheVéhicule;
         ficheVéhicule.ajouteTransaction(this);
     }
 

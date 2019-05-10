@@ -7,12 +7,32 @@ public class Client {
     private ArrayList<Transaction> transactions;
 
     public Client(String nom, String prenom, String adresse, String adresseMail, int numeroTel) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.adresse = adresse;
-        this.adresseMail = adresseMail;
-        this.numeroTel = numeroTel;
+        setNom(nom);
+        setPrenom(prenom);
+        setAdresse(adresse);
+        setAdresseMail(adresseMail);
+        setNumeroTel(numeroTel);
         this.transactions = new ArrayList<>();
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setAdresseMail(String adresseMail) {
+        this.adresseMail = adresseMail;
+    }
+
+    public void setNumeroTel(int numeroTel) {
+        this.numeroTel = numeroTel;
     }
 
     public void ajouteTransaction(Transaction newTransaction) {

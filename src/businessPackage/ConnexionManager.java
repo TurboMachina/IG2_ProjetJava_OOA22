@@ -3,25 +3,28 @@ package businessPackage;
 import dataAccessPackage.DAO;
 import dataAccessPackage.DBDAO;
 import exceptionPackage.*;
+import javafx.beans.property.DoublePropertyBase;
+import modelPackage.Transaction;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ConnexionManager {
-    private DAO dao;
+    DAO dao;
 
     public ConnexionManager(){
-
+        setDao(new DBDAO());
     }
 
-    private void setDAO(DAO dao){
-        this.dao = new DBDAO();
+    public void setDao(DAO dao){
+        this.dao = dao;
     }
 
-    public void closeConnexion() throws SQLException{
+    public void closeConnexion() throws Exception{
             dao.closeConnexion();
     }
 
-    public void verifierMatricule(String matricule) throws MatriculeException{
-        dao.verifierMatricule(matricule);
+    public ArrayList<Transaction> getAllTransactions() throws Exception {
+        return dao.getAllTransactions();
     }
 }

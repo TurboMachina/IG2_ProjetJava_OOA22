@@ -41,7 +41,7 @@ public final class GestionnaireEcran extends JFrame {
         public void windowClosing(WindowEvent event)
         {
             try{
-                controller.closeConnexion();
+                controller.closeConnection();
             }
             catch (Exception e){
                 System.out.println(e.getMessage());

@@ -1,5 +1,7 @@
 package dataAccessPackage;
 
+import exceptionPackage.ConnectionException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,14 +16,15 @@ public class SingletonConnexion {
 
     private SingletonConnexion() {}
 
-    public static Connection getConnection() throws SQLException {
+    public static Connection getConnexion() throws ConnectionException {
         if(uniqueConnexion == null){
+            try{
                 uniqueConnexion = DriverManager.getConnection(URL, LOGIN, PASSWORD);
+            }
+            catch (SQLException e){
+                throw new ConnectionException();
+            }
         }
         return uniqueConnexion;
-    }
-
-    static void closeConnection() throws SQLException {
-        uniqueConnexion.close();
     }
 }

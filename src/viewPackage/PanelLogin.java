@@ -35,10 +35,11 @@ public class PanelLogin extends JPanel {
     class ButtonOkListener implements ActionListener {
 
         @Override
-        public void actionPerformed(ActionEvent vent) {
+        public void actionPerformed(ActionEvent vent)  {
             ge.setPanel(new PanelBienvenue(ge), "Bienvenue");
             try{
-                controller.verifierMatricule(matricule.getText());
+
+                //Verifier le matricule
             }
             catch (Exception e){
                 System.out.println(e.getMessage());

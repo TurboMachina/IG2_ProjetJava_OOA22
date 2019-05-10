@@ -1,27 +1,28 @@
 package controllerPackage;
 
 import businessPackage.ConnexionManager;
-import exceptionPackage.*;
+import modelPackage.Transaction;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class ConnexionController {
-
-    private ConnexionManager manager;
+public class ConnexionController{
+    ConnexionManager manager;
 
     public ConnexionController(){
-        setManager(new ConnexionManager());
+        setManager(manager);
     }
 
     private void setManager(ConnexionManager manager){
         this.manager = manager;
     }
 
-    public void closeConnexion()throws SQLException {
+    public ArrayList<Transaction> getAllTransactions() throws Exception {
+        return manager.getAllTransactions();
+    }
+
+    public void closeConnection() throws Exception{
         manager.closeConnexion();
     }
 
-    public void verifierMatricule(String matricule) throws MatriculeException{
-        manager.verifierMatricule(matricule);
-    }
 }

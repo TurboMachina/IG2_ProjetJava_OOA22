@@ -9,12 +9,28 @@ public class Commercial {
     private ArrayList<Transaction> transactions;
 
     public Commercial(String nom, String prenom, String adresseMail, int numeroTel) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.adresseMail = adresseMail;
-        this.numeroTel = numeroTel;
+        setNom(nom);
+        setPrenom(prenom);
+        setAdresseMail(adresseMail);
+        setNumeroTel(numeroTel);
         this.transactions = new ArrayList<>();
     }
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setAdresseMail(String adresseMail) {
+        this.adresseMail = adresseMail;
+    }
+
+    public void setNumeroTel(int numeroTel) {
+        this.numeroTel = numeroTel;
+    }
+
     public void setMagasin(Magasin newMagasin){
         this.magasin = newMagasin;
         newMagasin.ajouteCommercial(this);
