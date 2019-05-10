@@ -3,17 +3,17 @@ package modelPackage;
 import java.util.*;
 
 public class FicheVehicule {
-    private long numChassis;
+    private String numChassis;
     private GregorianCalendar dateMiseCircu;
     private ArrayList<Transaction> transactions;
     private Modele modele;
-    public FicheVehicule(long numChassis, GregorianCalendar dateMiseCircu, Modele modele){
+    public FicheVehicule(String numChassis, GregorianCalendar dateMiseCircu, Modele modele){
         setNumChassis(numChassis);
         setDateMiseCircu(dateMiseCircu);
         setModele(modele);
     }
 
-    private void setNumChassis(long numChassis) {
+    private void setNumChassis(String numChassis) {
         this.numChassis = numChassis;
     }
 
@@ -22,6 +22,7 @@ public class FicheVehicule {
     }
 
     private void setModele(Modele modele) {
+        modele.ajouteFicheVehicule(this);
         this.modele = modele;
     }
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Marque {
     private String libelle;
-    private ArrayList<Modele> modèles;
+    private ArrayList<Modele> modeles;
     public Marque(String libelle){
         setLibelle(libelle);
     }
@@ -13,8 +13,17 @@ public class Marque {
         this.libelle = libelle;
     }
 
-    public void ajouteModèle(Modele newModèle){
-        modèles.add(newModèle);
+    public void ajouteModele(Modele newModele){
+        newModele.setMarque(this);
+        modeles.add(newModele);
+    }
+
+    public String getLibelle(){
+        return this.libelle;
+    }
+
+    public ArrayList<Modele> getModeles(){
+        return this.modeles;
     }
 
 }

@@ -2,14 +2,13 @@ package modelPackage;
 import java.util.ArrayList;
 
 public class Client {
-    private String nom, prenom, adresse, adresseMail;
-    private int numeroTel;
+    private String nom, prenom, adresseMail;
+    private Integer id,numeroTel;
     private ArrayList<Transaction> transactions;
 
-    public Client(String nom, String prenom, String adresse, String adresseMail, int numeroTel) {
+    public Client(Integer id,String nom, String prenom, String adresseMail, Integer numeroTel) {
         setNom(nom);
         setPrenom(prenom);
-        setAdresse(adresse);
         setAdresseMail(adresseMail);
         setNumeroTel(numeroTel);
         this.transactions = new ArrayList<>();
@@ -23,15 +22,11 @@ public class Client {
         this.prenom = prenom;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
     public void setAdresseMail(String adresseMail) {
         this.adresseMail = adresseMail;
     }
 
-    public void setNumeroTel(int numeroTel) {
+    public void setNumeroTel(Integer numeroTel) {
         this.numeroTel = numeroTel;
     }
 
@@ -40,7 +35,7 @@ public class Client {
         newTransaction.setClient(this);
     }
 
-    public Transaction getTransaction(int index) {
+    public Transaction getTransaction(Integer index) {
         return transactions.get(index);
     }
 }

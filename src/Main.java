@@ -1,3 +1,4 @@
+import dataAccessPackage.DBDAO;
 import dataAccessPackage.SingletonConnexion;
 import viewPackage.GestionnaireEcran;
 import dataAccessPackage.SingletonConnexion;

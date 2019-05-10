@@ -3,9 +3,10 @@ package modelPackage;
 import java.util.ArrayList;
 
 public class Magasin {
+    private Integer id;
     private String nom, adresse;
     private ArrayList<Commercial> commercials;
-    public Magasin(String nom, String adresse) {
+    public Magasin(Integer id,String nom, String adresse) {
         this.nom = nom;
         this.adresse = adresse;
     }

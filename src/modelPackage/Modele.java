@@ -3,15 +3,14 @@ package modelPackage;
 import java.util.ArrayList;
 
 public class Modele {
-    private static int id = 0;
-    private int cylindree, cylindre, vitesses, poidAVide, nbPortes;
+    private Integer cylindree, cylindre, vitesses, poidAVide, nbPortes, id;
     private float consoMixte, consoUrbain, consoExtraUrbain;
     private String libelle, transmission, carburant;
     private Marque marque;
     private ArrayList<FicheVehicule> fichesVehicules;
 
-    public Modele(Marque marque, int cylindree, int cylindre, int vitesses, int poidAVide, int nbPortes, float consoMixte, float consoUrbain, float consoExtraUrbain, String libelle, String transmission, String carburant) {
-        setMarque(marque);
+    public Modele(Integer id,String libelle, Integer cylindree, Integer cylindre, String transmission, Integer vitesses, Integer poidAVide, String carburant, Float consoMixte, Float consoUrbain, Float consoExtraUrbain, Integer nbPortes) {
+        setId(id);
         setCylindree(cylindree);
         setCylindre(cylindre);
         setVitesses(vitesses);
@@ -25,8 +24,8 @@ public class Modele {
         setCarburant(carburant);
     }
 
-    public static void setId(int id) {
-        Modele.id = id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setCylindree(int cylindree) {
@@ -82,5 +81,9 @@ public class Modele {
     }
     public FicheVehicule getFicheVehicule(int index){
         return fichesVehicules.get(index);
+    }
+
+    public Integer getID(){
+        return this.id;
     }
 }
