@@ -75,21 +75,21 @@ public class PanelBienvenue extends JPanel {
         public ListingTransaction(ArrayList<Transaction> transactions){
 
             columnNames.add("idTransaction");
-            columnNames.add("idClient");
-            columnNames.add("Numéro de chassis");
-            columnNames.add("idCommercial");
             columnNames.add("Kilométrage");
+            columnNames.add("Couleur");
             columnNames.add("Prix d'achat");
             columnNames.add("Prix de départ");
             columnNames.add("Prix minimum");
             columnNames.add("Nombre de proprios");
-            columnNames.add("Durée de la garantie");
-            columnNames.add("Prix de vente");
-            columnNames.add("Couleur");
             columnNames.add("Description");
-            columnNames.add("TVA récupérable");
             columnNames.add("Date d'arrivée");
+            columnNames.add("Durée de la garantie");
+            columnNames.add("TVA récupérable");
+            columnNames.add("Prix de vente");
             columnNames.add("Date de vente");
+            columnNames.add("idClient");
+            columnNames.add("Numéro de chassis");
+            columnNames.add("idCommercial");
             contents = transactions;
         }
 

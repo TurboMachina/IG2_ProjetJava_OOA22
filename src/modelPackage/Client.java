@@ -6,12 +6,13 @@ public class Client {
     private Integer id,numeroTel;
     private ArrayList<Transaction> transactions;
 
-    public Client(Integer id,String nom, String prenom, String adresseMail, Integer numeroTel) {
-        setNom(nom);
-        setPrenom(prenom);
-        setAdresseMail(adresseMail);
-        setNumeroTel(numeroTel);
+    public Client(Integer id) {
+
         this.transactions = new ArrayList<>();
+    }
+
+    public void setId(Integer id){
+        this.id = id;
     }
 
     public void setNom(String nom) {

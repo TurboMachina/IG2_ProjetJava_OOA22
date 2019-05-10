@@ -6,10 +6,11 @@ public class Magasin {
     private Integer id;
     private String nom, adresse;
     private ArrayList<Commercial> commercials;
-    public Magasin(Integer id,String nom, String adresse) {
-        this.nom = nom;
-        this.adresse = adresse;
+    public Magasin(Integer id) {
+        setId(id);
     }
+
+    public void setId(Integer id){ this.id = id; }
 
     public void setNom(String nom){
         this.nom = nom;

@@ -7,10 +7,8 @@ public class FicheVehicule {
     private GregorianCalendar dateMiseCircu;
     private ArrayList<Transaction> transactions;
     private Modele modele;
-    public FicheVehicule(String numChassis, GregorianCalendar dateMiseCircu, Modele modele){
+    public FicheVehicule(String numChassis){
         setNumChassis(numChassis);
-        setDateMiseCircu(dateMiseCircu);
-        setModele(modele);
     }
 
     private void setNumChassis(String numChassis) {

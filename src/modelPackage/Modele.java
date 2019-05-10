@@ -9,19 +9,8 @@ public class Modele {
     private Marque marque;
     private ArrayList<FicheVehicule> fichesVehicules;
 
-    public Modele(Integer id,String libelle, Integer cylindree, Integer cylindre, String transmission, Integer vitesses, Integer poidAVide, String carburant, Float consoMixte, Float consoUrbain, Float consoExtraUrbain, Integer nbPortes) {
+    public Modele(Integer id) {
         setId(id);
-        setCylindree(cylindree);
-        setCylindre(cylindre);
-        setVitesses(vitesses);
-        setPoidAVide(poidAVide);
-        setNbPortes(nbPortes);
-        setConsoMixte(consoMixte);
-        setConsoUrbain(consoUrbain);
-        setConsoExtraUrbain(consoExtraUrbain);
-        setLibelle(libelle);
-        setTransmission(transmission);
-        setCarburant(carburant);
     }
 
     public void setId(Integer id) {

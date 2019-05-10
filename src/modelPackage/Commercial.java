@@ -4,17 +4,16 @@ import java.util.ArrayList;
 
 public class Commercial {
     private String nom, prenom, adresseMail;
-    private int numeroTel;
+    private Integer matricule,numeroTel;
     private Magasin magasin;
     private ArrayList<Transaction> transactions;
 
-    public Commercial(String nom, String prenom, String adresseMail, int numeroTel) {
-        setNom(nom);
-        setPrenom(prenom);
-        setAdresseMail(adresseMail);
-        setNumeroTel(numeroTel);
+    public Commercial(Integer matricule) {
+        setMatricule(matricule);
         this.transactions = new ArrayList<>();
     }
+
+    public void setMatricule(Integer matricule){ this.matricule = matricule; }
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -27,7 +26,7 @@ public class Commercial {
         this.adresseMail = adresseMail;
     }
 
-    public void setNumeroTel(int numeroTel) {
+    public void setNumeroTel(Integer numeroTel) {
         this.numeroTel = numeroTel;
     }
 
