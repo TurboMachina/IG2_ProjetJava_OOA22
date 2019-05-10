@@ -3,8 +3,8 @@ package modelPackage;
 import java.util.ArrayList;
 
 public class Client {
-    private String nom, prenom, adresseMail;
-    private Integer id,numeroTel;
+    private String nom, prenom, adresseMail,numeroTel;
+    private Integer id;
     private ArrayList<Transaction> transactions;
 
     public Client(Integer id) {
@@ -30,7 +30,7 @@ public class Client {
         this.adresseMail = adresseMail;
     }
 
-    public void setNumeroTel(Integer numeroTel) {
+    public void setNumeroTel(String numeroTel) {
         this.numeroTel = numeroTel;
     }
 
