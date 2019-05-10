@@ -30,9 +30,11 @@ public class PrincipalWindow extends JFrame {
         exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK));
         optionMenu.add(exit);
 
-        // Croix rouge
+        // Croix rouge ou quitter
         PrincipalWindow.ClosingWindow closer = new ClosingWindow();
         this.addWindowListener(closer);
+        PrincipalWindow.MenuExit menuCloser = new MenuExit();
+        exit.addActionListener(menuCloser);
         setVisible(true);
     }
 
@@ -43,6 +45,20 @@ public class PrincipalWindow extends JFrame {
     private class ClosingWindow extends WindowAdapter
     {
         public void windowClosing(WindowEvent event)
+        {
+            try{
+                // utilityController.closeConnection();
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+            System.exit(0);
+        }
+    }
+
+    private class MenuExit implements ActionListener
+    {
+        public void actionPerformed(ActionEvent event)
         {
             try{
                 // utilityController.closeConnection();

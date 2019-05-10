@@ -46,7 +46,6 @@ public class AccueilPanel extends JPanel {
         }
     }
 
-
     public void setPanel(){
         Container fc = w.getFrameContainer();
         fc.removeAll();
