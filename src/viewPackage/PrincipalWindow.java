@@ -11,12 +11,20 @@ public class PrincipalWindow extends JFrame {
     public PrincipalWindow(){
         super("Accueil");
         setBounds(100,100,750,500);
-
+        setFrameContainer(new AccueilPanel(this), "Accueil");
         setVisible(true);
     }
 
     public Container getFrameContainer(){
         return this.frameContainer;
+    }
+
+    public void setFrameContainer(JPanel panel, String title){
+        frameContainer.removeAll();
+        this.add(panel);
+        setTitle(title);
+        repaint();
+        revalidate();
     }
 
     private class ClosingWindow extends WindowAdapter
