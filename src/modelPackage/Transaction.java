@@ -26,6 +26,62 @@ public class Transaction {
          setEtat(etat);
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getKilometrage() {
+        return kilometrage;
+    }
+
+    public Integer getNbProprios() {
+        return nbProprios;
+    }
+
+    public Integer getDureeGarantie() {
+        return dureeGarantie;
+    }
+
+    public Float getPrixAchat() {
+        return prixAchat;
+    }
+
+    public Float getPrixVente() {
+        return prixVente;
+    }
+
+    public Float getPrixMin() {
+        return prixMin;
+    }
+
+    public Float getPrixDepart() {
+        return prixDepart;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public String getCouleur() {
+        return couleur;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean isEstTVARecup() {
+        return estTVARecup;
+    }
+
+    public GregorianCalendar getDateArrivee() {
+        return dateArrivee;
+    }
+
+    public GregorianCalendar getDateVente() {
+        return dateVente;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }

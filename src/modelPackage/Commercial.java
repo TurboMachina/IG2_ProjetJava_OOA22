@@ -14,6 +14,8 @@ public class Commercial {
     }
 
     public void setMatricule(Integer matricule){ this.matricule = matricule; }
+
+    public Integer getMatricule(){return this.matricule;}
     public void setNom(String nom) {
         this.nom = nom;
     }

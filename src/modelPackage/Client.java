@@ -15,6 +15,8 @@ public class Client {
         this.id = id;
     }
 
+    public Integer getId(){ return this.id; }
+
     public void setNom(String nom) {
         this.nom = nom;
     }

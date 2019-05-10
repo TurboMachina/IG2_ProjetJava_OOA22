@@ -11,15 +11,17 @@ public class FicheVehicule {
         setNumChassis(numChassis);
     }
 
-    private void setNumChassis(String numChassis) {
+    public void setNumChassis(String numChassis) {
         this.numChassis = numChassis;
     }
 
-    private void setDateMiseCircu(GregorianCalendar dateMiseCircu) {
+    public String getNumChassis(){return this.numChassis;}
+
+    public void setDateMiseCircu(GregorianCalendar dateMiseCircu) {
         this.dateMiseCircu = dateMiseCircu;
     }
 
-    private void setModele(Modele modele) {
+    public void setModele(Modele modele) {
         modele.ajouteFicheVehicule(this);
         this.modele = modele;
     }

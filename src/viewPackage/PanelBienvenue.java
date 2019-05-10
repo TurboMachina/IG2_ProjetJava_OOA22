@@ -3,6 +3,7 @@ import businessPackage.ConnexionManager;
 import controllerPackage.*;
 import modelPackage.*;
 
+import javax.print.attribute.standard.JobMediaSheetsCompleted;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.table.AbstractTableModel;
@@ -26,6 +27,12 @@ public class PanelBienvenue extends JPanel {
         this.add(ligneBienvenue);
         this.add(ligneSelection);
         this.add(new BottomButtonsPanel());
+        try{
+            panelAllPreparationOrders();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private void setController(ConnexionController controller){
@@ -39,8 +46,6 @@ public class PanelBienvenue extends JPanel {
             JButton supprimerTransaction = new JButton("Supprimer une transaction");
             JButton modifierTransaction = new JButton("Modifier la transaction");
             JButton quitter = new JButton("Quitter");
-            JTable transactions;
-            JScrollPane transactions_scrollPane;
 
             ButtonAjoutListener listenerAjout = new ButtonAjoutListener();
             ajoutTransaction.addActionListener(listenerAjout);
@@ -57,9 +62,7 @@ public class PanelBienvenue extends JPanel {
             //ButtonRechercheListener listenerRecherche = new ButtonRechercheListener();
             //recherche.addActionListener(listenerRecherche);
 
-
             this.setLayout(new GridLayout(2, 2)); // RESET
-
             this.add(ajoutTransaction);
             this.add(supprimerTransaction);
             this.add(modifierTransaction);
@@ -67,48 +70,15 @@ public class PanelBienvenue extends JPanel {
         }
     }
 
-    private class ListingTransaction extends AbstractTableModel {
-
-        private ArrayList<String> columnNames;
-        private ArrayList<Transaction> contents;
-
-        public ListingTransaction(ArrayList<Transaction> transactions){
-
-            columnNames.add("idTransaction");
-            columnNames.add("Kilométrage");
-            columnNames.add("Couleur");
-            columnNames.add("Prix d'achat");
-            columnNames.add("Prix de départ");
-            columnNames.add("Prix minimum");
-            columnNames.add("Nombre de proprios");
-            columnNames.add("Description");
-            columnNames.add("Date d'arrivée");
-            columnNames.add("Durée de la garantie");
-            columnNames.add("TVA récupérable");
-            columnNames.add("Prix de vente");
-            columnNames.add("Date de vente");
-            columnNames.add("idClient");
-            columnNames.add("Numéro de chassis");
-            columnNames.add("idCommercial");
-            contents = transactions;
-        }
-
-        @Override
-        public int getRowCount() {
-            return contents.size();
-        }
-
-        @Override
-        public int getColumnCount() {
-            return columnNames.size();
-        }
-
-        @Override
-        public Object getValueAt(int rowIndex, int columnIndex) {
-            return contents.get(rowIndex);
-        }
+    public void panelAllPreparationOrders() throws Exception{
+        JTable transactions;
+        JScrollPane scrollPane;
+        AllTransactionsModel model;
+        model = new AllTransactionsModel(controller.getAllTransactions());
+        transactions = new JTable(model);
+        scrollPane = new JScrollPane(transactions);
+        add(scrollPane);
     }
-
 
     class ButtonAjoutListener implements ActionListener {
 
