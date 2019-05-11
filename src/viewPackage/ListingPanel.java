@@ -8,6 +8,8 @@ import exceptionPackage.GetTransactionException;
 import modelPackage.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ListingPanel extends JPanel {
     private PrincipalWindow w;
@@ -23,6 +25,7 @@ public class ListingPanel extends JPanel {
         this.w = w;
         setLayout(new GridLayout(1,2));
         btnModifier = new JButton("Modifier une transaction");
+        btnModifier.addActionListener(new BtnModifierListener());
         btnSupprimer = new JButton("Supprimer une transaction");
         try{
             model = new AllTransactionsModel(controller.getAllTransactions());
@@ -47,6 +50,14 @@ public class ListingPanel extends JPanel {
         w.setTitle("Listing");
         fc.repaint();
         fc.revalidate();
+    }
+
+    private class BtnModifierListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            new ModificationPanel(w).setPanel();
+        }
     }
 
     public void setController(TransactionController controller){
