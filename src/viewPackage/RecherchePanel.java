@@ -81,7 +81,7 @@ public class RecherchePanel extends JPanel {
 
         private JSpinner jsDateVente;
         public PanelChampsRecherche(){
-            this.setLayout(new GridLayout(4,2,5,5));
+            this.setLayout(new GridLayout(5,2));
             matricule = new JLabel("Matricule ");
             adresseMag = new JLabel("Adresse du magasin ");
             libMarque = new JLabel("Libellé marque ");

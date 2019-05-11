@@ -7,10 +7,14 @@ import exceptionPackage.GetCommercialException;
 import exceptionPackage.GetFicheVehException;
 import javafx.scene.control.ComboBox;
 import modelPackage.*;
+import org.w3c.dom.Text;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class AjoutPanel extends JPanel {
     private PrincipalWindow w;
@@ -18,9 +22,10 @@ public class AjoutPanel extends JPanel {
     private JComboBox<String> cbEtat, cbCommercial, cbNumChassis, cbClient;
     private JSpinner spDateArrivee, spDateVente, spNbProprios, spDureeGarantie;
     private JTextArea taDescription;
-    private JCheckBox cbTVARecup;
+    private JCheckBox cbxTVARecup;
     private JLabel lbKilometrage, lbCouleur, lbPrixAchat, lbPrixDepart, lbPrixMin, lbPrixVente, lbEtat, lbCommercial,
             lbNumChassis, lbClient, lbDateArrivee, lbDateVente, lbNbProprios, lbDureeGarantie, lbDescription, lbTVARecup;
+    private JButton btnAjouter;
     private TransactionController controller;
     private AllCommerciauxModel modelCom;
     private AllClientsModel modelClient;
@@ -34,7 +39,7 @@ public class AjoutPanel extends JPanel {
     public AjoutPanel(PrincipalWindow w){
         this.w = w;
         setController(new TransactionController());
-        setLayout(new GridLayout(8,4));
+        setLayout(new GridLayout(8,4,200,20));
 
         try{
             modelCom = new AllCommerciauxModel(controller.getAllCommerciaux()) ;
@@ -77,10 +82,40 @@ public class AjoutPanel extends JPanel {
         cbNumChassis = new JComboBox(modelNumChassis);
         cbClient = new JComboBox(modelClient);
 
+        //DateSpinner
+        SpinnerDateModel spDateModel = new SpinnerDateModel();
         spDateArrivee = new JSpinner();
+        spDateArrivee.setModel(spDateModel);
+        JSpinner.DateEditor spDateEditor1 = new JSpinner.DateEditor(spDateArrivee, "dd-MM-yyyy");
+        spDateArrivee.setEditor(spDateEditor1);
         spDateVente = new JSpinner();
+        spDateVente.setModel(spDateModel);
+        JSpinner.DateEditor spDateEditor2 = new JSpinner.DateEditor(spDateArrivee, "dd-MM-yyyy");
+        spDateVente.setEditor(spDateEditor2);
+        try{
+            spDateModel.setStart(spDateEditor1.getFormat().parse("01-01-1970"));
+            spDateModel.setStart(spDateEditor2.getFormat().parse("01-01-1970"));
+        }
+        catch (ParseException e) {
+                JOptionPane.showMessageDialog(w,e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+
+        //Simple Int Spinner
+        SpinnerNumberModel spIntModel = new SpinnerNumberModel();
         spNbProprios = new JSpinner();
+        spNbProprios.setModel(spIntModel);
+        JSpinner.NumberEditor spIntEditor1 = new JSpinner.NumberEditor(spNbProprios);
+        spNbProprios.setEditor(spIntEditor1);
         spDureeGarantie = new JSpinner();
+        spDureeGarantie.setModel(spIntModel);
+        JSpinner.NumberEditor spIntEditor2 = new JSpinner.NumberEditor(spNbProprios);
+        spDureeGarantie.setEditor(spIntEditor2);
+
+        taDescription = new JTextArea();
+
+        cbxTVARecup = new JCheckBox();
+
+        btnAjouter = new JButton("Ajouter la transaction");
 
         add(lbKilometrage);
         add(txtKilometrage);
@@ -93,12 +128,34 @@ public class AjoutPanel extends JPanel {
         add(lbPrixMin);
         add(txtPrixMin);
         add(lbNbProprios);
+        add(spNbProprios);
+        add(lbDescription);
+        add(taDescription);
+        add(lbDateArrivee);
+        add(spDateArrivee);
+        add(lbDureeGarantie);
+        add(spDureeGarantie);
+        add(lbTVARecup);
+        add(cbxTVARecup);
+        add(lbPrixVente);
+        add(txtPrixVente);
+        add(lbDateVente);
+        add(spDateVente);
+        add(lbEtat);
+        add(cbEtat);
+        add(lbCommercial);
+        add(cbCommercial);
+        add(lbNumChassis);
+        add(cbNumChassis);
+        add(lbClient);
+        add(cbClient);
     }
 
     public void setPanel(){
         Container fc = w.getFrameContainer();
         fc.removeAll();
-        fc.add(this, BorderLayout.SOUTH);
+        fc.add(this, BorderLayout.CENTER);
+        fc.add(this.btnAjouter, BorderLayout.SOUTH);
         w.setTitle("Ajout d'une transaction");
         fc.repaint();
         fc.revalidate();
