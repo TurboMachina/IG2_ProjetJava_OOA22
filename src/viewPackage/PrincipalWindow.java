@@ -33,8 +33,10 @@ public class PrincipalWindow extends JFrame {
         // Croix rouge ou quitter
         this.addWindowListener(new ClosingWindow());
         exit.addActionListener(new MenuExit());
-        accueil.addActionListener(new MenuAccueil(this));
         setVisible(true);
+
+        // Bouton accueil
+        accueil.addActionListener(new MenuAccueil(this));
     }
 
     public Container getFrameContainer(){
