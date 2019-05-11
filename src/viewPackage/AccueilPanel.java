@@ -18,7 +18,7 @@ public class AccueilPanel extends JPanel {
         lblBienvenue = new JLabel("<html> Bienvenue, veuillez choisir une option dans le menu ci-dessous. " +
                 "<br/>Pour supprimer ou modifier une transacation vous devez passer par le listing </html>", SwingConstants.CENTER);
         texteBienvenue = new JTextField("Bienvenue, sélectionnez une option");
-        btnList = new JButton("Lister les transactions");
+        btnList = new JButton("Lister les transactions (Donne accés à la modification/suppresion)");
         btnAjout = new JButton("Ajouter une transaction");
         btnRecherche = new JButton("Recherche");
         btnList.addActionListener(new BtnListeListener());

@@ -1,6 +1,7 @@
 package viewPackage;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import controllerPackage.*;
 import exceptionPackage.ConnectionException;
@@ -38,10 +39,17 @@ public class ListingPanel extends JPanel {
         catch (ConnectionException | GetTransactionException e){
         JOptionPane.showMessageDialog(w,e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        int iColumn = 0;
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         table = new JTable(model);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         listSelect = table.getSelectionModel();
+        while (iColumn < table.getColumnModel().getColumnCount()){
+            table.getColumnModel().getColumn(iColumn).setCellRenderer(centerRenderer);
+            iColumn++;
+        }
         scrollPane = new JScrollPane(table);
         add(btnModifier);
         add(btnSupprimer);

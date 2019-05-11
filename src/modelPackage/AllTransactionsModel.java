@@ -36,7 +36,7 @@ public class AllTransactionsModel extends AbstractTableModel {
         columnNames.add("Prix de vente");
         columnNames.add("Date de vente");
         columnNames.add("Etat de la vente");
-        columnNames.add("Matricule vendeur");
+        columnNames.add("Nom du vendeur");
         columnNames.add("Numéro du chassis");
         columnNames.add("Nom du client");
         this.setContents(transactions);
@@ -61,7 +61,7 @@ public class AllTransactionsModel extends AbstractTableModel {
                     transaction.getPrixVente(),
                     transaction.getDateVente(),
                     transaction.getEtat(),
-                    transaction.getCommercial().getMatricule(),
+                    transaction.getCommercial().getNom(),
                     transaction.getFicheVehicule().getNumChassis(),
                     transaction.getClient().getNom()
             );

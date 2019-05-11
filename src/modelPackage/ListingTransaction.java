@@ -5,12 +5,12 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class ListingTransaction {
-    private Integer id, kilometrage, nbProprios, dureeGarantie, matriculeCom;
+    private Integer id, kilometrage, nbProprios, dureeGarantie;
     private Float prixAchat, prixVente, prixMin, prixDepart;
-    private String etat, couleur, description, nomClient, numChassis,estTVARecup;
+    private String etat, couleur, description, nomClient, numChassis,estTVARecup, nomCom;
     private GregorianCalendar dateArrivee, dateVente;
 
-    public ListingTransaction(Integer id, Integer km, String couleur, Float prixAchat, Float prixDepart, Float prixMin, Integer nbProprios, String description, GregorianCalendar dateArrivee, Integer dureeGarantie, String estTVARecup, Float prixVente, GregorianCalendar dateVente, String etat, Integer matriculeCom, String numChassis, String nomClient) {
+    public ListingTransaction(Integer id, Integer km, String couleur, Float prixAchat, Float prixDepart, Float prixMin, Integer nbProprios, String description, GregorianCalendar dateArrivee, Integer dureeGarantie, String estTVARecup, Float prixVente, GregorianCalendar dateVente, String etat, String nomCom, String numChassis, String nomClient) {
         setId(id);
         setKilometrage(km);
         setCouleur(couleur);
@@ -25,7 +25,7 @@ public class ListingTransaction {
         setPrixVente(prixVente);
         setDateVente(dateVente);
         setEtat(etat);
-        setCommercial(matriculeCom);
+        setCommercial(nomCom);
         setFicheVehicule(numChassis);
         setClient(nomClient);
     }
@@ -165,11 +165,11 @@ public class ListingTransaction {
         return this.numChassis;
     }
 
-    public void setCommercial(Integer commercial) {
-        this.matriculeCom = commercial;
+    public void setCommercial(String commercial) {
+        this.nomCom = commercial;
     }
 
-    public Integer getCommercial(){
-        return this.matriculeCom;
+    public String getCommercial(){
+        return this.nomCom;
     }
 }
