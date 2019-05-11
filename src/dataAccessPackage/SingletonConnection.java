@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class SingletonConnection {
 
-    private static String URL = "jdbc:mysql://localhost:3306/dbprojet";
+    private static String URL = "jdbc:mysql://localhost:3306/DBProjet";
     private static String LOGIN = "project";
     private static String PASSWORD = "project";
     private static Connection uniqueConnexion;

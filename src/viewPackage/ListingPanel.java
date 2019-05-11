@@ -31,7 +31,7 @@ public class ListingPanel extends JPanel {
             model = new AllTransactionsModel(controller.getAllTransactions());
         }
         catch (ConnectionException | GetTransactionException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.toString());
         }
         table = new JTable(model);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

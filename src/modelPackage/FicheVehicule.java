@@ -8,8 +8,11 @@ public class FicheVehicule {
     private GregorianCalendar dateMiseCircu;
     private ArrayList<Transaction> transactions;
     private Modele modele;
+
+
     public FicheVehicule(String numChassis){
         setNumChassis(numChassis);
+        transactions = new ArrayList<>();
     }
 
     public void setNumChassis(String numChassis) {
@@ -29,7 +32,6 @@ public class FicheVehicule {
 
     public void ajouteTransaction(Transaction newTransaction){
         transactions.add(newTransaction);
-        newTransaction.setFicheVehicule(this);
     }
     public Transaction getTransaction(int index){
         return transactions.get(index);

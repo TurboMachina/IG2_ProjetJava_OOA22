@@ -66,7 +66,6 @@ public class Modele {
     }
 
     public void ajouteFicheVehicule (FicheVehicule newFicheVehicule){
-        fichesVehicules.add(newFicheVehicule);
     }
     public FicheVehicule getFicheVehicule(int index){
         return fichesVehicules.get(index);

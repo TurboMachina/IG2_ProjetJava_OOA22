@@ -2,6 +2,8 @@ package viewPackage;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
+
 import modelPackage.*;
 
 import javax.swing.table.AbstractTableModel;
@@ -12,11 +14,13 @@ import controllerPackage.*;
 public class AllTransactionsModel extends AbstractTableModel {
     private ArrayList<String> columnNames;
     private ArrayList<ListingTransaction> contents;
+
     private ArrayList<Transaction> transactions;
 
     public AllTransactionsModel(ArrayList<Transaction> transactions){
 
         this.transactions = transactions;
+        this.contents = new ArrayList<>();
         columnNames = new ArrayList<>();
         columnNames.add("idTransaction");
         columnNames.add("Kilométrage");
@@ -35,7 +39,7 @@ public class AllTransactionsModel extends AbstractTableModel {
         columnNames.add("Matricule vendeur");
         columnNames.add("Numéro du chassis");
         columnNames.add("Nom du client");
-        setContents(transactions);
+        this.setContents(transactions);
     }
 
     private void setContents(ArrayList<Transaction> transactions){
@@ -61,12 +65,12 @@ public class AllTransactionsModel extends AbstractTableModel {
                     transaction.getFicheVehicule().getNumChassis(),
                     transaction.getClient().getNom()
             );
-            contents.add(listTransaction);
+            this.contents.add(listTransaction);
         }
     }
 
     public int getRowCount() {
-        return contents.size();
+        return transactions.size();
     }
 
     public int getColumnCount() {
@@ -136,7 +140,7 @@ public class AllTransactionsModel extends AbstractTableModel {
                 break;
             case 7 : c = String.class;
                 break;
-            case 8 : c = Date.class;
+            case 8 : c = String.class;
                 break;
             case 9 : c = Integer.class;
                 break;
@@ -144,7 +148,7 @@ public class AllTransactionsModel extends AbstractTableModel {
                 break;
             case 11 : c = Float.class;
                 break;
-            case 12 : c = Date.class;
+            case 12 : c = String.class;
                 break;
             case 13 : c = String.class;
                 break;

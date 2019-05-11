@@ -38,7 +38,6 @@ public class Client {
 
     public void ajouteTransaction(Transaction newTransaction) {
         transactions.add(newTransaction);
-        newTransaction.setClient(this);
     }
 
     public Transaction getTransaction(Integer index) {

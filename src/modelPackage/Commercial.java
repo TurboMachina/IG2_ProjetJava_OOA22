@@ -38,7 +38,6 @@ public class Commercial {
     }
     public void ajouteTransactions(Transaction newTransaction){
         transactions.add(newTransaction);
-        newTransaction.setCommercial(this);
     }
 
     public Transaction getTransactions(int index) {

@@ -6,6 +6,7 @@ public class Magasin {
     private Integer id;
     private String nom, adresse;
     private ArrayList<Commercial> commercials;
+
     public Magasin(Integer id) {
         setId(id);
     }
@@ -21,8 +22,6 @@ public class Magasin {
     }
 
     public void ajouteCommercial(Commercial newCommercial){
-        commercials.add(newCommercial);
-        newCommercial.setMagasin(this);
     }
     public Commercial getCommercial(int index){
         return commercials.get(index);

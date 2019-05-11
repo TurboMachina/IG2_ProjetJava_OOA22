@@ -1,5 +1,7 @@
 package modelPackage;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class ListingTransaction {
@@ -76,12 +78,16 @@ public class ListingTransaction {
         return estTVARecup;
     }
 
-    public GregorianCalendar getDateArrivee() {
-        return dateArrivee;
+    public String getDateArrivee() {
+        SimpleDateFormat temp = new SimpleDateFormat("dd-MM-YYYY");
+        temp.setCalendar(this.dateArrivee);
+        return temp.format(this.dateArrivee.getTime());
     }
 
-    public GregorianCalendar getDateVente() {
-        return dateVente;
+    public String getDateVente() {
+        SimpleDateFormat temp = new SimpleDateFormat("dd-MM-YYYY");
+        temp.setCalendar(this.dateVente);
+        return temp.format(this.dateVente.getTime());
     }
 
     public void setId(Integer id) {
@@ -121,10 +127,12 @@ public class ListingTransaction {
     }
 
     public void setDateArrivee(GregorianCalendar dateArrivee) {
+
         this.dateArrivee = dateArrivee;
     }
 
     public void setDateVente(GregorianCalendar dateVente) {
+
         this.dateVente = dateVente;
     }
 
