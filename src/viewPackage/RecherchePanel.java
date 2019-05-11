@@ -40,8 +40,8 @@ public class RecherchePanel extends JPanel {
         fc.removeAll();
         fc.add(this, BorderLayout.CENTER);
         w.setTitle("Recherche");
-        repaint();
-        revalidate();
+        fc.repaint();
+        fc.revalidate();
     }
 
     private class RadioButtonListener implements ItemListener{
@@ -49,13 +49,27 @@ public class RecherchePanel extends JPanel {
         @Override
         public void itemStateChanged(ItemEvent event) {
             if (event.getSource() == bTr && event.getStateChange()== ItemEvent.SELECTED){
+                pcr.getJcTitreModèle().setEditable(true);
+                pcr.getJtMatricule().setEditable(true);
+                ((JSpinner.DefaultEditor) pcr.getJsDateVente().getEditor()).getTextField().setEditable(true);
 
+                ((JSpinner.DefaultEditor) pcr.getJsDateVente().getEditor()).getTextField().setEditable(false);
+                pcr.getJcTitreModèle().setEditable(false);
             }
             if (event.getSource() == bVh && event.getStateChange()== ItemEvent.SELECTED){
+                pcr.getJcTitreModèle().setEditable(true);
+                pcr.getJtMatricule().setEditable(true);
+                ((JSpinner.DefaultEditor) pcr.getJsDateVente().getEditor()).getTextField().setEditable(true);
 
+                pcr.getJtMatricule().setEditable(false);
+                ((JSpinner.DefaultEditor) pcr.getJsDateVente().getEditor()).getTextField().setEditable(false);
             }
             if (event.getSource() == bMo && event.getStateChange()== ItemEvent.SELECTED){
+                pcr.getJcTitreModèle().setEditable(true);
+                pcr.getJtMatricule().setEditable(true);
+                ((JSpinner.DefaultEditor) pcr.getJsDateVente().getEditor()).getTextField().setEditable(true);
 
+                pcr.getJtMatricule().setEditable(false);
             }
         }
     }
@@ -64,6 +78,7 @@ public class RecherchePanel extends JPanel {
         private JLabel matricule, adresseMag, libMarque, titreModèle, dateVente;
         private JTextField jtMatricule;
         private JComboBox jcAdresseMag, jcLibelléMarque, jcTitreModèle;
+
         private JSpinner jsDateVente;
         public PanelChampsRecherche(){
             this.setLayout(new GridLayout(4,2,5,5));
@@ -87,6 +102,17 @@ public class RecherchePanel extends JPanel {
             this.add(jcTitreModèle);
             this.add(dateVente);
             this.add(jsDateVente);
+        }
+        public JTextField getJtMatricule() {
+            return jtMatricule;
+        }
+
+        public JComboBox getJcTitreModèle() {
+            return jcTitreModèle;
+        }
+
+        public JSpinner getJsDateVente() {
+            return jsDateVente;
         }
     }
 /*
