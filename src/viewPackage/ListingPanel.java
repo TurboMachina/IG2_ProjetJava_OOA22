@@ -17,31 +17,38 @@ public class ListingPanel extends JPanel {
     private AllTransactionsModel model;
     private JTable table;
     private JScrollPane scrollPane;
-    private JButton modifier,supprimer;
+    private JButton btnModifier,btnSupprimer;
     private TransactionController controller;
+    private ListSelectionModel listSelect;
 
     public ListingPanel(PrincipalWindow w){
         setController(new TransactionController());
         this.w = w;
-        setLayout(new BorderLayout());
+        setLayout(new GridLayout(1,2));
+        btnModifier = new JButton("Modifier une transaction");
+        btnSupprimer = new JButton("Supprimer une transaction");
         try{
             model = new AllTransactionsModel(controller.getAllTransactions());
             table = new JTable(model);
+            table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            listSelect = table.getSelectionModel();
             scrollPane = new JScrollPane(table);
         }
         catch (ConnectionException | GetTransactionException e){
             System.out.println(e.getMessage());
         }
-
+        add(btnModifier);
+        add(btnSupprimer);
     }
 
     public void setPanel(){
         Container fc = w.getFrameContainer();
         fc.removeAll();
-        fc.add(this, BorderLayout.CENTER);
+        fc.add(this, BorderLayout.SOUTH);
+        fc.add(scrollPane, BorderLayout.CENTER);
         w.setTitle("Listing");
-        repaint();
-        revalidate();
+        w.repaint();
+        w.revalidate();
     }
 
     public void setController(TransactionController controller){

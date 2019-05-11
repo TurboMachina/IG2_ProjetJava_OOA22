@@ -5,14 +5,19 @@ import java.util.Date;
 import modelPackage.*;
 
 import javax.swing.table.AbstractTableModel;
+import javax.xml.crypto.dsig.TransformService;
+
 import controllerPackage.*;
 
 public class AllTransactionsModel extends AbstractTableModel {
     private ArrayList<String> columnNames;
-    private ArrayList<Transaction> contents;
+    private ArrayList<ListingTransaction> contents;
+    private ArrayList<Transaction> transactions;
 
     public AllTransactionsModel(ArrayList<Transaction> transactions){
 
+        this.transactions = transactions;
+        columnNames = new ArrayList<>();
         columnNames.add("idTransaction");
         columnNames.add("Kilométrage");
         columnNames.add("Couleur");
@@ -27,11 +32,37 @@ public class AllTransactionsModel extends AbstractTableModel {
         columnNames.add("Prix de vente");
         columnNames.add("Date de vente");
         columnNames.add("Etat de la vente");
-        columnNames.add("idCommercial");
-        columnNames.add("Numéro de chassis");
-        columnNames.add("idClient");
+        columnNames.add("Matricule vendeur");
+        columnNames.add("Numéro du chassis");
+        columnNames.add("Nom du client");
+        setContents(transactions);
+    }
 
-        contents = transactions;
+    private void setContents(ArrayList<Transaction> transactions){
+        ListingTransaction listTransaction;
+        for (Transaction transaction : transactions){
+            String estTvaRecup = (transaction.isEstTVARecup()? "Oui" : "Non");
+            listTransaction = new ListingTransaction(
+                    transaction.getId(),
+                    transaction.getKilometrage(),
+                    transaction.getCouleur(),
+                    transaction.getPrixAchat(),
+                    transaction.getPrixDepart(),
+                    transaction.getPrixMin(),
+                    transaction.getNbProprios(),
+                    transaction.getDescription(),
+                    transaction.getDateArrivee(),
+                    transaction.getDureeGarantie(),
+                    estTvaRecup,
+                    transaction.getPrixVente(),
+                    transaction.getDateVente(),
+                    transaction.getEtat(),
+                    transaction.getCommercial().getMatricule(),
+                    transaction.getFicheVehicule().getNumChassis(),
+                    transaction.getClient().getNom()
+            );
+            contents.add(listTransaction);
+        }
     }
 
     public int getRowCount() {
@@ -45,7 +76,7 @@ public class AllTransactionsModel extends AbstractTableModel {
     public String getColumnName(int column){return columnNames.get(column);}
 
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Transaction transaction = contents.get(rowIndex);
+        ListingTransaction transaction = contents.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return transaction.getId();
@@ -68,19 +99,19 @@ public class AllTransactionsModel extends AbstractTableModel {
             case 9:
                 return transaction.getDureeGarantie();
             case 10:
-                return transaction.isEstTVARecup();
+                return transaction.estTVARecup();
             case 11:
                 return transaction.getPrixVente();
             case 12:
                 return transaction.getDateVente();
             case 13:
                 return transaction.getEtat();
-            case 14:
-                return transaction.getCommercial().getMatricule();
-            case 15:
-                return transaction.getFicheVehicule().getNumChassis();
-            case 16:
-                return transaction.getClient().getId();
+            case 14 :
+                return transaction.getCommercial();
+            case 15 :
+                return transaction.getFicheVehicule();
+            case 16 :
+                return transaction.getClient();
             default:
                 return null;
         }
@@ -109,7 +140,7 @@ public class AllTransactionsModel extends AbstractTableModel {
                 break;
             case 9 : c = Integer.class;
                 break;
-            case 10 : c = Boolean.class;
+            case 10 : c = String.class;
                 break;
             case 11 : c = Float.class;
                 break;
@@ -121,7 +152,7 @@ public class AllTransactionsModel extends AbstractTableModel {
                 break;
             case 15 : c = String.class;
                 break;
-            case 16 : c = Integer.class;
+            case 16 : c = String.class;
                 break;
             default : c = String.class;
                 break;
