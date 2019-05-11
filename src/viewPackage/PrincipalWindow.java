@@ -31,10 +31,9 @@ public class PrincipalWindow extends JFrame {
         optionMenu.add(exit);
 
         // Croix rouge ou quitter
-        PrincipalWindow.ClosingWindow closer = new ClosingWindow();
-        this.addWindowListener(closer);
-        PrincipalWindow.MenuExit menuCloser = new MenuExit();
-        exit.addActionListener(menuCloser);
+        this.addWindowListener(new ClosingWindow());
+        exit.addActionListener(new MenuExit());
+        accueil.addActionListener(new MenuAccueil(this));
         setVisible(true);
     }
 
@@ -70,4 +69,16 @@ public class PrincipalWindow extends JFrame {
         }
     }
 
+    private class MenuAccueil implements ActionListener
+    {
+        PrincipalWindow w;
+        public MenuAccueil(PrincipalWindow w){
+            this.w = w;
+        }
+        public void actionPerformed(ActionEvent event) {
+            new AccueilPanel(w).setPanel();
+        }
+
+    }
 }
+

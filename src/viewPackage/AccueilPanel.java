@@ -22,6 +22,7 @@ public class AccueilPanel extends JPanel {
         btnAjout = new JButton("Ajouter une transaction");
         btnRecherche = new JButton("Rechercher une transaction");
         btnList.addActionListener(new BtnListeListener());
+        btnAjout.addActionListener(new BtnAjoutListener());
         this.add(btnList);
         this.add(btnAjout);
         this.add(btnRecherche);
@@ -38,7 +39,7 @@ public class AccueilPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent event) {
-
+            new AjoutPanel(w).setPanel();
         }
     }
     private class BtnRechercheListener implements ActionListener {
