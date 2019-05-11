@@ -21,7 +21,7 @@ public class TransactionDBAccess implements TransactionDataAccess {
             String query = "SELECT * FROM dbprojet.transactions\n" +
                     "    LEFT JOIN dbprojet.clients c on transactions.idClient = c.idClient\n" +
                     "    LEFT JOIN dbprojet.commercial c2 on transactions.matricule = c2.matricule\n" +
-                    "    LEFT JOIN dbprojet.fichevehicule f on transactions.numChassis = f.numChassis";
+                    "    LEFT JOIN dbprojet.fichevehicule f on transactions.numChassis = f.numChassis ORDER BY transactions.idTransaction ASC";
             PreparedStatement prepStat = connexion.prepareStatement(query);
             ResultSet rs = prepStat.executeQuery();
 
@@ -37,19 +37,18 @@ public class TransactionDBAccess implements TransactionDataAccess {
                 date = rs.getDate(13);
                 GregorianCalendar cal2 = new GregorianCalendar();
                 cal2.setTime(date);
-                transaction = new Transaction(
-                        rs.getInt(1),
-                        rs.getInt(2),
-                        rs.getString(3),
-                        rs.getFloat(4),
-                        rs.getFloat(5),
-                        cal1,
-                        rs.getInt(10),
-                        rs.getInt(11),
-                        rs.getFloat(12),
-                        cal2,
-                        rs.getString(14)
-                );
+                transaction = new Transaction(rs.getInt(1));
+                transaction.setKilometrage(rs.getInt(2));
+                transaction.setCouleur(rs.getString(3));
+                transaction.setPrixAchat(rs.getFloat(4));
+                transaction.setPrixDepart(rs.getFloat(5));
+                transaction.setDateArrivee(cal1);
+                transaction.setDureeGarantie(rs.getInt(10));
+                transaction.setEstTVARecup(rs.getInt(11));
+                transaction.setPrixVente(rs.getFloat(12));
+                transaction.setDateVente(cal2);
+                transaction.setEtat(rs.getString(14));
+
                 prixMin = rs.getFloat(6) ;
                 if (!rs.wasNull())
                     transaction.setPrixMin(prixMin);
@@ -91,8 +90,53 @@ public class TransactionDBAccess implements TransactionDataAccess {
         return allTransactions;
     }
 
-    public void ajouteTransactions(Transaction newTransaction) throws ConnectionException, AddTransactionException{
+    public int ajouteTransaction(Transaction newTransaction, int nextId) throws ConnectionException, AddTransactionException{
         Connection connection = SingletonConnection.getConnexion();
+        int insertedLineNumber = 0;
+        try {
+            String query = "INSERT INTO dbprojet.transactions (kilometrage,couleur,prixAchat,prixDepart,dateArrivee," +
+                    "dureeGarantie,estTVARecup,prixVente,dateVente,etat, matricule, numChassis, idClient) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement prepStat = connection.prepareStatement(query);
+            prepStat.setInt(1,newTransaction.getKilometrage());
+            prepStat.setString(2, newTransaction.getCouleur());
+            prepStat.setFloat(3, newTransaction.getPrixAchat());
+            prepStat.setFloat(4, newTransaction.getPrixDepart());
+            prepStat.setDate(5, new java.sql.Date(newTransaction.getDateArrivee().getTimeInMillis()));
+            prepStat.setInt(6, newTransaction.getDureeGarantie());
+            prepStat.setInt(7, (newTransaction.isEstTVARecup() ? 1 : 0));
+            prepStat.setFloat(8, newTransaction.getPrixVente());
+            prepStat.setDate(9, new java.sql.Date(newTransaction.getDateVente().getTimeInMillis()));
+            prepStat.setString(10, newTransaction.getEtat());
+            prepStat.setInt(11, newTransaction.getCommercial().getMatricule());
+            prepStat.setString(12, newTransaction.getFicheVehicule().getNumChassis());
+            prepStat.setInt(13, newTransaction.getClient().getId());
+            insertedLineNumber = prepStat.executeUpdate();
+
+            if(newTransaction.getPrixMin()!= null){
+                query = "UPDATE transactions SET prixMin = ? where idTransaction ='"+ nextId +"'";
+                prepStat = connection.prepareStatement(query);
+                prepStat.setFloat(1, newTransaction.getPrixMin());
+                prepStat.executeUpdate();
+            }
+
+            if(newTransaction.getNbProprios() != null){
+                query = "UPDATE transactions SET nbProprios = ? where idTransaction ='"+ nextId +"'";
+                prepStat = connection.prepareStatement(query);
+                prepStat.setInt(1, newTransaction.getNbProprios());
+                prepStat.executeUpdate();
+            }
+
+            if(newTransaction.getDescription() != null){
+                query = "UPDATE transactions SET description = ? where idTransaction ='"+ nextId +"'";
+                prepStat = connection.prepareStatement(query);
+                prepStat.setString(1, newTransaction.getDescription());
+                prepStat.executeUpdate();
+            }
+        }
+        catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return insertedLineNumber;
     }
 
     public void updateTransaction(Transaction upTransaction) throws ConnectionException, UpdateTransactionException{
@@ -101,5 +145,21 @@ public class TransactionDBAccess implements TransactionDataAccess {
 
     public void deleteTransaction(Transaction transaction) throws ConnectionException, DeleteTransactionException{
         Connection connection = SingletonConnection.getConnexion();
+    }
+
+    public int getNextId() throws ConnectionException{
+        Connection connection = SingletonConnection.getConnexion();
+        int nextId = 0;
+        try {
+            String queryId = "SELECT idTransaction FROM dbprojet.transactions ORDER BY idTransaction DESC LIMIT 1";
+            PreparedStatement prepStat = connection.prepareStatement(queryId);
+            ResultSet rs = prepStat.executeQuery();
+            while(rs.next()){
+                nextId = rs.getInt(1)+1;
+            }
+        }catch (SQLException e){
+            throw new ConnectionException();
+        }
+        return nextId;
     }
 }

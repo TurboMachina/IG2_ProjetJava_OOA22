@@ -47,4 +47,9 @@ public class Commercial {
     public Transaction getTransactions(int index) {
         return transactions.get(index);
     }
+
+    @Override
+    public String toString(){
+        return this.getNom();
+    }
 }

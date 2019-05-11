@@ -44,4 +44,10 @@ public class TransactionManager {
         setDAOFicheVeh(new FicheVehiculeDBAccess());
         return daoFicheVeh.getAllNumChassis();
     }
+
+    public int ajouteTransaction(Transaction transaction) throws ConnectionException, AddTransactionException{
+        setDAOTransaction(new TransactionDBAccess());
+        int idMax = daoTransaction.getNextId();
+        return daoTransaction.ajouteTransaction(transaction,idMax);
+    }
 }

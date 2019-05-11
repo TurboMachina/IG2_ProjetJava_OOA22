@@ -8,8 +8,8 @@ public class Client {
     private ArrayList<Transaction> transactions;
 
     public Client(Integer id) {
-
         this.transactions = new ArrayList<>();
+        setId(id);
     }
 
     public void setId(Integer id){
@@ -42,5 +42,10 @@ public class Client {
 
     public Transaction getTransaction(Integer index) {
         return transactions.get(index);
+    }
+
+    @Override
+    public String toString(){
+        return this.getNom();
     }
 }

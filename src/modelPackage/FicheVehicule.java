@@ -36,4 +36,9 @@ public class FicheVehicule {
     public Transaction getTransaction(int index){
         return transactions.get(index);
     }
+
+    @Override
+    public String toString(){
+        return this.getNumChassis();
+    }
 }

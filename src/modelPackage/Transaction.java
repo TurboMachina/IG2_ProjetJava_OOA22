@@ -12,18 +12,8 @@ public class Transaction {
     private FicheVehicule ficheVehicule;
     private Commercial commercial;
 
-    public Transaction(Integer id, Integer km, String couleur, Float prixAchat, Float prixDepart, GregorianCalendar dateArrivee, Integer dureeGarantie, Integer estTVARecup, Float prixVente, GregorianCalendar dateVente, String etat) {
+    public Transaction(Integer id) {
          setId(id);
-         setKilometrage(km);
-         setCouleur(couleur);
-         setPrixAchat(prixAchat);
-         setPrixDepart(prixDepart);
-         setDateArrivee(dateArrivee);
-         setDureeGarantie(dureeGarantie);
-         setEstTVARecup(estTVARecup);
-         setPrixVente(prixVente);
-         setDateVente(dateVente);
-         setEtat(etat);
     }
 
     public Integer getId() {

@@ -4,28 +4,30 @@ import javafx.collections.ObservableList;
 
 import javax.swing.*;
 import javax.swing.event.ListDataListener;
+import java.lang.reflect.Array;
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Vector;
 
-public class AllCommerciauxModel extends AbstractListModel implements ComboBoxModel{
-    private String selectedItem;
+public class AllCommerciauxModel extends DefaultComboBoxModel{
 
-    private ArrayList<Commercial> commerciaux;
+    public ArrayList<Commercial> commerciaux;
 
     public AllCommerciauxModel(ArrayList<Commercial> commerciaux){
         this.commerciaux = commerciaux;
-    }
-
-    @Override
-    public void setSelectedItem(Object anItem) {
-        for(Commercial commercial : commerciaux){
-            selectedItem = commercial.getNom();
+        for (Commercial commercial : commerciaux){
+            addElement(commercial);
         }
     }
 
     @Override
+    public void setSelectedItem(Object anObject) {
+
+    }
+
+    @Override
     public Object getSelectedItem() {
-        return selectedItem;
+        return null;
     }
 
     @Override
@@ -35,6 +37,15 @@ public class AllCommerciauxModel extends AbstractListModel implements ComboBoxMo
 
     @Override
     public Object getElementAt(int index) {
-        return commerciaux.get(index).getNom();
+        return commerciaux.get(index);
+    }
+
+    @Override
+    public int getIndexOf(Object anObject) {
+        return super.getIndexOf(anObject);
+    }
+
+    public void addElement(Commercial commercial) {
+        super.addElement(commercial.getNom());
     }
 }
