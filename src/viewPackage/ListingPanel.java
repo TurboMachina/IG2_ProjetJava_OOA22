@@ -1,7 +1,6 @@
 package viewPackage;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 
 import controllerPackage.*;
 import exceptionPackage.ConnectionException;
@@ -9,8 +8,6 @@ import exceptionPackage.GetTransactionException;
 import modelPackage.*;
 
 import java.awt.*;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class ListingPanel extends JPanel {
     private PrincipalWindow w;
@@ -48,8 +45,8 @@ public class ListingPanel extends JPanel {
         fc.add(this, BorderLayout.SOUTH);
         fc.add(this.scrollPane, BorderLayout.CENTER);
         w.setTitle("Listing");
-        w.repaint();
-        w.revalidate();
+        fc.repaint();
+        fc.revalidate();
     }
 
     public void setController(TransactionController controller){

@@ -2,8 +2,7 @@ package controllerPackage;
 
 import businessPackage.*;
 import dataAccessPackage.SingletonConnection;
-import exceptionPackage.ConnectionException;
-import exceptionPackage.GetTransactionException;
+import exceptionPackage.*;
 import modelPackage.*;
 
 import java.sql.Connection;
@@ -23,4 +22,17 @@ public class TransactionController {
     public ArrayList<Transaction> getAllTransactions() throws ConnectionException, GetTransactionException {
         return manager.getAllTransactions();
     }
+
+    public ArrayList<Client> getAllClients() throws ConnectionException, GetClientException{
+        return manager.getAllClients();
+    }
+
+    public ArrayList<Commercial> getAllCommerciaux() throws ConnectionException, GetCommercialException {
+        return manager.getAllCommerciaux();
+    }
+
+    public ArrayList<FicheVehicule> getAllNumChassis() throws ConnectionException, GetFicheVehException {
+        return manager.getAllNumChassis();
+    }
+
 }

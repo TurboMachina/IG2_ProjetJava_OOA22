@@ -16,6 +16,10 @@ public class Commercial {
     public void setMatricule(Integer matricule){ this.matricule = matricule; }
 
     public Integer getMatricule(){return this.matricule;}
+
+    public String getNom(){
+        return this.nom + " " + this.prenom;
+    }
     public void setNom(String nom) {
         this.nom = nom;
     }

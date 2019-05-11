@@ -8,21 +8,24 @@ import java.util.ArrayList;
 
 public class FicheVehiculeDBAccess implements FicheVehiculeDataAccess {
 
-    public FicheVehicule getFicheVeh(String numChassisFiche) throws ConnectionException, GetFicheVehException{
+    public ArrayList<FicheVehicule> getAllNumChassis() throws ConnectionException, GetFicheVehException{
         Connection connection = SingletonConnection.getConnexion();
-        FicheVehicule ficheVehicule = new FicheVehicule(numChassisFiche);
+        ArrayList<FicheVehicule> listeNumChassis = new ArrayList<>();
         try{
-            String query = "SELECT dateMiseCircu, idModele FROM dbprojet.fichevehicule WHERE numChassis = ?";
+            String query = "SELECT numChassis FROM dbprojet.fichevehicule";
             PreparedStatement prepStat = connection.prepareStatement(query);
-            prepStat.setString(1,numChassisFiche);
             ResultSet rs = prepStat.executeQuery();
-            // A finir
+            FicheVehicule tempFiche;
+            while(rs.next()){
+                tempFiche = new FicheVehicule(rs.getString(1));
+                listeNumChassis.add(tempFiche);
+            }
 
         }
         catch (SQLException e){
             throw new GetFicheVehException();
         }
-        return ficheVehicule;
+        return listeNumChassis;
     }
 
     public ArrayList<FicheVehicule> getAllFichesVeh() throws ConnectionException, GetFicheVehException{

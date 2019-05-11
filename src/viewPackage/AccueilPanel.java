@@ -56,8 +56,8 @@ public class AccueilPanel extends JPanel {
         fc.add(this, BorderLayout.SOUTH);
         fc.add(lblBienvenue, BorderLayout.CENTER);
         w.setTitle("Acceuil");
-        repaint();
-        revalidate();
+        fc.repaint();
+        fc.revalidate();
     }
 
 

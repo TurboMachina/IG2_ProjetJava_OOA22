@@ -1,24 +1,47 @@
 package businessPackage;
 
 
-import dataAccessPackage.TransactionDBAccess;
-import dataAccessPackage.TransactionDataAccess;
-import exceptionPackage.ConnectionException;
-import exceptionPackage.GetTransactionException;
+import dataAccessPackage.*;
+import exceptionPackage.*;
+import modelPackage.Client;
+import modelPackage.Commercial;
+import modelPackage.FicheVehicule;
 import modelPackage.Transaction;
 import java.sql.Connection;
 import java.util.ArrayList;
 
 public class TransactionManager {
-    private TransactionDataAccess dao;
+    private TransactionDataAccess daoTransaction;
+    private ClientDataAccess daoClient;
+    private CommercialDataAccess daoCommercial;
+    private FicheVehiculeDataAccess daoFicheVeh;
 
     public TransactionManager(){
-        setDAO(new TransactionDBAccess());
     }
 
-    public void setDAO(TransactionDataAccess dao){this.dao = dao;}
+    public void setDAOTransaction(TransactionDataAccess dao){this.daoTransaction = dao;}
+    public void setDAOClient(ClientDataAccess dao){this.daoClient = dao;}
+    public void setDAOCommercial(CommercialDataAccess dao){this.daoCommercial = dao;}
+    public void setDAOFicheVeh(FicheVehiculeDataAccess dao){this.daoFicheVeh = dao;}
+
 
     public ArrayList<Transaction> getAllTransactions() throws ConnectionException, GetTransactionException {
-        return dao.getAllTransactions();
+        setDAOTransaction(new TransactionDBAccess());
+        return daoTransaction.getAllTransactions();
+    }
+
+    public ArrayList<Client> getAllClients() throws ConnectionException, GetClientException {
+        setDAOClient(new ClientDBAccess());
+        return daoClient.getAllClients();
+    }
+
+    public ArrayList<Commercial> getAllCommerciaux() throws ConnectionException, GetCommercialException {
+        setDAOCommercial(new CommercialDBAccess());
+        return daoCommercial.getAllCommerciaux();
+    }
+
+    public ArrayList<FicheVehicule> getAllNumChassis() throws ConnectionException, GetFicheVehException {
+        setDAOFicheVeh(new FicheVehiculeDBAccess());
+        return daoFicheVeh.getAllNumChassis();
     }
 }
