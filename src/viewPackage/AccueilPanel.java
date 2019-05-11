@@ -20,9 +20,10 @@ public class AccueilPanel extends JPanel {
         texteBienvenue = new JTextField("Bienvenue, sélectionnez une option");
         btnList = new JButton("Lister les transactions");
         btnAjout = new JButton("Ajouter une transaction");
-        btnRecherche = new JButton("Rechercher une transaction");
+        btnRecherche = new JButton("Recherche");
         btnList.addActionListener(new BtnListeListener());
         btnAjout.addActionListener(new BtnAjoutListener());
+        btnRecherche.addActionListener(new BtnRechercheListener());
         this.add(btnList);
         this.add(btnAjout);
         this.add(btnRecherche);
@@ -46,7 +47,7 @@ public class AccueilPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent event) {
-
+            new RecherchePanel(w).setPanel();
         }
     }
 

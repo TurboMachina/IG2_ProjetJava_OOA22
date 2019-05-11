@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AjoutPanel extends JPanel {
-    PrincipalWindow w;
+    private PrincipalWindow w;
 
     public AjoutPanel(PrincipalWindow w){
         this.w = w;
