@@ -35,6 +35,7 @@ public class ListingPanel extends JPanel {
         }
         table = new JTable(model);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         listSelect = table.getSelectionModel();
         scrollPane = new JScrollPane(table);
         add(btnModifier);

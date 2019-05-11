@@ -97,7 +97,7 @@ public class AllTransactionsModel extends AbstractTableModel {
             case 6:
                 return transaction.getNbProprios();
             case 7:
-                return transaction.getDescription();
+                return (transaction.getDescription() != null) ?  transaction.getDescription() : "---";
             case 8:
                 return transaction.getDateArrivee();
             case 9:

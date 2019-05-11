@@ -1,9 +1,8 @@
 package viewPackage;
 
-import javax.swing.*;
 import controllerPackage.*;
 import modelPackage.*;
-
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

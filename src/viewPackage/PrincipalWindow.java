@@ -14,7 +14,7 @@ public class PrincipalWindow extends JFrame {
     private Container frameContainer = this.getContentPane();
     public PrincipalWindow(){
         super("Accueil");
-        setBounds(100,100,1800,500);
+        setBounds(50,100,1800,500);
         new AccueilPanel(this).setPanel();
 
         // MENU

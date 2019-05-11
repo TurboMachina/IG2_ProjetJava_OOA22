@@ -1,10 +1,11 @@
 package businessPackage;
 
-import dataAccessPackage.*;
+
+import dataAccessPackage.TransactionDBAccess;
+import dataAccessPackage.TransactionDataAccess;
 import exceptionPackage.ConnectionException;
 import exceptionPackage.GetTransactionException;
-import modelPackage.*;
-
+import modelPackage.Transaction;
 import java.sql.Connection;
 import java.util.ArrayList;
 
