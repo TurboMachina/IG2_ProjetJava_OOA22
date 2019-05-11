@@ -88,9 +88,11 @@ public class AjoutPanel extends JPanel {
         spDateArrivee.setModel(spDateModel);
         JSpinner.DateEditor spDateEditor1 = new JSpinner.DateEditor(spDateArrivee, "dd-MM-yyyy");
         spDateArrivee.setEditor(spDateEditor1);
+
+        SpinnerDateModel spDateModel2 = new SpinnerDateModel();
         spDateVente = new JSpinner();
-        spDateVente.setModel(spDateModel);
-        JSpinner.DateEditor spDateEditor2 = new JSpinner.DateEditor(spDateArrivee, "dd-MM-yyyy");
+        spDateVente.setModel(spDateModel2);
+        JSpinner.DateEditor spDateEditor2 = new JSpinner.DateEditor(spDateVente, "dd-MM-yyyy");
         spDateVente.setEditor(spDateEditor2);
         try{
             spDateModel.setStart(spDateEditor1.getFormat().parse("01-01-1970"));
@@ -106,9 +108,11 @@ public class AjoutPanel extends JPanel {
         spNbProprios.setModel(spIntModel);
         JSpinner.NumberEditor spIntEditor1 = new JSpinner.NumberEditor(spNbProprios);
         spNbProprios.setEditor(spIntEditor1);
+
+        SpinnerNumberModel spIntModel2 = new SpinnerNumberModel();
         spDureeGarantie = new JSpinner();
-        spDureeGarantie.setModel(spIntModel);
-        JSpinner.NumberEditor spIntEditor2 = new JSpinner.NumberEditor(spNbProprios);
+        spDureeGarantie.setModel(spIntModel2);
+        JSpinner.NumberEditor spIntEditor2 = new JSpinner.NumberEditor(spDureeGarantie);
         spDureeGarantie.setEditor(spIntEditor2);
 
         taDescription = new JTextArea();
