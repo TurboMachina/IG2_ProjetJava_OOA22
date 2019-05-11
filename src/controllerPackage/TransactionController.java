@@ -45,6 +45,13 @@ public class TransactionController {
         return manager.ajouteTransaction(transaction);
     }
 
+    public void updateTransaction(Transaction transaction) throws ConnectionException, UpdateTransactionException{
+        manager.updateTransaction(transaction);
+    }
+
+    public void deleteTransaction(Integer idTransaction) throws ConnectionException, DeleteTransactionException{
+        manager.deleteTransaction(idTransaction);
+    }
 
 
     //TESTS

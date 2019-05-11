@@ -10,6 +10,6 @@ public interface TransactionDataAccess {
     ArrayList<Transaction> getAllTransactions() throws ConnectionException, GetTransactionException;
     int ajouteTransaction(Transaction newTransaction, int nextId) throws ConnectionException, AddTransactionException;
     void updateTransaction(Transaction upTransaction) throws ConnectionException, UpdateTransactionException;
-    void deleteTransaction(Transaction transaction) throws ConnectionException, DeleteTransactionException;
+    void deleteTransaction(Integer idTransaction) throws ConnectionException, DeleteTransactionException;
     public int getNextId() throws ConnectionException;
 }

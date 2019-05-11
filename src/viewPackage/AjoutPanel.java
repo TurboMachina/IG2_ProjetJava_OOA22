@@ -195,6 +195,7 @@ public class AjoutPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent event){
+            errorCount = 0;
             error.clear();
 
             //Kilometrage - PAS FACULTATIF - Integer

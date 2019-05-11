@@ -105,7 +105,7 @@ public class Transaction {
     }
 
     public void setEstTVARecup(Integer estTVARecup) {
-        this.estTVARecup = estTVARecup < 0;
+        this.estTVARecup = estTVARecup > 0;
     }
 
     public void setDateArrivee(GregorianCalendar dateArrivee) {

@@ -1,8 +1,6 @@
 package dataAccessPackage;
 
 import exceptionPackage.ConnectionException;
-import exceptionPackage.OtherException;
-import modelPackage.*;
 
 import java.sql.*;
 

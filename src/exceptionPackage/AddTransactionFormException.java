@@ -5,7 +5,7 @@ public class AddTransactionFormException extends Exception {
 
     @Override
     public String getMessage(){
-        return (error.equals("")) ? "Erreur dans le formulaire" : error.toString();
+        return ((error.equals("")) ? "Erreur dans le formulaire" : error.toString());
     }
 
     public void addError(String str){

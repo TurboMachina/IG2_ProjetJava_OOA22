@@ -4,12 +4,14 @@ import javax.swing.*;
 
 import controllerPackage.*;
 import exceptionPackage.ConnectionException;
+import exceptionPackage.DeleteTransactionException;
 import exceptionPackage.GetTransactionException;
 import modelPackage.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ListingPanel extends JPanel {
     private PrincipalWindow w;
@@ -19,6 +21,7 @@ public class ListingPanel extends JPanel {
     private JButton btnModifier,btnSupprimer;
     private TransactionController controller;
     private ListSelectionModel listSelect;
+    private ArrayList<Transaction> transactions;
 
     public ListingPanel(PrincipalWindow w){
         setController(new TransactionController());
@@ -27,8 +30,10 @@ public class ListingPanel extends JPanel {
         btnModifier = new JButton("Modifier une transaction");
         btnModifier.addActionListener(new BtnModifierListener());
         btnSupprimer = new JButton("Supprimer une transaction");
+        btnSupprimer.addActionListener(new BtnSupprimerListener());
         try{
-            model = new AllTransactionsModel(controller.getAllTransactions());
+            transactions = controller.getAllTransactions();
+            model = new AllTransactionsModel(transactions);
         }
         catch (ConnectionException | GetTransactionException e){
         JOptionPane.showMessageDialog(w,e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -52,11 +57,30 @@ public class ListingPanel extends JPanel {
         fc.revalidate();
     }
 
+    public int getSelectedIndex(){
+        return listSelect.getMinSelectionIndex();
+    }
+
     private class BtnModifierListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent event) {
-            new ModificationPanel(w).setPanel();
+            new ModificationPanel(w,transactions.get(getSelectedIndex())).setPanel();
+        }
+    }
+
+    private class BtnSupprimerListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            try{
+                controller.deleteTransaction(transactions.get(getSelectedIndex()).getId());
+                JOptionPane.showMessageDialog(w, "Transaction supprimée", "Suppresion", JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch (ConnectionException | DeleteTransactionException e){
+                JOptionPane.showMessageDialog(w,e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
+            new ListingPanel(w).setPanel();
         }
     }
 

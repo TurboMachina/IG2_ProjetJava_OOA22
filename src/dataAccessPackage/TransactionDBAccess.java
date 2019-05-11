@@ -113,23 +113,26 @@ public class TransactionDBAccess implements TransactionDataAccess {
             insertedLineNumber = prepStat.executeUpdate();
 
             if(newTransaction.getPrixMin()!= null){
-                query = "UPDATE transactions SET prixMin = ? where idTransaction ='"+ nextId +"'";
+                query = "UPDATE transactions SET prixMin = ? where idTransaction = ?";
                 prepStat = connection.prepareStatement(query);
                 prepStat.setFloat(1, newTransaction.getPrixMin());
+                prepStat.setInt(2, nextId);
                 prepStat.executeUpdate();
             }
 
             if(newTransaction.getNbProprios() != null){
-                query = "UPDATE transactions SET nbProprios = ? where idTransaction ='"+ nextId +"'";
+                query = "UPDATE transactions SET nbProprios = ? where idTransaction = ?";
                 prepStat = connection.prepareStatement(query);
                 prepStat.setInt(1, newTransaction.getNbProprios());
+                prepStat.setInt(2, nextId);
                 prepStat.executeUpdate();
             }
 
             if(newTransaction.getDescription() != null){
-                query = "UPDATE transactions SET description = ? where idTransaction ='"+ nextId +"'";
+                query = "UPDATE transactions SET description = ? where idTransaction = ?";
                 prepStat = connection.prepareStatement(query);
                 prepStat.setString(1, newTransaction.getDescription());
+                prepStat.setInt(2, nextId);
                 prepStat.executeUpdate();
             }
         }
@@ -141,10 +144,89 @@ public class TransactionDBAccess implements TransactionDataAccess {
 
     public void updateTransaction(Transaction upTransaction) throws ConnectionException, UpdateTransactionException{
         Connection connection = SingletonConnection.getConnexion();
+        int insertedLineNumber = 0;
+        try{
+            String query = "UPDATE dbprojet.transactions SET kilometrage = ?,couleur = ?,prixAchat = ?,prixDepart = ?,dateArrivee = ?" +
+                    ", dureeGarantie = ?,estTVARecup = ?,prixVente = ?,dateVente = ?,etat = ?, matricule = ?, numChassis = ?, idClient = ? " +
+                    "WHERE idTransaction = ?";
+            PreparedStatement prepStat = connection.prepareStatement(query);
+            prepStat.setInt(1,upTransaction.getKilometrage());
+            prepStat.setString(2, upTransaction.getCouleur());
+            prepStat.setFloat(3, upTransaction.getPrixAchat());
+            prepStat.setFloat(4, upTransaction.getPrixDepart());
+            prepStat.setDate(5, new java.sql.Date(upTransaction.getDateArrivee().getTimeInMillis()));
+            prepStat.setInt(6, upTransaction.getDureeGarantie());
+            prepStat.setInt(7, (upTransaction.isEstTVARecup() ? 1 : 0));
+            prepStat.setFloat(8, upTransaction.getPrixVente());
+            prepStat.setDate(9, new java.sql.Date(upTransaction.getDateVente().getTimeInMillis()));
+            prepStat.setString(10, upTransaction.getEtat());
+            prepStat.setInt(11, upTransaction.getCommercial().getMatricule());
+            prepStat.setString(12, upTransaction.getFicheVehicule().getNumChassis());
+            prepStat.setInt(13, upTransaction.getClient().getId());
+            prepStat.setInt(14, upTransaction.getId());
+            insertedLineNumber = prepStat.executeUpdate();
+
+            if(upTransaction.getPrixMin()!= null){
+                query = "UPDATE transactions SET prixMin = ? where idTransaction = ?";
+                prepStat = connection.prepareStatement(query);
+                prepStat.setFloat(1, upTransaction.getPrixMin());
+                prepStat.setInt(2, upTransaction.getId());
+                prepStat.executeUpdate();
+            }
+            else{
+                query = "UPDATE transactions SET prixMin = ? where idTransaction = ?";
+                prepStat = connection.prepareStatement(query);
+                prepStat.setNull(1, Types.FLOAT);
+                prepStat.setInt(2, upTransaction.getId());
+                prepStat.executeUpdate();
+            }
+
+            if(upTransaction.getNbProprios() != null){
+                query = "UPDATE transactions SET nbProprios = ? where idTransaction = ?";
+                prepStat = connection.prepareStatement(query);
+                prepStat.setInt(1, upTransaction.getNbProprios());
+                prepStat.setInt(2, upTransaction.getId());
+                prepStat.executeUpdate();
+            }
+            else{
+                query = "UPDATE transactions SET nbProprios = ? where idTransaction = ?";
+                prepStat = connection.prepareStatement(query);
+                prepStat.setNull(1, Types.INTEGER);
+                prepStat.setInt(2, upTransaction.getId());
+                prepStat.executeUpdate();
+            }
+
+            if(upTransaction.getDescription() != null){
+                query = "UPDATE transactions SET description = ? where idTransaction = ?";
+                prepStat = connection.prepareStatement(query);
+                prepStat.setString(1, upTransaction.getDescription());
+                prepStat.setInt(2, upTransaction.getId());
+                prepStat.executeUpdate();
+            }
+            else{
+                query = "UPDATE transactions SET description = ? where idTransaction = ?";
+                prepStat = connection.prepareStatement(query);
+                prepStat.setNull(1, Types.VARCHAR);
+                prepStat.setInt(2, upTransaction.getId());
+                prepStat.executeUpdate();
+            }
+        }
+        catch (SQLException e){
+            throw new UpdateTransactionException();
+        }
     }
 
-    public void deleteTransaction(Transaction transaction) throws ConnectionException, DeleteTransactionException{
+    public void deleteTransaction(Integer idTransaction) throws ConnectionException, DeleteTransactionException{
         Connection connection = SingletonConnection.getConnexion();
+        try{
+            String queryId = "DELETE FROM transactions WHERE idTransaction = ?";
+            PreparedStatement prepStat = connection.prepareStatement(queryId);
+            prepStat.setInt(1,idTransaction);
+            prepStat.executeUpdate();
+        }
+        catch (SQLException e){
+            throw new DeleteTransactionException();
+        }
     }
 
     public int getNextId() throws ConnectionException{
