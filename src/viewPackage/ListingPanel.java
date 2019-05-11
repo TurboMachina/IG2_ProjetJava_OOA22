@@ -29,14 +29,14 @@ public class ListingPanel extends JPanel {
         btnSupprimer = new JButton("Supprimer une transaction");
         try{
             model = new AllTransactionsModel(controller.getAllTransactions());
-            table = new JTable(model);
-            table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-            listSelect = table.getSelectionModel();
-            scrollPane = new JScrollPane(table);
         }
         catch (ConnectionException | GetTransactionException e){
             System.out.println(e.getMessage());
         }
+        table = new JTable(model);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listSelect = table.getSelectionModel();
+        scrollPane = new JScrollPane(table);
         add(btnModifier);
         add(btnSupprimer);
     }
@@ -45,7 +45,7 @@ public class ListingPanel extends JPanel {
         Container fc = w.getFrameContainer();
         fc.removeAll();
         fc.add(this, BorderLayout.SOUTH);
-        fc.add(scrollPane, BorderLayout.CENTER);
+        fc.add(this.scrollPane, BorderLayout.CENTER);
         w.setTitle("Listing");
         w.repaint();
         w.revalidate();
