@@ -9,6 +9,7 @@ import modelPackage.FicheVehicule;
 import modelPackage.Transaction;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public class TransactionManager {
     private TransactionDataAccess daoTransaction;
@@ -24,6 +25,7 @@ public class TransactionManager {
     public void setDAOClient(ClientDataAccess dao){this.daoClient = dao;}
     public void setDAOCommercial(CommercialDataAccess dao){this.daoCommercial = dao;}
     public void setDAOFicheVeh(FicheVehiculeDataAccess dao){this.daoFicheVeh = dao;}
+    public void setDAORecherche(RechercheDataAccess dao){this.daoRecherche = dao;}
 
 
     public ArrayList<Transaction> getAllTransactions() throws ConnectionException, GetTransactionException {
@@ -60,5 +62,18 @@ public class TransactionManager {
     public void deleteTransaction(Integer idTransaction) throws ConnectionException, DeleteTransactionException{
         setDAOTransaction(new TransactionDBAccess());
         daoTransaction.deleteTransaction(idTransaction);
+    }
+
+    public ArrayList<Transaction> recherche1(Integer matricule, String marque) throws ConnectionException, RechercheException{
+        setDAORecherche(new RechercheDBAccess());
+        return daoRecherche.recherche1(matricule,marque);
+    }
+    public ArrayList<Transaction> recherche2(Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{
+        setDAORecherche(new RechercheDBAccess());
+        return daoRecherche.recherche2(idModele, idMagasin);
+    }
+    public ArrayList<Transaction> recherche3(GregorianCalendar dateDebut, GregorianCalendar dateFin, Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{
+        setDAORecherche(new RechercheDBAccess());
+        return daoRecherche.recherche3(dateDebut,dateFin,idModele,idMagasin);
     }
 }

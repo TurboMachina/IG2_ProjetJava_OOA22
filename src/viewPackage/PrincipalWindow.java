@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import controllerPackage.*;
+import exceptionPackage.CloseException;
+import exceptionPackage.ConnectionException;
 import modelPackage.*;
 
 
@@ -12,8 +14,10 @@ public class PrincipalWindow extends JFrame {
     private JMenu optionMenu;
     private JMenuItem accueil, exit;
     private Container frameContainer = this.getContentPane();
+    private ConnectionController controller;
     public PrincipalWindow(){
         super("Accueil");
+        setController(new ConnectionController());
         setBounds(50,100,1800,500);
         new AccueilPanel(this).setPanel();
 
@@ -43,14 +47,18 @@ public class PrincipalWindow extends JFrame {
         return this.frameContainer;
     }
 
+    public void setController(ConnectionController controller){
+        this.controller = controller;
+    }
+
     private class ClosingWindow extends WindowAdapter
     {
         public void windowClosing(WindowEvent event)
         {
             try{
-                // utilityController.closeConnection();
+                controller.closeConnection();
             }
-            catch (Exception e){
+            catch (CloseException | ConnectionException e){
                 System.out.println(e.getMessage());
             }
             System.exit(0);
@@ -62,9 +70,9 @@ public class PrincipalWindow extends JFrame {
         public void actionPerformed(ActionEvent event)
         {
             try{
-                // utilityController.closeConnection();
+                controller.closeConnection();
             }
-            catch (Exception e){
+            catch (CloseException | ConnectionException e){
                 System.out.println(e.getMessage());
             }
             System.exit(0);

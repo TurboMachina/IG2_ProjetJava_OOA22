@@ -1,5 +1,6 @@
 package dataAccessPackage;
 
+import exceptionPackage.CloseException;
 import exceptionPackage.ConnectionException;
 
 import java.sql.*;

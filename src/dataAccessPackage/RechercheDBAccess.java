@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-public class RechercheDBAccess {
+public class RechercheDBAccess implements RechercheDataAccess {
 
     public ArrayList<Transaction> recherche1(Integer matricule, String marque) throws ConnectionException, RechercheException {
         Connection connection = SingletonConnection.getConnexion();

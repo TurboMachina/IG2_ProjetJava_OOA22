@@ -1,6 +1,7 @@
 package controllerPackage;
 
 import businessPackage.*;
+import dataAccessPackage.RechercheDBAccess;
 import dataAccessPackage.SingletonConnection;
 import exceptionPackage.*;
 import modelPackage.*;
@@ -51,6 +52,16 @@ public class TransactionController {
 
     public void deleteTransaction(Integer idTransaction) throws ConnectionException, DeleteTransactionException{
         manager.deleteTransaction(idTransaction);
+    }
+
+    public ArrayList<Transaction> recherche1(Integer matricule, String marque) throws ConnectionException, RechercheException{
+        return manager.recherche1(matricule,marque);
+    }
+    public ArrayList<Transaction> recherche2(Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{
+        return manager.recherche2(idModele, idMagasin);
+    }
+    public ArrayList<Transaction> recherche3(GregorianCalendar dateDebut, GregorianCalendar dateFin, Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{
+        return manager.recherche3(dateDebut,dateFin,idModele,idMagasin);
     }
 
 
