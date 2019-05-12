@@ -1,6 +1,7 @@
 package controllerPackage;
 
 import businessPackage.*;
+import dataAccessPackage.MarqueDBAccess;
 import dataAccessPackage.RechercheDBAccess;
 import dataAccessPackage.SingletonConnection;
 import exceptionPackage.*;
@@ -54,14 +55,18 @@ public class TransactionController {
         manager.deleteTransaction(idTransaction);
     }
 
-    public ArrayList<Transaction> recherche1(Integer matricule, String marque) throws ConnectionException, RechercheException{
-        return manager.recherche1(matricule,marque);
+    public ArrayList<Transaction> rechercheTransaction(Integer matricule, String marque) throws ConnectionException, RechercheException{
+        return manager.rechercheTransaction(matricule,marque);
     }
-    public ArrayList<Transaction> recherche2(Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{
-        return manager.recherche2(idModele, idMagasin);
+    public ArrayList<Transaction> rechercheModele(Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{
+        return manager.rechercheModele(idModele, idMagasin);
     }
-    public ArrayList<Transaction> recherche3(GregorianCalendar dateDebut, GregorianCalendar dateFin, Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{
-        return manager.recherche3(dateDebut,dateFin,idModele,idMagasin);
+    public ArrayList<Transaction> rechercheVente(GregorianCalendar dateDebut, GregorianCalendar dateFin, Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{
+        return manager.rechercheVente(dateDebut,dateFin,idModele,idMagasin);
+    }
+
+    public ArrayList<Marque> getAllMarques() throws ConnectionException, GetMarqueException{
+        return manager.getAllMarques();
     }
 
 

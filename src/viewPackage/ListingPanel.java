@@ -61,6 +61,8 @@ public class ListingPanel extends JPanel {
         fc.removeAll();
         fc.add(this, BorderLayout.SOUTH);
         fc.add(this.scrollPane, BorderLayout.CENTER);
+        w.setSize(1700,500);
+        w.setLocationRelativeTo(null);
         w.setTitle("Listing");
         fc.repaint();
         fc.revalidate();

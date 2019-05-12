@@ -173,7 +173,9 @@ public class AjoutPanel extends JPanel {
         fc.removeAll();
         fc.add(this, BorderLayout.CENTER);
         fc.add(this.btnAjouter, BorderLayout.SOUTH);
+        w.setSize(1600,1000);
         w.setTitle("Ajout d'une transaction");
+        w.setLocationRelativeTo(null);
         fc.repaint();
         fc.revalidate();
     }

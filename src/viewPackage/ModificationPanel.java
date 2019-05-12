@@ -41,7 +41,7 @@ public class ModificationPanel extends JPanel {
         this.w = w;
         this.currentTransaction = transaction;
         setController(new TransactionController());
-        setLayout(new GridLayout(8,4,200,20));
+        setLayout(new GridLayout(8,4,20,20));
 
         try{
             listeCommerciaux = controller.getAllCommerciaux();
@@ -188,6 +188,8 @@ public class ModificationPanel extends JPanel {
         fc.removeAll();
         fc.add(this, BorderLayout.CENTER);
         fc.add(this.btnModifier, BorderLayout.SOUTH);
+        w.setSize(1500,500);
+        w.setLocationRelativeTo(null);
         w.setTitle("Modification d'une transaction");
         fc.repaint();
         fc.revalidate();
@@ -353,6 +355,7 @@ public class ModificationPanel extends JPanel {
                 }
             else
                 JOptionPane.showMessageDialog(w,error.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            new ListingPanel(w).setPanel();
         }
     }
 

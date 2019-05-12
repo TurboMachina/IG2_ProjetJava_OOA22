@@ -10,12 +10,12 @@ import java.awt.event.ActionListener;
 
 public class AccueilPanel extends JPanel {
     private PrincipalWindow w;
-    private JButton btnList, btnAjout, btnRecherche;
+    private JButton btnList, btnAjout;
     private JTextField texteBienvenue;
     private JLabel lblBienvenue;
     private ConnectionController controller;
     public AccueilPanel(PrincipalWindow w){
-        setLayout(new GridLayout(3,1));
+        setLayout(new GridLayout(2,1));
         setController(new ConnectionController());
         this.w = w;
         lblBienvenue = new JLabel("<html> Bienvenue, veuillez choisir une option dans le menu ci-dessous. " +
@@ -23,22 +23,18 @@ public class AccueilPanel extends JPanel {
         texteBienvenue = new JTextField("Bienvenue, sélectionnez une option");
         btnList = new JButton("Lister les transactions (Donne accés à la modification/suppresion)");
         btnAjout = new JButton("Ajouter une transaction");
-        btnRecherche = new JButton("Recherche");
         btnList.addActionListener(new BtnListeListener());
         btnAjout.addActionListener(new BtnAjoutListener());
-        btnRecherche.addActionListener(new BtnRechercheListener());
         try{
             controller.checkConnection();
         }
         catch (ConnectionException e){
             btnList.setEnabled(false);
             btnAjout.setEnabled(false);
-            btnRecherche.setEnabled(false);
             JOptionPane.showMessageDialog(w,"Connection à la base de données impossible\n Verifier la connection puis redémarrer le programme", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
         this.add(btnList);
         this.add(btnAjout);
-        this.add(btnRecherche);
 
     }
 
@@ -56,13 +52,6 @@ public class AccueilPanel extends JPanel {
             new AjoutPanel(w).setPanel();
         }
     }
-    private class BtnRechercheListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent event) {
-            new RecherchePanel(w).setPanel();
-        }
-    }
 
     public void setPanel(){
         Container fc = w.getFrameContainer();
@@ -70,6 +59,8 @@ public class AccueilPanel extends JPanel {
         fc.add(this, BorderLayout.SOUTH);
         fc.add(lblBienvenue, BorderLayout.CENTER);
         w.setTitle("Acceuil");
+        w.setSize(500,500);
+        w.setLocationRelativeTo(null);
         fc.repaint();
         fc.revalidate();
     }

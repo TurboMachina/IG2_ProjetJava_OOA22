@@ -14,7 +14,7 @@ import java.util.GregorianCalendar;
 
 public class RechercheDBAccess implements RechercheDataAccess {
 
-    public ArrayList<Transaction> recherche1(Integer matricule, String marque) throws ConnectionException, RechercheException {
+    public ArrayList<Transaction> rechercheTransaction(Integer matricule, String marque) throws ConnectionException, RechercheException {
         Connection connection = SingletonConnection.getConnexion();
         ArrayList<Transaction> transactions= new ArrayList<>();
         try{
@@ -59,7 +59,7 @@ public class RechercheDBAccess implements RechercheDataAccess {
         return transactions;
     }
 
-    public ArrayList<Transaction> recherche2(Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{
+    public ArrayList<Transaction> rechercheModele(Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{
         Connection connection = SingletonConnection.getConnexion();
         ArrayList<Transaction> transactions = new ArrayList<>();
         try{
@@ -114,7 +114,7 @@ public class RechercheDBAccess implements RechercheDataAccess {
         return null;
     }
 
-    public ArrayList<Transaction> recherche3(GregorianCalendar dateDebut, GregorianCalendar dateFin, Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{
+    public ArrayList<Transaction> rechercheVente(GregorianCalendar dateDebut, GregorianCalendar dateFin, Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{
         Connection connection = SingletonConnection.getConnexion();
         ArrayList<Transaction> transactions = new ArrayList<>();
         try{

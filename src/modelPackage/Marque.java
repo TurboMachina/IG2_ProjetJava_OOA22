@@ -26,4 +26,9 @@ public class Marque {
         return this.modeles;
     }
 
+    @Override
+    public String toString(){
+        return this.libelle;
+    }
+
 }

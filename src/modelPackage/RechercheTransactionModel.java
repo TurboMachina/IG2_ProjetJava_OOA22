@@ -2,7 +2,7 @@ package modelPackage;
 
 import javax.swing.table.AbstractTableModel;
 
-public class Recherche3Model extends AbstractTableModel {
+public class RechercheTransactionModel extends AbstractTableModel implements Model {
     @Override
     public int getRowCount() {
         return 0;

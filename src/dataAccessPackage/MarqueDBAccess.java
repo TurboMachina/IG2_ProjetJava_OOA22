@@ -8,13 +8,22 @@ import java.util.ArrayList;
 
 public class MarqueDBAccess implements MarqueDataAccess {
 
-    public Marque getMarque(String libelleMarque) throws ConnectionException, GetMarqueException{
-        Connection connection = SingletonConnection.getConnexion();
-        return null;
-    }
-
     public ArrayList<Marque> getAllMarques() throws ConnectionException, GetMarqueException{
         Connection connection = SingletonConnection.getConnexion();
-        return null;
+        ArrayList<Marque> marques = new ArrayList<>();
+        try{
+            String query = "SELECT marque.libelle FROM dbprojet.marque";
+            PreparedStatement prepStat = connection.prepareStatement(query);
+            ResultSet rs = prepStat.executeQuery();
+            Marque marque;
+            while (rs.next()){
+                marque = new Marque(rs.getString(1));
+                marques.add(marque);
+            }
+        }
+        catch (SQLException e){
+            throw new GetMarqueException();
+        }
+        return marques;
     }
 }
