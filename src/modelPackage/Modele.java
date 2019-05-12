@@ -74,4 +74,11 @@ public class Modele {
     public Integer getID(){
         return this.id;
     }
+
+    public Marque getMarque(){return this.marque;}
+
+    @Override
+    public String toString(){
+        return this.libelle;
+    }
 }

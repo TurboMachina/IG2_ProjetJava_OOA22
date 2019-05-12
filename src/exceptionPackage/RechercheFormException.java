@@ -1,11 +1,11 @@
 package exceptionPackage;
 
-public class AddTransactionFormException extends Exception {
+public class RechercheFormException extends Exception {
     private StringBuilder error = new StringBuilder();
 
     @Override
     public String getMessage(){
-        return ((error.length() == 0) ? "Erreur dans le formulaire d'ajout" : error.toString());
+        return ((error.length() == 0) ? "Erreur dans le formulaire de recherche" : error.toString());
     }
 
     public void addError(String str){
@@ -17,6 +17,4 @@ public class AddTransactionFormException extends Exception {
     public void clear(){
         error.setLength(0);
     }
-
-
 }

@@ -106,12 +106,14 @@ public class RechercheDBAccess implements RechercheDataAccess {
                 modele.setConsoExtraUrbain(rs.getFloat(17));
                 modele.setNbPortes(rs.getInt(18));
                 transaction.getFicheVehicule().setModele(modele);
+
+                transactions.add(transaction);
             }
         }
         catch (SQLException e){
             throw new RechercheException();
         }
-        return null;
+        return transactions;
     }
 
     public ArrayList<Transaction> rechercheVente(GregorianCalendar dateDebut, GregorianCalendar dateFin, Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{

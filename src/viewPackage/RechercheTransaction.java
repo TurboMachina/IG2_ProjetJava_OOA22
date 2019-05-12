@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class RechercheTransaction extends JPanel {
     private TransactionController controller;
     private PrincipalWindow w;
-    private JLabel lbCommercial, lbMarque;
+    private JLabel lbCommercial, lbMarque, lblObjectif;
     private JComboBox<Commercial> cbCommercial;
     private JComboBox<Marque> cbMarque;
     private JButton btnRecherche;
@@ -50,6 +50,7 @@ public class RechercheTransaction extends JPanel {
 
         btnRecherche = new JButton("Effectuer la recherche");
         btnRecherche.addActionListener(new BtnRechercheListener());
+        lblObjectif = new JLabel("Rechercher les transactions effectuées par un commercial et une marque donnée");
 
     }
 
@@ -57,6 +58,7 @@ public class RechercheTransaction extends JPanel {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         Container fc = w.getFrameContainer();
         fc.removeAll();
+        fc.add(this.lblObjectif, BorderLayout.NORTH);
         fc.add(this, BorderLayout.CENTER);
         fc.add(this.btnRecherche, BorderLayout.SOUTH);
         w.setTitle("Recherche des transactions");

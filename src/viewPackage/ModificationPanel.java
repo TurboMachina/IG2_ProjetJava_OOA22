@@ -78,13 +78,13 @@ public class ModificationPanel extends JPanel {
         txtPrixMin = new JTextField();
         if (currentTransaction.getPrixMin() != null)
             txtPrixMin.setText(currentTransaction.getPrixMin().toString());
-        txtPrixVente = new JTextField(currentTransaction.getPrixVente().toString());;
+        txtPrixVente = new JTextField(currentTransaction.getPrixVente().toString());
         txtNbProprios = new JTextField();
         if (currentTransaction.getNbProprios() != null)
             txtNbProprios.setText(currentTransaction.getNbProprios().toString());
 
 
-        cbEtat = new JComboBox(listeEtat);
+        cbEtat = new JComboBox<>(listeEtat);
         cbEtat.setSelectedItem(currentTransaction.getEtat());
         cbCommercial = new JComboBox<>();
         cbCommercial.setModel(new DefaultComboBoxModel<>(listeCommerciaux.toArray(new Commercial[0])));
@@ -207,12 +207,13 @@ public class ModificationPanel extends JPanel {
 
     private class BtnModifierListener implements ActionListener {
         AddTransactionFormException error = new AddTransactionFormException();
-        int errorCount = 0;
+        int errorCount;
         GregorianCalendar date = new GregorianCalendar();
 
         @Override
         public void actionPerformed(ActionEvent event){
             error.clear();
+            errorCount = 0;
 
             //Kilometrage - PAS FACULTATIF - Integer
             if(!txtKilometrage.getText().equals("")) {
@@ -345,17 +346,17 @@ public class ModificationPanel extends JPanel {
             currentTransaction.setFicheVehicule(new FicheVehicule(cbNumChassis.getSelectedItem().toString()));
             //Client (idClient) - PAS FACULTATIF - Integer
             currentTransaction.setClient(new Client(listeClients.get(cbClient.getSelectedIndex()).getId()));
-            if(errorCount == 0)
+            if(errorCount == 0) {
                 try {
                     controller.updateTransaction(currentTransaction);
-                    JOptionPane.showMessageDialog(w,"Modification effectuée", "Ajout à la BDD", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(w, "Modification effectuée", "Ajout à la BDD", JOptionPane.INFORMATION_MESSAGE);
+                } catch (ConnectionException | UpdateTransactionException e) {
+                    JOptionPane.showMessageDialog(w, e.toString(), "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
-                catch (ConnectionException | UpdateTransactionException e){
-                    JOptionPane.showMessageDialog(w,e.toString(), "Erreur", JOptionPane.ERROR_MESSAGE);
-                }
+                new ListingPanel(w).setPanel();
+            }
             else
                 JOptionPane.showMessageDialog(w,error.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
-            new ListingPanel(w).setPanel();
         }
     }
 

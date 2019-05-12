@@ -1,6 +1,7 @@
 package controllerPackage;
 
 import businessPackage.*;
+import dataAccessPackage.MagasinDBAccess;
 import dataAccessPackage.MarqueDBAccess;
 import dataAccessPackage.RechercheDBAccess;
 import dataAccessPackage.SingletonConnection;
@@ -58,7 +59,7 @@ public class TransactionController {
     public ArrayList<Transaction> rechercheTransaction(Integer matricule, String marque) throws ConnectionException, RechercheException{
         return manager.rechercheTransaction(matricule,marque);
     }
-    public ArrayList<Transaction> rechercheModele(Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{
+    public ArrayList<Transaction> rechercheModel(Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{
         return manager.rechercheModele(idModele, idMagasin);
     }
     public ArrayList<Transaction> rechercheVente(GregorianCalendar dateDebut, GregorianCalendar dateFin, Integer idModele, Integer idMagasin) throws ConnectionException, RechercheException{
@@ -69,15 +70,20 @@ public class TransactionController {
         return manager.getAllMarques();
     }
 
+    public ArrayList<Magasin> getAllMagasins() throws ConnectionException, GetMagasinException{
+        return manager.getAllMagasins();
+    }
+    public ArrayList<Modele> getAllModeles() throws ConnectionException, GetModeleException{
+        return manager.getAllModeles();
+    }
+
 
     //TESTS
 
     public boolean tryParseInt(String value) {
         try {
             Integer.parseInt(value);
-            if(Integer.parseInt(value) < 0)
-                return false;
-            return true;
+            return Integer.parseInt(value) < 0;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -86,9 +92,7 @@ public class TransactionController {
     public boolean tryParseFloat(String value) {
         try {
             Float.parseFloat(value);
-            if (Float.parseFloat(value) < 0)
-                return false;
-            return true;
+            return Float.parseFloat(value) < 0;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -105,7 +109,7 @@ public class TransactionController {
         }
         int len = s.length();
         for (int i = 0; i < len; i++) {
-            if ((Character.isLetter(s.charAt(i)) == false)) {
+            if (!Character.isLetter(s.charAt(i))) {
                 return false;
             }
         }

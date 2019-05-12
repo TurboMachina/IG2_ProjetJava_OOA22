@@ -16,16 +16,20 @@ public class TransactionManager {
     private FicheVehiculeDataAccess daoFicheVeh;
     private RechercheDataAccess daoRecherche;
     private MarqueDataAccess daoMarque;
+    private MagasinDataAccess daoMagasin;
+    private ModeleDataAccess daoModele;
 
     public TransactionManager(){
     }
 
-    public void setDAOTransaction(TransactionDataAccess dao){this.daoTransaction = dao;}
-    public void setDAOClient(ClientDataAccess dao){this.daoClient = dao;}
-    public void setDAOCommercial(CommercialDataAccess dao){this.daoCommercial = dao;}
-    public void setDAOFicheVeh(FicheVehiculeDataAccess dao){this.daoFicheVeh = dao;}
-    public void setDAORecherche(RechercheDataAccess dao){this.daoRecherche = dao;}
-    public void setDAOMarque(MarqueDataAccess dao){this.daoMarque = dao;}
+    private void setDAOTransaction(TransactionDataAccess dao){this.daoTransaction = dao;}
+    private void setDAOClient(ClientDataAccess dao){this.daoClient = dao;}
+    private void setDAOCommercial(CommercialDataAccess dao){this.daoCommercial = dao;}
+    private void setDAOFicheVeh(FicheVehiculeDataAccess dao){this.daoFicheVeh = dao;}
+    private void setDAORecherche(RechercheDataAccess dao){this.daoRecherche = dao;}
+    private void setDAOMarque(MarqueDataAccess dao){this.daoMarque = dao;}
+    private void setDAOMagasin(MagasinDataAccess dao){this.daoMagasin = dao;}
+    private void setDAOModele(ModeleDataAccess dao){this.daoModele = dao;}
 
 
     public ArrayList<Transaction> getAllTransactions() throws ConnectionException, GetTransactionException {
@@ -80,5 +84,15 @@ public class TransactionManager {
     public ArrayList<Marque> getAllMarques() throws ConnectionException, GetMarqueException{
         setDAOMarque(new MarqueDBAccess());
         return daoMarque.getAllMarques();
+    }
+
+    public ArrayList<Magasin> getAllMagasins() throws ConnectionException, GetMagasinException{
+        setDAOMagasin(new MagasinDBAccess());
+        return daoMagasin.getAllMagasins();
+    }
+
+    public ArrayList<Modele> getAllModeles() throws ConnectionException, GetModeleException{
+        setDAOModele(new ModeleDBAccess());
+        return daoModele.getAllModeles();
     }
 }

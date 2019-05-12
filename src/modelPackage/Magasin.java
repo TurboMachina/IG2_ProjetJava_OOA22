@@ -26,4 +26,11 @@ public class Magasin {
     public Commercial getCommercial(int index){
         return commercials.get(index);
     }
+
+    public Integer getId(){return this.id;}
+
+    @Override
+    public String toString(){
+        return this.nom;
+    }
 }

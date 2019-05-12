@@ -1,16 +1,11 @@
 package viewPackage;
 
 import javax.swing.*;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.SQLException;
 
 import controllerPackage.*;
 import exceptionPackage.CloseException;
-import exceptionPackage.ConnectionException;
-import modelPackage.*;
 
 
 public class PrincipalWindow extends JFrame {
@@ -54,13 +49,13 @@ public class PrincipalWindow extends JFrame {
         rechercheTrans.setAccelerator((KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.ALT_DOWN_MASK )));
         rechercheMenu.add(rechercheTrans);
 
-        rechercheVente = new JMenuItem("Recherche modéle vendu");
-        rechercheVente.setAccelerator((KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.ALT_DOWN_MASK )));
-        rechercheMenu.add(rechercheVente);
-
-        rechercheModele = new JMenuItem("Recherche vente sur une période");
-        rechercheModele.setAccelerator((KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.ALT_DOWN_MASK )));
+        rechercheModele = new JMenuItem("Recherche modéle vendu");
+        rechercheModele.setAccelerator((KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.ALT_DOWN_MASK )));
         rechercheMenu.add(rechercheModele);
+
+        rechercheVente = new JMenuItem("Recherche vente sur une période");
+        rechercheVente.setAccelerator((KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.ALT_DOWN_MASK )));
+        rechercheMenu.add(rechercheVente);
 
         // Croix rouge ou quitter
         this.addWindowListener(new ClosingWindow(this));
@@ -70,6 +65,8 @@ public class PrincipalWindow extends JFrame {
         accueil.addActionListener(new MenuAccueil(this));
         exit.addActionListener(new MenuExit(this));
         rechercheTrans.addActionListener(new MenuRechercheTransaction(this));
+        rechercheModele.addActionListener(new MenuRechercheModele(this));
+        rechercheVente.addActionListener(new MenuRechercheVente(this));
     }
 
     public Container getFrameContainer(){
@@ -140,7 +137,7 @@ public class PrincipalWindow extends JFrame {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            JOptionPane.showMessageDialog(w,"Programme fait par Herlinvaux Alexandre & Herrent Antoine \nDans le cadre du cours de programmation avancée \nHenallux IESN Namur 2018-2019", "Information sur le programme", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(w,"Programme fait par Herlinvaux Alexandre & Herrent Antoine \nDans le cadre du cours de programmation avancée \nIG2 Henallux IESN Namur 2018-2019", "Information sur le programme", JOptionPane.INFORMATION_MESSAGE);
             w.whoMenu.setSelected(false);
         }
 
@@ -174,6 +171,32 @@ public class PrincipalWindow extends JFrame {
 
         public void actionPerformed(ActionEvent event) {
                 new RechercheTransaction(w).setPanel();
+        }
+
+    }
+
+    private class MenuRechercheModele implements ActionListener
+    {
+        PrincipalWindow w;
+        public MenuRechercheModele(PrincipalWindow w){
+            this.w = w;
+        }
+
+        public void actionPerformed(ActionEvent event) {
+            new RechercheModele(w).setPanel();
+        }
+
+    }
+
+    private class MenuRechercheVente implements ActionListener
+    {
+        PrincipalWindow w;
+        public MenuRechercheVente(PrincipalWindow w){
+            this.w = w;
+        }
+
+        public void actionPerformed(ActionEvent event) {
+            new RechercheVente(w).setPanel();
         }
 
     }
