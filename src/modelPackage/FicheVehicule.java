@@ -30,6 +30,10 @@ public class FicheVehicule {
         this.modele = modele;
     }
 
+    public Modele getModele(){
+        return this.modele;
+    }
+
     public void ajouteTransaction(Transaction newTransaction){
         transactions.add(newTransaction);
     }

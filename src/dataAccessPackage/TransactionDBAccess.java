@@ -209,8 +209,8 @@ public class TransactionDBAccess implements TransactionDataAccess {
     public void deleteTransaction(Integer idTransaction) throws ConnectionException, DeleteTransactionException{
         Connection connection = SingletonConnection.getConnexion();
         try{
-            String queryId = "DELETE FROM transactions WHERE idTransaction = ?";
-            PreparedStatement prepStat = connection.prepareStatement(queryId);
+            String query = "DELETE FROM transactions WHERE idTransaction = ?";
+            PreparedStatement prepStat = connection.prepareStatement(query);
             prepStat.setInt(1,idTransaction);
             prepStat.executeUpdate();
         }
