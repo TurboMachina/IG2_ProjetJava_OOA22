@@ -15,6 +15,7 @@ public class TransactionManager {
     private ClientDataAccess daoClient;
     private CommercialDataAccess daoCommercial;
     private FicheVehiculeDataAccess daoFicheVeh;
+    private RechercheDataAccess daoRecherche;
 
     public TransactionManager(){
     }

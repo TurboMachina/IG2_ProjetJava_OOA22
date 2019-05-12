@@ -2,15 +2,17 @@ package dataAccessPackage;
 
 import exceptionPackage.ConnectionException;
 import exceptionPackage.DeleteTransactionException;
+import modelPackage.Transaction;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-public class RechercheDB {
+public class RechercheDBAccess {
 
-    public void recherche1(String adresse, Integer matricule, String marque) throws ConnectionException, DeleteTransactionException {
+    public ArrayList<Transaction> recherche1(String adresse, Integer matricule, String marque) throws ConnectionException, DeleteTransactionException {
         Connection connection = SingletonConnection.getConnexion();
         try{
             String queryId = "";
@@ -20,6 +22,7 @@ public class RechercheDB {
         catch (SQLException e){
             throw new DeleteTransactionException();
         }
+        return null;
     }
 
     public void recherche2(String modele, String adresse) throws ConnectionException, DeleteTransactionException{

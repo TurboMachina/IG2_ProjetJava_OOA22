@@ -2,7 +2,6 @@ package viewPackage;
 
 import controllerPackage.TransactionController;
 import exceptionPackage.*;
-import javafx.scene.control.ComboBox;
 import modelPackage.*;
 import org.w3c.dom.Text;
 
