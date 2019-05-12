@@ -113,26 +113,23 @@ public class TransactionDBAccess implements TransactionDataAccess {
             insertedLineNumber = prepStat.executeUpdate();
 
             if(newTransaction.getPrixMin()!= null){
-                query = "UPDATE transactions SET prixMin = ? where idTransaction = ?";
+                query = "UPDATE transactions SET prixMin = ? where idTransaction = '" + nextId + "'";
                 prepStat = connection.prepareStatement(query);
                 prepStat.setFloat(1, newTransaction.getPrixMin());
-                prepStat.setInt(2, nextId);
                 prepStat.executeUpdate();
             }
 
             if(newTransaction.getNbProprios() != null){
-                query = "UPDATE transactions SET nbProprios = ? where idTransaction = ?";
+                query = "UPDATE transactions SET nbProprios = ? where idTransaction = '" + nextId + "'";
                 prepStat = connection.prepareStatement(query);
                 prepStat.setInt(1, newTransaction.getNbProprios());
-                prepStat.setInt(2, nextId);
                 prepStat.executeUpdate();
             }
 
             if(newTransaction.getDescription() != null){
-                query = "UPDATE transactions SET description = ? where idTransaction = ?";
+                query = "UPDATE transactions SET description = ? where idTransaction = '" + nextId + "'";
                 prepStat = connection.prepareStatement(query);
                 prepStat.setString(1, newTransaction.getDescription());
-                prepStat.setInt(2, nextId);
                 prepStat.executeUpdate();
             }
         }
@@ -148,7 +145,7 @@ public class TransactionDBAccess implements TransactionDataAccess {
         try{
             String query = "UPDATE dbprojet.transactions SET kilometrage = ?,couleur = ?,prixAchat = ?,prixDepart = ?,dateArrivee = ?" +
                     ", dureeGarantie = ?,estTVARecup = ?,prixVente = ?,dateVente = ?,etat = ?, matricule = ?, numChassis = ?, idClient = ? " +
-                    "WHERE idTransaction = ?";
+                    "WHERE idTransaction = '"+ upTransaction.getId() +"'";
             PreparedStatement prepStat = connection.prepareStatement(query);
             prepStat.setInt(1,upTransaction.getKilometrage());
             prepStat.setString(2, upTransaction.getCouleur());
@@ -163,51 +160,44 @@ public class TransactionDBAccess implements TransactionDataAccess {
             prepStat.setInt(11, upTransaction.getCommercial().getMatricule());
             prepStat.setString(12, upTransaction.getFicheVehicule().getNumChassis());
             prepStat.setInt(13, upTransaction.getClient().getId());
-            prepStat.setInt(14, upTransaction.getId());
             insertedLineNumber = prepStat.executeUpdate();
 
             if(upTransaction.getPrixMin()!= null){
-                query = "UPDATE transactions SET prixMin = ? where idTransaction = ?";
+                query = "UPDATE transactions SET prixMin = ? where idTransaction = '"+ upTransaction.getId() +"'";
                 prepStat = connection.prepareStatement(query);
                 prepStat.setFloat(1, upTransaction.getPrixMin());
-                prepStat.setInt(2, upTransaction.getId());
                 prepStat.executeUpdate();
             }
             else{
-                query = "UPDATE transactions SET prixMin = ? where idTransaction = ?";
+                query = "UPDATE transactions SET prixMin = ? where idTransaction = '"+ upTransaction.getId() +"'";
                 prepStat = connection.prepareStatement(query);
                 prepStat.setNull(1, Types.FLOAT);
-                prepStat.setInt(2, upTransaction.getId());
                 prepStat.executeUpdate();
             }
 
             if(upTransaction.getNbProprios() != null){
-                query = "UPDATE transactions SET nbProprios = ? where idTransaction = ?";
+                query = "UPDATE transactions SET nbProprios = ? where idTransaction = '"+ upTransaction.getId() +"'";
                 prepStat = connection.prepareStatement(query);
                 prepStat.setInt(1, upTransaction.getNbProprios());
-                prepStat.setInt(2, upTransaction.getId());
                 prepStat.executeUpdate();
             }
             else{
-                query = "UPDATE transactions SET nbProprios = ? where idTransaction = ?";
+                query = "UPDATE transactions SET nbProprios = ? where idTransaction = '"+ upTransaction.getId() +"'";
                 prepStat = connection.prepareStatement(query);
                 prepStat.setNull(1, Types.INTEGER);
-                prepStat.setInt(2, upTransaction.getId());
                 prepStat.executeUpdate();
             }
 
             if(upTransaction.getDescription() != null){
-                query = "UPDATE transactions SET description = ? where idTransaction = ?";
+                query = "UPDATE transactions SET description = ? where idTransaction = '"+ upTransaction.getId() +"'";
                 prepStat = connection.prepareStatement(query);
                 prepStat.setString(1, upTransaction.getDescription());
-                prepStat.setInt(2, upTransaction.getId());
                 prepStat.executeUpdate();
             }
             else{
-                query = "UPDATE transactions SET description = ? where idTransaction = ?";
+                query = "UPDATE transactions SET description = ? where idTransaction = '"+ upTransaction.getId() +"'";
                 prepStat = connection.prepareStatement(query);
                 prepStat.setNull(1, Types.VARCHAR);
-                prepStat.setInt(2, upTransaction.getId());
                 prepStat.executeUpdate();
             }
         }

@@ -45,6 +45,7 @@ public class ListingPanel extends JPanel {
         table = new JTable(model);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        table.setRowSelectionInterval(0,0);
         listSelect = table.getSelectionModel();
         while (iColumn < table.getColumnModel().getColumnCount()){
             table.getColumnModel().getColumn(iColumn).setCellRenderer(centerRenderer);
