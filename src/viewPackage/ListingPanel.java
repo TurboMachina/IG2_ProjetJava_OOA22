@@ -37,7 +37,7 @@ public class ListingPanel extends JPanel {
             model = new AllTransactionsModel(transactions);
         }
         catch (ConnectionException | GetTransactionException e){
-        JOptionPane.showMessageDialog(w,e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(w,e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         int iColumn = 0;

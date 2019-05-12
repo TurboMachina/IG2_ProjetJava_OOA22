@@ -35,10 +35,6 @@ public class AjoutPanel extends JPanel {
     private JButton btnAjouter;
     private TransactionController controller;
 
-    //private AllCommerciauxModel modelCom;
-    //private AllClientsModel modelClient;
-    //private AllNumChassis modelNumChassis;
-
     private ArrayList<Client> listeClients;
     private ArrayList<Commercial> listeCommerciaux;
     private ArrayList<FicheVehicule> listeNumChassis;
@@ -330,10 +326,10 @@ public class AjoutPanel extends JPanel {
             transaction.setClient(new Client(listeClients.get(cbClient.getSelectedIndex()).getId()));
             if(errorCount == 0)
                 try {
-                    JOptionPane.showMessageDialog(w,controller.ajouteTransaction(transaction), "Ajout à la BDD", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(w,controller.ajouteTransaction(transaction) + " transactions ajoutée", "Ajout à la BDD", JOptionPane.INFORMATION_MESSAGE);
                 }
                 catch (ConnectionException | AddTransactionException e){
-                    JOptionPane.showMessageDialog(w,e.toString(), "Erreur", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(w,e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
             else
                 JOptionPane.showMessageDialog(w,error.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);

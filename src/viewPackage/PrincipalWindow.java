@@ -3,6 +3,8 @@ package viewPackage;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
+
 import controllerPackage.*;
 import exceptionPackage.CloseException;
 import exceptionPackage.ConnectionException;
@@ -35,8 +37,8 @@ public class PrincipalWindow extends JFrame {
         optionMenu.add(exit);
 
         // Croix rouge ou quitter
-        this.addWindowListener(new ClosingWindow());
-        exit.addActionListener(new MenuExit());
+        this.addWindowListener(new ClosingWindow(this));
+        exit.addActionListener(new MenuExit(this));
         setVisible(true);
 
         // Bouton accueil
@@ -53,13 +55,19 @@ public class PrincipalWindow extends JFrame {
 
     private class ClosingWindow extends WindowAdapter
     {
-        public void windowClosing(WindowEvent event)
-        {
+        PrincipalWindow w;
+
+        public ClosingWindow(PrincipalWindow w){
+            this.w = w;
+        }
+
+        public void windowClosing(WindowEvent event){
+
             try{
                 controller.closeConnection();
             }
-            catch (CloseException | ConnectionException e){
-                System.out.println(e.getMessage());
+            catch (CloseException e){
+                JOptionPane.showMessageDialog(w,e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
             }
             System.exit(0);
         }
@@ -67,13 +75,19 @@ public class PrincipalWindow extends JFrame {
 
     private class MenuExit implements ActionListener
     {
+        PrincipalWindow w;
+
+        public MenuExit(PrincipalWindow w){
+            this.w = w;
+        }
+
         public void actionPerformed(ActionEvent event)
         {
             try{
                 controller.closeConnection();
             }
-            catch (CloseException | ConnectionException e){
-                System.out.println(e.getMessage());
+            catch (CloseException e){
+                JOptionPane.showMessageDialog(w,e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
             }
             System.exit(0);
         }
@@ -85,8 +99,10 @@ public class PrincipalWindow extends JFrame {
         public MenuAccueil(PrincipalWindow w){
             this.w = w;
         }
+
         public void actionPerformed(ActionEvent event) {
-            new AccueilPanel(w).setPanel();
+            if (!(exit.getComponent() instanceof AccueilPanel))
+                new AccueilPanel(w).setPanel();
         }
 
     }

@@ -16,7 +16,14 @@ public class ConnectionController {
         this.manager = manager;
     }
 
-    public void closeConnection() throws CloseException, ConnectionException {
-        manager.closeConnection();
+    public void closeConnection() throws CloseException{
+        try{
+            manager.closeConnection();
+        }catch (ConnectionException e){}
+
+    }
+
+    public void checkConnection() throws ConnectionException{
+        manager.checkConnection();
     }
 }

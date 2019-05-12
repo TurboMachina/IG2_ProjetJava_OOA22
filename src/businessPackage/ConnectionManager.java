@@ -1,5 +1,6 @@
 package businessPackage;
 
+import controllerPackage.ConnectionController;
 import dataAccessPackage.*;
 import exceptionPackage.CloseException;
 import exceptionPackage.ConnectionException;
@@ -19,5 +20,9 @@ public class ConnectionManager {
         catch (SQLException e){
             throw new CloseException();
         }
+    }
+
+    public void checkConnection() throws ConnectionException{
+            Connection connection = SingletonConnection.getConnexion();
     }
 }

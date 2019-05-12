@@ -1,6 +1,7 @@
 package viewPackage;
 
 import controllerPackage.*;
+import exceptionPackage.ConnectionException;
 import modelPackage.*;
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +13,10 @@ public class AccueilPanel extends JPanel {
     private JButton btnList, btnAjout, btnRecherche;
     private JTextField texteBienvenue;
     private JLabel lblBienvenue;
+    private ConnectionController controller;
     public AccueilPanel(PrincipalWindow w){
         setLayout(new GridLayout(3,1));
+        setController(new ConnectionController());
         this.w = w;
         lblBienvenue = new JLabel("<html> Bienvenue, veuillez choisir une option dans le menu ci-dessous. " +
                 "<br/>Pour supprimer ou modifier une transacation vous devez passer par le listing </html>", SwingConstants.CENTER);
@@ -24,9 +27,19 @@ public class AccueilPanel extends JPanel {
         btnList.addActionListener(new BtnListeListener());
         btnAjout.addActionListener(new BtnAjoutListener());
         btnRecherche.addActionListener(new BtnRechercheListener());
+        try{
+            controller.checkConnection();
+        }
+        catch (ConnectionException e){
+            btnList.setEnabled(false);
+            btnAjout.setEnabled(false);
+            btnRecherche.setEnabled(false);
+            JOptionPane.showMessageDialog(w,"Connection à la base de données impossible\n Verifier la connection puis redémarrer le programme", "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
         this.add(btnList);
         this.add(btnAjout);
         this.add(btnRecherche);
+
     }
 
     private class BtnListeListener implements ActionListener {
@@ -59,6 +72,10 @@ public class AccueilPanel extends JPanel {
         w.setTitle("Acceuil");
         fc.repaint();
         fc.revalidate();
+    }
+
+    public void setController(ConnectionController controller){
+        this.controller = controller;
     }
 
 
