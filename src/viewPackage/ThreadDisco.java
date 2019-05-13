@@ -12,7 +12,6 @@ public class ThreadDisco extends JFrame implements Runnable {
 
         private Thread t1;
         private PrincipalWindow w;
-        private Boolean exit = false;
         private Boolean isRunning = false;
         private Color [] couleurs = new Color[]{yellow,black,cyan,pink,gray,red,white,green};
 
@@ -22,14 +21,14 @@ public class ThreadDisco extends JFrame implements Runnable {
         }
 
         public void threadStart(){
-            this.exit = false;
-            t1 = new Thread(this);
-            this.isRunning = true;
-            t1.start();
+            if(!this.isRunning){
+                t1 = new Thread(this);
+                this.isRunning = true;
+                t1.start();
+            }
         }
 
         public void threadStop(){
-            this.exit = true;
             this.isRunning = false;
         }
 
@@ -38,7 +37,6 @@ public class ThreadDisco extends JFrame implements Runnable {
         }
 
         public void run(){
-           while(!exit){
                for(int i = 0; i < couleurs.length; i++){
                    w.getFrameContainer().setBackground(couleurs[i]);
                    try{
@@ -48,8 +46,6 @@ public class ThreadDisco extends JFrame implements Runnable {
                        JOptionPane.showMessageDialog(w, new ThreadException().getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
                    }
                }
-           }
-           w.getFrameContainer().setBackground(UIManager.getColor("Panel.background"));
         }
     }
 

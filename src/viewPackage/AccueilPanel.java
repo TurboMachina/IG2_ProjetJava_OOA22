@@ -47,10 +47,6 @@ public class AccueilPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent event) {
-            if(discotime.isRunning()) {
-                discotime.threadStop();
-                JOptionPane.showMessageDialog(w,"Le thread va s'arrêter", "Information thread", JOptionPane.INFORMATION_MESSAGE);
-            }
             new ListingPanel(w).setPanel();
         }
     }
@@ -58,10 +54,6 @@ public class AccueilPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent event) {
-            if(discotime.isRunning()) {
-                discotime.threadStop();
-                JOptionPane.showMessageDialog(w,"Le thread va s'arrêter", "Information thread", JOptionPane.INFORMATION_MESSAGE);
-            }
             new AjoutPanel(w).setPanel();
         }
     }
