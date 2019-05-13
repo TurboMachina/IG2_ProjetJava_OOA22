@@ -235,7 +235,7 @@ public class TransactionDBAccess implements TransactionDataAccess {
         return nextId;
     }
 
-    public ArrayList<Transaction> getTransactionsAndModele() throws ConnectionException, GetTransactionException{
+    public ArrayList<Transaction> getTransactionsAndMarques() throws ConnectionException, GetTransactionException{
         Connection connection = SingletonConnection.getConnexion();
         ArrayList<Transaction> transactions = new ArrayList<>();
         try{
