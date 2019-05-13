@@ -17,7 +17,7 @@ public class RechercheModeleModel extends AbstractTableModel {
         columnNames.add("Couleur");
         columnNames.add("PV");
         columnNames.add("Durée garantie");
-        columnNames.add("TVA Récupérable");
+        columnNames.add("TVA Ded.");
         columnNames.add("Etat");
         columnNames.add("Date de MC");
         columnNames.add("Modéle");
