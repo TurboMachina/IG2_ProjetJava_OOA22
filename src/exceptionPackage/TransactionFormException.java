@@ -17,6 +17,4 @@ public class TransactionFormException extends Exception {
     public void clear(){
         error.setLength(0);
     }
-
-
 }
