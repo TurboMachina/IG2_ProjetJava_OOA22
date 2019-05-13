@@ -1,6 +1,7 @@
 package viewPackage;
 
 import javax.swing.*;
+import javax.swing.plaf.SeparatorUI;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import controllerPackage.*;
@@ -61,7 +62,9 @@ public class ListingPanel extends JPanel {
         Container fc = w.getFrameContainer();
         fc.removeAll();
         fc.add(this, BorderLayout.SOUTH);
+        fc.add(new JSeparator(SwingConstants.HORIZONTAL));
         fc.add(this.scrollPane, BorderLayout.CENTER);
+        this.setBorder(BorderFactory.createEmptyBorder(10,5,10,5));
         w.setSize(1700,500);
         w.setLocationRelativeTo(null);
         w.setTitle("Listing");

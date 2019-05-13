@@ -11,7 +11,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-public class ResultatPanel {
+public class ResultatPanel extends JPanel{
     private PrincipalWindow w;
     private JTable table;
     private JScrollPane scrollPane;

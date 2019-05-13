@@ -58,6 +58,7 @@ public class AccueilPanel extends JPanel {
         fc.removeAll();
         fc.add(this, BorderLayout.SOUTH);
         fc.add(lblBienvenue, BorderLayout.CENTER);
+        this.setBorder(BorderFactory.createEmptyBorder(10,5,10,5));
         w.setTitle("Acceuil");
         w.setSize(500,500);
         w.setLocationRelativeTo(null);

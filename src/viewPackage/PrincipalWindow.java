@@ -18,10 +18,6 @@ public class PrincipalWindow extends JFrame {
         super("Accueil");
         setController(new ConnectionController());
         new AccueilPanel(this).setPanel();
-
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-
         // MENU
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
