@@ -122,7 +122,7 @@ public class PrincipalWindow extends JFrame {
         }
 
         public void actionPerformed(ActionEvent event) {
-            if (!(exit.getComponent() instanceof AccueilPanel))
+            if (!(w.getFrameContainer() instanceof AccueilPanel))
                 new AccueilPanel(w).setPanel();
         }
 

@@ -13,7 +13,7 @@ public class ThreadDisco extends JFrame implements Runnable {
         private Thread t1;
         private PrincipalWindow w;
         private Boolean exit = false;
-        private Boolean isRunning;
+        private Boolean isRunning = false;
         private Color [] couleurs = new Color[]{yellow,black,cyan,pink,gray,red,white,green};
 
         public ThreadDisco(PrincipalWindow w){
@@ -24,8 +24,8 @@ public class ThreadDisco extends JFrame implements Runnable {
         public void threadStart(){
             this.exit = false;
             t1 = new Thread(this);
-            t1.start();
             this.isRunning = true;
+            t1.start();
         }
 
         public void threadStop(){

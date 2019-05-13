@@ -105,7 +105,7 @@ public class RechercheVente extends JPanel {
         fc.add(this.btnRecherche, BorderLayout.SOUTH);
         w.setTitle("Recherche des transactions");
         w.setSize(500,300);
-        w.setLocationRelativeTo(null);
+        w.setLocationRelativeTo(null);;
         fc.repaint();
         fc.revalidate();
         filtering();
