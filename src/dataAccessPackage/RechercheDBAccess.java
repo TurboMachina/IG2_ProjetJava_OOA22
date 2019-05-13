@@ -18,13 +18,12 @@ public class RechercheDBAccess implements RechercheDataAccess {
         Connection connection = SingletonConnection.getConnexion();
         ArrayList<Transaction> transactions= new ArrayList<>();
         try{
-            String query = "SELECT transactions.idTransaction, transactions.prixVente, transactions.dateVente, m2.libelle, m.libelle, c.nom, c.prenom FROM transactions " +
-                    "INNER JOIN clients c on transactions.idClient = c.idClient" +
-                    "INNER JOIN fichevehicule f on transactions.numChassis = f.numChassis " +
-                    "INNER JOIN commercial c2 on transactions.matricule = c2.matricule" +
-                    "INNER JOIN modele m on f.idModele = m.idModele" +
-                    "INNER JOIN marque m2 on m.libelle = m2.libelle " +
-                    "WHERE c2.matricule = ? AND m2.libelle = ?";
+            String query = "SELECT transactions.idTransaction, transactions.prixVente, transactions.dateVente, m.App_libelle, m.libelle, c.nom, c.prenom FROM dbprojet.transactions " +
+                    "LEFT JOIN clients c on transactions.idClient = c.idClient " +
+                    "LEFT JOIN fichevehicule f on transactions.numChassis = f.numChassis " +
+                    "LEFT JOIN commercial c2 on transactions.matricule = c2.matricule " +
+                    "LEFT JOIN modele m on f.idModele = m.idModele " +
+                    "WHERE c2.matricule = ? AND m.App_libelle = ?";
             PreparedStatement prepStat = connection.prepareStatement(query);
             prepStat.setInt(1,matricule);
             prepStat.setString(2, marque);
@@ -63,11 +62,11 @@ public class RechercheDBAccess implements RechercheDataAccess {
         Connection connection = SingletonConnection.getConnexion();
         ArrayList<Transaction> transactions = new ArrayList<>();
         try{
-            String query = "SELECT transactions.id, transactions.kilometrage, transactions.couleur, transactions.prixVente, transactions.dureeGarantie, transactions.estTVARecup, transactions.etat, " +
-                    "m.libelle, m.cylindree, m.cylindre, m.transmission, m.vitesses, m.poidAVide, m.carburant, m.consoMixte, m.consoUrbain, m.consoExtraUrbain, m.nbPortes," +
-                    "f.dateMiseCircu FROM transactions" +
-                    "INNER JOIN fichevehicule f on transactions.numChassis = f.numChassis" +
-                    "INNER JOIN modele m on f.idModele = m.idModele" +
+            String query = "SELECT transactions.idTransaction, transactions.kilometrage, transactions.couleur, transactions.prixVente, transactions.dureeGarantie, " +
+                    "transactions.estTVARecup, transactions.etat,m.libelle, m.cylindree, m.cylindre, m.transmission, m.vitesses, m.poidAVide, m.carburant, m.consoMixte, " +
+                    "m.consoUrbain, m.consoExtraUrbain, m.nbPortes,f.dateMiseCircu FROM dbprojet.transactions " +
+                    "INNER JOIN fichevehicule f on transactions.numChassis = f.numChassis " +
+                    "INNER JOIN modele m on f.idModele = m.idModele " +
                     "INNER JOIN commercial c on transactions.matricule = c.matricule\n" +
                     "INNER JOIN magasin m2 on c.idMagasin = m2.idMagasin " +
                     "WHERE m.idModele = ? AND m2.idMagasin = ?";
@@ -120,7 +119,7 @@ public class RechercheDBAccess implements RechercheDataAccess {
         Connection connection = SingletonConnection.getConnexion();
         ArrayList<Transaction> transactions = new ArrayList<>();
         try{
-            String queryId = "SELECT transactions.prixVente, transactions.dateVente, f.numChassis, c.nom, c.prenom, c2.nom, c2.prenom FROM transactions\n" +
+            String queryId = "SELECT transactions.idTransaction, transactions.prixVente, transactions.dateVente, f.numChassis, c.nom, c.prenom, c2.nom, c2.prenom FROM dbprojet.transactions \n" +
                     "INNER JOIN fichevehicule f on transactions.numChassis = f.numChassis\n" +
                     "INNER JOIN commercial c on transactions.matricule = c.matricule\n" +
                     "INNER JOIN clients c2 on transactions.idClient = c2.idClient\n" +
@@ -134,21 +133,21 @@ public class RechercheDBAccess implements RechercheDataAccess {
             Transaction transaction;
             java.sql.Date date;
             while(rs.next()){
-                transaction = new Transaction(0);
-                transaction.setPrixVente(rs.getFloat(1));
-                date = rs.getDate(2);
+                transaction = new Transaction(rs.getInt(1));
+                transaction.setPrixVente(rs.getFloat(2));
+                date = rs.getDate(3);
                 GregorianCalendar cal1 = new GregorianCalendar();
                 cal1.setTime(date);
                 transaction.setDateVente(cal1);
-                transaction.setFicheVehicule(new FicheVehicule(rs.getString(3)));
+                transaction.setFicheVehicule(new FicheVehicule(rs.getString(4)));
 
                 transaction.setCommercial(new Commercial(0));
-                transaction.getCommercial().setNom(rs.getString(4));
-                transaction.getCommercial().setPrenom(rs.getString(5));
+                transaction.getCommercial().setNom(rs.getString(5));
+                transaction.getCommercial().setPrenom(rs.getString(6));
 
                 transaction.setClient(new Client(0));
-                transaction.getClient().setNom(rs.getString(6));
-                transaction.getClient().setPrenom(rs.getString(7));
+                transaction.getClient().setNom(rs.getString(7));
+                transaction.getClient().setPrenom(rs.getString(8));
 
                 transactions.add(transaction);
             }

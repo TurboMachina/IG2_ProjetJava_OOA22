@@ -25,15 +25,15 @@ public class AllTransactionsModel extends AbstractTableModel {
         columnNames.add("idTransaction");
         columnNames.add("Kilométrage");
         columnNames.add("Couleur");
-        columnNames.add("Prix d'achat");
-        columnNames.add("Prix de départ");
-        columnNames.add("Prix minimum");
+        columnNames.add("Prix d'achat (en €)");
+        columnNames.add("Prix de départ (en €)");
+        columnNames.add("Prix minimum (en €)");
         columnNames.add("Nombre de proprios");
         columnNames.add("Description");
         columnNames.add("Date d'arrivée");
         columnNames.add("Durée de la garantie");
         columnNames.add("TVA récupérable");
-        columnNames.add("Prix de vente");
+        columnNames.add("Prix de vente (en €)");
         columnNames.add("Date de vente");
         columnNames.add("Etat de la vente");
         columnNames.add("Nom du vendeur");
@@ -69,16 +69,20 @@ public class AllTransactionsModel extends AbstractTableModel {
         }
     }
 
+    @Override
     public int getRowCount() {
         return transactions.size();
     }
 
+    @Override
     public int getColumnCount() {
         return columnNames.size();
     }
 
+    @Override
     public String getColumnName(int column){return columnNames.get(column);}
 
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         ListingTransaction transaction = contents.get(rowIndex);
         switch (columnIndex) {
@@ -121,6 +125,7 @@ public class AllTransactionsModel extends AbstractTableModel {
         }
     }
 
+    @Override
     public Class getColumnClass(int columnIndex) {
         Class c;
         switch (columnIndex){

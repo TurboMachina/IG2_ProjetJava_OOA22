@@ -226,7 +226,6 @@ public class ModificationPanel extends JPanel {
                         currentTransaction.setKilometrage(Integer.parseInt(txtKilometrage.getText()));
                     }
                 }
-
                 else {
                     error.addError("- Le kilométrage n'est pas un nombre");
                     errorCount++;
@@ -391,7 +390,7 @@ public class ModificationPanel extends JPanel {
                 errorCount++;
             }
 
-            if((((Date) spDateVente.getValue()).compareTo((Date) spDateArrivee.getValue())) > 0){
+            if((((Date) spDateVente.getValue()).compareTo((Date) spDateArrivee.getValue())) >= 0){
                 date.setTime((Date)spDateVente.getValue());
                 currentTransaction.setDateVente(date);
             }

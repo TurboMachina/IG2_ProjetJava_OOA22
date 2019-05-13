@@ -1,5 +1,6 @@
 package modelPackage;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -23,6 +24,12 @@ public class FicheVehicule {
 
     public void setDateMiseCircu(GregorianCalendar dateMiseCircu) {
         this.dateMiseCircu = dateMiseCircu;
+    }
+
+    public String getDateMiseCircu(){
+        SimpleDateFormat temp = new SimpleDateFormat("dd-MM-YYYY");
+        temp.setCalendar(this.dateMiseCircu);
+        return temp.format(this.dateMiseCircu.getTime());
     }
 
     public void setModele(Modele modele) {

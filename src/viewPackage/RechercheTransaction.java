@@ -75,8 +75,8 @@ public class RechercheTransaction extends JPanel {
         @Override
         public void actionPerformed(ActionEvent event) {
             matricule = listeCommerciaux.get(cbCommercial.getSelectedIndex()).getMatricule();
-            marque = (String)cbMarque.getSelectedItem();
-            new ResultatPanel(w, matricule, marque).setPanel();
+            marque = cbMarque.getItemAt(cbMarque.getSelectedIndex()).getLibelle();
+            new ResultatPanel(w, matricule, marque);
         }
     }
 

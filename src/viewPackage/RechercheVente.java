@@ -120,7 +120,8 @@ public class RechercheVente extends JPanel {
 
     private class BtnRechercheListener implements ActionListener {
         Integer idModele, idMagasin, errorCount;
-        GregorianCalendar date = new GregorianCalendar();
+        GregorianCalendar dateDebut = new GregorianCalendar();
+        GregorianCalendar dateFin = new GregorianCalendar();
         RechercheFormException error = new RechercheFormException();
         @Override
         public void actionPerformed(ActionEvent event) {
@@ -132,7 +133,7 @@ public class RechercheVente extends JPanel {
 
             //DateDebut aprés DateJour
             if(controller.checkDateIsPrior((Date)spDateDebut.getValue())){
-                date.setTime((Date)spDateDebut.getValue());
+                dateDebut.setTime((Date)spDateDebut.getValue());
             }
             else{
                 error.addError("- La date de début est supérieure à la date du jour");
@@ -140,7 +141,7 @@ public class RechercheVente extends JPanel {
             }
             //DateFin après DateJour
             if(controller.checkDateIsPrior((Date)spDateFin.getValue())){
-                date.setTime((Date)spDateFin.getValue());
+                dateFin.setTime((Date)spDateFin.getValue());
             }
             else{
                 error.addError("- La date de fin est supérieure à la date du jour");
@@ -148,7 +149,7 @@ public class RechercheVente extends JPanel {
             }
             //DateFin avant DateDébut
             if((((Date) spDateFin.getValue()).compareTo((Date) spDateDebut.getValue())) > 0){
-                date.setTime((Date)spDateFin.getValue());
+                dateFin.setTime((Date)spDateFin.getValue());
             }
             else{
                 error.addError("- La date de fin est inférieure à la date de début");
@@ -160,6 +161,10 @@ public class RechercheVente extends JPanel {
             else
                 JOptionPane.showMessageDialog(w,error.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 
+
+            if(errorCount == 0){
+                new ResultatPanel(w,dateDebut, dateFin, idModele, idMagasin);
+            }
         }
     }
 

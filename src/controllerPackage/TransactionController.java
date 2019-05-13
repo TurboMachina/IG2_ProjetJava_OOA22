@@ -83,7 +83,10 @@ public class TransactionController {
     public boolean tryParseInt(String value) {
         try {
             Integer.parseInt(value);
-            return Integer.parseInt(value) < 0;
+           if(Integer.parseInt(value) < 0){
+               return false;
+           }
+           return true;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -92,7 +95,10 @@ public class TransactionController {
     public boolean tryParseFloat(String value) {
         try {
             Float.parseFloat(value);
-            return Float.parseFloat(value) < 0;
+            if(Float.parseFloat(value) < 0){
+                return false;
+            }
+            return true;
         } catch (NumberFormatException e) {
             return false;
         }

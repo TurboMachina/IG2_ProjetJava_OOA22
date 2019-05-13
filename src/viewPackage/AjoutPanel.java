@@ -364,7 +364,7 @@ public class AjoutPanel extends JPanel {
                 errorCount++;
             }
 
-            if((((Date) spDateVente.getValue()).compareTo((Date) spDateArrivee.getValue())) > 0){
+            if((((Date) spDateVente.getValue()).compareTo((Date) spDateArrivee.getValue())) >= 0){
                 date.setTime((Date)spDateVente.getValue());
                 transaction.setDateVente(date);
             }

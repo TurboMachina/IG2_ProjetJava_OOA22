@@ -54,30 +54,18 @@ public class TransactionManager {
 
     public int ajouteTransaction(Transaction transaction) throws ConnectionException, AddTransactionException, TransactionFormException {
         setDAOTransaction(new TransactionDBAccess());
-        if(testTransaction(transaction)) {
-            int idMax = daoTransaction.getNextId();
-            return daoTransaction.ajouteTransaction(transaction, idMax);
-        }
-        else
-            return 0;
+        Integer idMax = daoTransaction.getNextId();
+        return daoTransaction.ajouteTransaction(transaction, idMax);
     }
 
     public void updateTransaction(Transaction transaction) throws ConnectionException, UpdateTransactionException, TransactionFormException{
         setDAOTransaction(new TransactionDBAccess());
-        if(testTransaction(transaction))
-            daoTransaction.updateTransaction(transaction);
+        daoTransaction.updateTransaction(transaction);
     }
 
     public void deleteTransaction(Integer idTransaction) throws ConnectionException, DeleteTransactionException, DeleteFormException{
         setDAOTransaction(new TransactionDBAccess());
-        int idMax = daoTransaction.getNextId();
-        DeleteFormException error = new DeleteFormException();
-        if(idTransaction < 0 || idTransaction > idMax){
-            error.addError("- L'ID a supprimer est plus grande que l'ID max de la table");
-            throw error;
-        }
-        else
-            daoTransaction.deleteTransaction(idTransaction);
+        daoTransaction.deleteTransaction(idTransaction);
     }
 
     public ArrayList<Transaction> rechercheTransaction(Integer matricule, String marque) throws ConnectionException, RechercheException{
@@ -106,120 +94,5 @@ public class TransactionManager {
     public ArrayList<Modele> getAllModeles() throws ConnectionException, GetModeleException{
         setDAOModele(new ModeleDBAccess());
         return daoModele.getAllModeles();
-    }
-
-
-
-    //TESTS
-
-    private boolean testTransaction(Transaction transaction) throws TransactionFormException {
-        TransactionFormException error = new TransactionFormException();
-        Integer errorCount = 0;
-
-        //ID Transaction
-        if(transaction.getId() != null){
-            if (!(transaction.getId() instanceof Integer)){
-                errorCount++;
-                error.addError("- ID pas de type Entier");
-            }
-        }
-        else{
-            errorCount++;
-            error.addError("- ID vide");
-        }
-
-        //Kilometrage
-        if(transaction.getKilometrage() != null){
-            if(!(transaction.getKilometrage() instanceof Integer)){
-                errorCount++;
-                error.addError("- Kilométrage pas de type Entier");
-            }
-            else{
-                if(transaction.getKilometrage() < 0){
-                    errorCount++;
-                    error.addError("- Kilometrage inférieur à 0");
-                }
-            }
-        }
-        else{
-            errorCount++;
-            error.addError("- Kilométrage vide" );
-        }
-
-        //couleur
-        if(transaction.getCouleur() != null){
-            if(!checkIfMot(transaction.getCouleur())){
-                errorCount++;
-                error.addError("- Votre couleur n'est pas un mot");
-            }
-        }
-        else{
-            errorCount++;
-            error.addError("- Couleur vide");
-        }
-
-        //prixAchat
-
-        //prixDepart
-
-        //prixMin
-
-        //nbProprios
-
-        //description
-
-        //dateArrivee
-
-        //estTVARecup
-
-        //prixVente
-
-        //dateVente
-
-        //etat
-
-        //matricule
-
-        //numChassis
-
-        //idClient
-
-        return (errorCount == 0);
-    }
-
-    private boolean tryParseInt(String value) {
-        try {
-            Integer.parseInt(value);
-            return Integer.parseInt(value) < 0;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    private boolean tryParseFloat(String value) {
-        try {
-            Float.parseFloat(value);
-            return Float.parseFloat(value) < 0;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    private boolean checkDateIsPrior(Date value){
-        Date todayDate = new Date();
-        return (value.before(todayDate) || value.equals(todayDate));
-    }
-
-    private boolean checkIfMot(String s) {
-        if (s == null){
-            return false;
-        }
-        int len = s.length();
-        for (int i = 0; i < len; i++) {
-            if (!Character.isLetter(s.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }

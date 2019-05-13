@@ -1,5 +1,6 @@
 package modelPackage;
 
+import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 public class Transaction {
@@ -153,5 +154,17 @@ public class Transaction {
     public void setCommercial(Commercial commercial) {
         this.commercial = commercial;
         commercial.ajouteTransactions(this);
+    }
+
+    public String getDateArriveeStr() {
+        SimpleDateFormat temp = new SimpleDateFormat("dd-MM-YYYY");
+        temp.setCalendar(this.dateArrivee);
+        return temp.format(this.dateArrivee.getTime());
+    }
+
+    public String getDateVenteStr() {
+        SimpleDateFormat temp = new SimpleDateFormat("dd-MM-YYYY");
+        temp.setCalendar(this.dateVente);
+        return temp.format(this.dateVente.getTime());
     }
 }
