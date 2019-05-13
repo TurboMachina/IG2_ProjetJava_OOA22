@@ -93,6 +93,7 @@ public class ResultatPanel extends JPanel{
             setPanel(1200,500);
         }
         else{
+            //JOptionPane.showMessageDialog(w, "Aucun véhicule trouvé", "Recherche Resultat", JOptionPane.INFORMATION_MESSAGE);
             new AccueilPanel(w).setPanel();
         }
     }

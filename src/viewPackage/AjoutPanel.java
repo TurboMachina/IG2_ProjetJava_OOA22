@@ -195,7 +195,7 @@ public class AjoutPanel extends JPanel {
             if(!txtKilometrage.getText().equals("")) {
                 if (controller.tryParseInt(txtKilometrage.getText())){
                     if(Integer.parseInt(txtKilometrage.getText()) < 0){
-                        error.addError("Votre Kilométrage est inférieur à 0");
+                        error.addError("- Votre Kilométrage est inférieur à 0");
                         errorCount++;
                     }
                     else{
