@@ -234,4 +234,31 @@ public class TransactionDBAccess implements TransactionDataAccess {
         }
         return nextId;
     }
+
+    public ArrayList<Transaction> getTransactionsAndModele() throws ConnectionException, GetTransactionException{
+        Connection connection = SingletonConnection.getConnexion();
+        ArrayList<Transaction> transactions = new ArrayList<>();
+        try{
+            String query = "SELECT idTransaction, prixVente, prixAchat, m.App_libelle FROM dbProjet.transactions\n" +
+                    "INNER JOIN fichevehicule f on transactions.numChassis = f.numChassis\n" +
+                    "INNER JOIN modele m on f.idModele = m.idModele";
+            PreparedStatement prepStat = connection.prepareStatement(query);
+            ResultSet rs = prepStat.executeQuery();
+            Transaction transaction;
+            while (rs.next()){
+                transaction = new Transaction(rs.getInt(1));
+                transaction.setPrixVente(rs.getFloat(2));
+                transaction.setPrixAchat(rs.getFloat(3));
+                transaction.setFicheVehicule(new FicheVehicule(""));
+                transaction.getFicheVehicule().setModele(new Modele(0));
+                transaction.getFicheVehicule().getModele().setMarque(new Marque(rs.getString(4)));
+
+                transactions.add(transaction);
+            }
+        }
+        catch (SQLException e){
+            throw new GetTransactionException();
+        }
+        return transactions;
+    }
 }
