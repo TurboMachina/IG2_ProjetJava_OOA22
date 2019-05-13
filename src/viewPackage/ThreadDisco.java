@@ -17,7 +17,6 @@ public class ThreadDisco extends JFrame implements Runnable {
 
         public ThreadDisco(PrincipalWindow w){
             this.w = w;
-
         }
 
         public void threadStart(){
@@ -37,6 +36,7 @@ public class ThreadDisco extends JFrame implements Runnable {
         }
 
         public void run(){
+           while(true){
                for(int i = 0; i < couleurs.length; i++){
                    w.getFrameContainer().setBackground(couleurs[i]);
                    try{
@@ -46,6 +46,7 @@ public class ThreadDisco extends JFrame implements Runnable {
                        JOptionPane.showMessageDialog(w, new ThreadException().getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
                    }
                }
+           }
         }
     }
 

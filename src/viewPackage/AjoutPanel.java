@@ -25,7 +25,7 @@ public class AjoutPanel extends JPanel {
     private JTextArea taDescription;
     private JCheckBox cbxTVARecup;
     private JLabel lbKilometrage, lbCouleur, lbPrixAchat, lbPrixDepart, lbPrixMin, lbPrixVente, lbEtat, lbCommercial,
-            lbNumChassis, lbClient, lbDateArrivee, lbDateVente, lbNbProprios, lbDureeGarantie, lbDescription, lbTVARecup;
+            lbNumChassis, lbClient, lbDateArrivee, lbDateVente, lbNbProprios, lbDureeGarantie, lbDescription, lbTVARecup, lblAjout;
     private JButton btnAjouter;
     private TransactionController controller;
 
@@ -65,6 +65,7 @@ public class AjoutPanel extends JPanel {
         lbDureeGarantie = new JLabel("Durée de la garantie (en mois) : ");
         lbDescription = new JLabel("Description/Commentaire de la vente (facultatif) : ");
         lbTVARecup = new JLabel("TVA Récuperable");
+        lblAjout = new JLabel("Ajout d'une transaction à la table");
 
         //Components
         txtKilometrage = new JTextField();
@@ -165,6 +166,7 @@ public class AjoutPanel extends JPanel {
     public void setPanel(){
         Container fc = w.getFrameContainer();
         fc.removeAll();
+        fc.add(this.lblAjout, BorderLayout.NORTH);
         fc.add(this, BorderLayout.CENTER);
         fc.add(this.btnAjouter, BorderLayout.SOUTH);
         w.setSize(1750,500);

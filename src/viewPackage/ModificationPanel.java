@@ -25,7 +25,7 @@ public class ModificationPanel extends JPanel {
     private JTextArea taDescription;
     private JCheckBox cbxTVARecup;
     private JLabel lbKilometrage, lbCouleur, lbPrixAchat, lbPrixDepart, lbPrixMin, lbPrixVente, lbEtat, lbCommercial,
-            lbNumChassis, lbClient, lbDateArrivee, lbDateVente, lbNbProprios, lbDureeGarantie, lbDescription, lbTVARecup;
+            lbNumChassis, lbClient, lbDateArrivee, lbDateVente, lbNbProprios, lbDureeGarantie, lbDescription, lbTVARecup, lbModify;
     private JButton btnModifier;
     private TransactionController controller;
 
@@ -69,6 +69,7 @@ public class ModificationPanel extends JPanel {
         lbDureeGarantie = new JLabel("Durée de la garantie (en mois) : ");
         lbDescription = new JLabel("Description/Commentaire de la vente (facultatif) : ");
         lbTVARecup = new JLabel("TVA Récuperable");
+        lbModify = new JLabel("Modification d'une transaction");
 
         //Components
         txtKilometrage = new JTextField(currentTransaction.getKilometrage().toString());
@@ -186,6 +187,7 @@ public class ModificationPanel extends JPanel {
     public void setPanel(){
         Container fc = w.getFrameContainer();
         fc.removeAll();
+        fc.add(this.lbModify, BorderLayout.NORTH);
         fc.add(this, BorderLayout.CENTER);
         fc.add(this.btnModifier, BorderLayout.SOUTH);
         w.setSize(1500,500);

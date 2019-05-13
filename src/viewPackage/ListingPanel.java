@@ -22,6 +22,7 @@ public class ListingPanel extends JPanel {
     private JTable table;
     private JScrollPane scrollPane;
     private JButton btnModifier,btnSupprimer;
+    private JLabel lblListing;
     private TransactionController controller;
     private ListSelectionModel listSelect;
     private ArrayList<Transaction> transactions;
@@ -34,6 +35,8 @@ public class ListingPanel extends JPanel {
         btnModifier.addActionListener(new BtnModifierListener());
         btnSupprimer = new JButton("Supprimer une transaction");
         btnSupprimer.addActionListener(new BtnSupprimerListener());
+
+        lblListing = new JLabel("Listing de la table Transactions, permet la suppresion et la modification");
         try{
             transactions = controller.getAllTransactions();
             model = new AllTransactionsModel(transactions);
@@ -61,6 +64,7 @@ public class ListingPanel extends JPanel {
     public void setPanel(){
         Container fc = w.getFrameContainer();
         fc.removeAll();
+        fc.add(this.lblListing, BorderLayout.NORTH);
         fc.add(this, BorderLayout.SOUTH);
         fc.add(new JSeparator(SwingConstants.HORIZONTAL));
         fc.add(this.scrollPane, BorderLayout.CENTER);
