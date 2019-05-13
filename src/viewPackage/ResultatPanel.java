@@ -20,7 +20,6 @@ public class ResultatPanel extends JPanel{
     private JScrollPane scrollPane;
     private JButton btnRetour;
     private TransactionController controller;
-    private ListSelectionModel listeSelect;
     private ArrayList<Transaction> listeResultat;
     private JLabel lblNbTrouves;
     private Integer nbTrouves;
@@ -106,7 +105,6 @@ public class ResultatPanel extends JPanel{
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         table.setRowSelectionInterval(0,0);
-        listeSelect = table.getSelectionModel();
         while (iColumn < table.getColumnModel().getColumnCount()){
             table.getColumnModel().getColumn(iColumn).setCellRenderer(centerRenderer);
             iColumn++;
