@@ -1,22 +1,20 @@
 package exceptionPackage;
 
-public class AddTransactionFormException extends Exception {
+public class DeleteFormException extends Exception {
     private StringBuilder error = new StringBuilder();
 
     @Override
-    public String getMessage(){
+    public String getMessage() {
         return ((error.length() == 0) ? "Erreur dans le formulaire d'ajout" : error.toString());
     }
 
-    public void addError(String str){
+    public void addError(String str) {
         if (error.length() == 0)
             error.append("Les erreurs suivantes ont été detectée : ");
         error.append(System.getProperty("line.separator")).append(str);
     }
 
-    public void clear(){
+    public void clear() {
         error.setLength(0);
     }
-
-
 }

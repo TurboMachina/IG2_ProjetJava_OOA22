@@ -44,15 +44,15 @@ public class TransactionController {
         return manager.getAllNumChassis();
     }
 
-    public int ajouteTransaction(Transaction transaction) throws ConnectionException, AddTransactionException{
+    public int ajouteTransaction(Transaction transaction) throws ConnectionException, AddTransactionException, TransactionFormException{
         return manager.ajouteTransaction(transaction);
     }
 
-    public void updateTransaction(Transaction transaction) throws ConnectionException, UpdateTransactionException{
+    public void updateTransaction(Transaction transaction) throws ConnectionException, UpdateTransactionException, TransactionFormException{
         manager.updateTransaction(transaction);
     }
 
-    public void deleteTransaction(Integer idTransaction) throws ConnectionException, DeleteTransactionException{
+    public void deleteTransaction(Integer idTransaction) throws ConnectionException, DeleteTransactionException, DeleteFormException{
         manager.deleteTransaction(idTransaction);
     }
 

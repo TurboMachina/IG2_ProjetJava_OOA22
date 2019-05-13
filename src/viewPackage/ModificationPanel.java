@@ -206,7 +206,7 @@ public class ModificationPanel extends JPanel {
     }
 
     private class BtnModifierListener implements ActionListener {
-        AddTransactionFormException error = new AddTransactionFormException();
+        TransactionFormException error = new TransactionFormException();
         int errorCount;
         GregorianCalendar date = new GregorianCalendar();
 
@@ -217,8 +217,16 @@ public class ModificationPanel extends JPanel {
 
             //Kilometrage - PAS FACULTATIF - Integer
             if(!txtKilometrage.getText().equals("")) {
-                if (controller.tryParseInt(txtKilometrage.getText()))
-                    currentTransaction.setKilometrage(Integer.parseInt(txtKilometrage.getText()));
+                if (controller.tryParseInt(txtKilometrage.getText())){
+                    if(Integer.parseInt(txtKilometrage.getText()) < 0){
+                        error.addError("Votre Kilométrage est inférieur à 0");
+                        errorCount++;
+                    }
+                    else{
+                        currentTransaction.setKilometrage(Integer.parseInt(txtKilometrage.getText()));
+                    }
+                }
+
                 else {
                     error.addError("- Le kilométrage n'est pas un nombre");
                     errorCount++;
@@ -246,10 +254,16 @@ public class ModificationPanel extends JPanel {
             //prixAchat - PAS FACULTATIF - Float
             if(!txtPrixAchat.getText().equals("")) {
                 if (controller.tryParseFloat(txtPrixAchat.getText())) {
-                    currentTransaction.setPrixAchat(Float.parseFloat(txtPrixAchat.getText()));
+                    if(Float.parseFloat(txtPrixAchat.getText()) < 0){
+                        error.addError("- Votre prix d'achat est inférieur à 0");
+                        errorCount++;
+                    }
+                    else{
+                        currentTransaction.setPrixAchat(Float.parseFloat(txtPrixAchat.getText()));
+                    }
                 }
                 else {
-                    error.addError("- Votre prix d'achat n'est pas correct");
+                    error.addError("- Votre prix d'achat n'est pas un nombre");
                     errorCount++;
                 }
             }
@@ -260,10 +274,17 @@ public class ModificationPanel extends JPanel {
 
             //prixDepart - PAS FACULTATIF - Float
             if(!txtPrixDepart.getText().equals("")) {
-                if (controller.tryParseFloat(txtPrixDepart.getText()))
-                    currentTransaction.setPrixDepart(Float.parseFloat(txtPrixDepart.getText()));
+                if (controller.tryParseFloat(txtPrixDepart.getText())){
+                    if(Float.parseFloat(txtPrixDepart.getText()) < 0){
+                        error.addError("- Votre prix est inférieur à 0");
+                        errorCount++;
+                    }
+                    else{
+                        currentTransaction.setPrixDepart(Float.parseFloat(txtPrixDepart.getText()));
+                    }
+                }
                 else {
-                    error.addError("- Votre prix de depart n'est pas correct");
+                    error.addError("- Votre prix de depart n'est pas un nombre");
                     errorCount++;
                 }
             }
@@ -274,20 +295,44 @@ public class ModificationPanel extends JPanel {
 
             //prixMin - FACULTATIF - Float
             if(!txtPrixMin.getText().equals("")) {
-                if (controller.tryParseFloat(txtPrixMin.getText()))
-                    currentTransaction.setPrixMin(Float.parseFloat(txtPrixMin.getText()));
+                if (controller.tryParseFloat(txtPrixMin.getText())){
+                    if(Float.parseFloat(txtPrixMin.getText()) < 0){
+                        error.addError("- Votre prix minimum est inférieur à 0");
+                        errorCount++;
+                    }
+                    else{
+                        if(Float.parseFloat(txtPrixMin.getText()) > Float.parseFloat(txtPrixVente.getText())){
+                            error.addError("- Votre prix de vente est plus petit que le prix minimum");
+                        }
+
+                        if(Float.parseFloat(txtPrixMin.getText()) > Float.parseFloat(txtPrixDepart.getText())){
+                            error.addError("- Votre prix de départ est plus petit que le prix minimum");
+                            errorCount++;
+                        }
+
+                        currentTransaction.setPrixMin(Float.parseFloat(txtPrixMin.getText()));
+                    }
+                }
                 else {
-                    error.addError("- Votre prix minimum n'est pas correct");
+                    error.addError("- Votre prix minimum n'est pas un nombre");
                     errorCount++;
                 }
             }
 
             //nbProprios - FACULTATIF - Integer
             if(!txtNbProprios.getText().equals("")) {
-                if (controller.tryParseInt(txtNbProprios.getText()))
-                    currentTransaction.setNbProprios(Integer.parseInt(txtNbProprios.getText()));
+                if (controller.tryParseInt(txtNbProprios.getText())){
+                    if(Integer.parseInt(txtNbProprios.getText()) < 0){
+                        error.addError("Votre nombre de propriétaire est inférieur à 0");
+                        errorCount++;
+                    }
+                    else{
+                        currentTransaction.setNbProprios(Integer.parseInt(txtNbProprios.getText()));
+                    }
+                }
+
                 else {
-                    error.addError("- Votre nombre de propriétaire(s) n'est pas correct");
+                    error.addError("- Votre nombre de propriétaire(s) n'est pas un nombre");
                     errorCount++;
                 }
             }
@@ -316,8 +361,16 @@ public class ModificationPanel extends JPanel {
 
             //prixVente - PAS FACULTATIF - Float
             if(!txtPrixVente.getText().equals("")) {
-                if (controller.tryParseFloat(txtPrixVente.getText()))
-                    currentTransaction.setPrixVente(Float.parseFloat(txtPrixVente.getText()));
+                if (controller.tryParseFloat(txtPrixVente.getText())){
+                    if(Float.parseFloat(txtPrixVente.getText()) < 0){
+                        error.addError("- Votre prix de vente est inférieur à 0");
+                        errorCount++;
+                    }
+                    else{
+                        currentTransaction.setPrixVente(Float.parseFloat(txtPrixVente.getText()));
+                    }
+                }
+
                 else {
                     error.addError("- Votre prix de vente n'est pas correct");
                     errorCount++;
@@ -338,6 +391,15 @@ public class ModificationPanel extends JPanel {
                 errorCount++;
             }
 
+            if((((Date) spDateVente.getValue()).compareTo((Date) spDateArrivee.getValue())) > 0){
+                date.setTime((Date)spDateVente.getValue());
+                currentTransaction.setDateVente(date);
+            }
+            else {
+                error.addError("- La date de vente est inférieure à la date d'arrivée");
+                errorCount++;
+            }
+
             //etat - PAS FACULTATIF - String
             currentTransaction.setEtat((String)cbEtat.getSelectedItem());
             //Commercial (matricule) - PAS FACULTATIF - Integer
@@ -350,7 +412,7 @@ public class ModificationPanel extends JPanel {
                 try {
                     controller.updateTransaction(currentTransaction);
                     JOptionPane.showMessageDialog(w, "Modification effectuée", "Ajout à la BDD", JOptionPane.INFORMATION_MESSAGE);
-                } catch (ConnectionException | UpdateTransactionException e) {
+                } catch (ConnectionException | UpdateTransactionException | TransactionFormException e) {
                     JOptionPane.showMessageDialog(w, e.toString(), "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
                 new ListingPanel(w).setPanel();

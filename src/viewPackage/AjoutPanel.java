@@ -3,19 +3,13 @@ package viewPackage;
 import controllerPackage.TransactionController;
 import exceptionPackage.*;
 import modelPackage.*;
-import org.w3c.dom.Text;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.text.DateFormatter;
-import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.NumberFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -43,7 +37,7 @@ public class AjoutPanel extends JPanel {
     public AjoutPanel(PrincipalWindow w){
         this.w = w;
         setController(new TransactionController());
-        setLayout(new GridLayout(8,4,200,20));
+        setLayout(new GridLayout(8,4,20,20));
 
         try{
             listeCommerciaux = controller.getAllCommerciaux() ;
@@ -173,7 +167,7 @@ public class AjoutPanel extends JPanel {
         fc.removeAll();
         fc.add(this, BorderLayout.CENTER);
         fc.add(this.btnAjouter, BorderLayout.SOUTH);
-        w.setSize(1600,1000);
+        w.setSize(1750,500);
         w.setTitle("Ajout d'une transaction");
         w.setLocationRelativeTo(null);
         fc.repaint();
@@ -185,7 +179,7 @@ public class AjoutPanel extends JPanel {
     }
 
     private class BtnAjouterListener implements ActionListener {
-        AddTransactionFormException error = new AddTransactionFormException();
+        TransactionFormException error = new TransactionFormException();
         Transaction transaction = new Transaction(0);
         int errorCount = 0;
         GregorianCalendar date = new GregorianCalendar();
@@ -197,8 +191,16 @@ public class AjoutPanel extends JPanel {
 
             //Kilometrage - PAS FACULTATIF - Integer
             if(!txtKilometrage.getText().equals("")) {
-                if (controller.tryParseInt(txtKilometrage.getText()))
-                    transaction.setKilometrage(Integer.parseInt(txtKilometrage.getText()));
+                if (controller.tryParseInt(txtKilometrage.getText())){
+                    if(Integer.parseInt(txtKilometrage.getText()) < 0){
+                        error.addError("Votre Kilométrage est inférieur à 0");
+                        errorCount++;
+                    }
+                    else{
+                        transaction.setKilometrage(Integer.parseInt(txtKilometrage.getText()));
+                    }
+                }
+
                 else {
                     error.addError("- Le kilométrage n'est pas un nombre");
                     errorCount++;
@@ -226,10 +228,16 @@ public class AjoutPanel extends JPanel {
             //prixAchat - PAS FACULTATIF - Float
             if(!txtPrixAchat.getText().equals("")) {
                 if (controller.tryParseFloat(txtPrixAchat.getText())) {
-                    transaction.setPrixAchat(Float.parseFloat(txtPrixAchat.getText()));
+                    if(Float.parseFloat(txtPrixAchat.getText()) < 0){
+                        error.addError("- Votre prix d'achat est inférieur à 0");
+                        errorCount++;
+                    }
+                    else{
+                        transaction.setPrixAchat(Float.parseFloat(txtPrixAchat.getText()));
+                    }
                 }
                 else {
-                    error.addError("- Votre prix d'achat n'est pas correct");
+                    error.addError("- Votre prix d'achat n'est pas un nombre");
                     errorCount++;
                 }
             }
@@ -240,10 +248,17 @@ public class AjoutPanel extends JPanel {
 
             //prixDepart - PAS FACULTATIF - Float
             if(!txtPrixDepart.getText().equals("")) {
-                if (controller.tryParseFloat(txtPrixDepart.getText()))
-                    transaction.setPrixDepart(Float.parseFloat(txtPrixDepart.getText()));
+                if (controller.tryParseFloat(txtPrixDepart.getText())){
+                    if(Float.parseFloat(txtPrixDepart.getText()) < 0){
+                        error.addError("- Votre prix est inférieur à 0");
+                        errorCount++;
+                    }
+                    else{
+                        transaction.setPrixDepart(Float.parseFloat(txtPrixDepart.getText()));
+                    }
+                }
                 else {
-                    error.addError("- Votre prix de depart n'est pas correct");
+                    error.addError("- Votre prix de depart n'est pas un nombre");
                     errorCount++;
                 }
             }
@@ -254,20 +269,44 @@ public class AjoutPanel extends JPanel {
 
             //prixMin - FACULTATIF - Float
             if(!txtPrixMin.getText().equals("")) {
-                if (controller.tryParseFloat(txtPrixMin.getText()))
-                    transaction.setPrixMin(Float.parseFloat(txtPrixMin.getText()));
+                if (controller.tryParseFloat(txtPrixMin.getText())){
+                    if(Float.parseFloat(txtPrixMin.getText()) < 0){
+                        error.addError("- Votre prix minimum est inférieur à 0");
+                        errorCount++;
+                    }
+                    else{
+                        if(Float.parseFloat(txtPrixMin.getText()) > Float.parseFloat(txtPrixVente.getText())){
+                            error.addError("- Votre prix de vente est plus petit que le prix minimum");
+                        }
+
+                        if(Float.parseFloat(txtPrixMin.getText()) > Float.parseFloat(txtPrixDepart.getText())){
+                            error.addError("- Votre prix de départ est plus petit que le prix minimum");
+                            errorCount++;
+                        }
+
+                        transaction.setPrixMin(Float.parseFloat(txtPrixMin.getText()));
+                    }
+                }
                 else {
-                    error.addError("- Votre prix minimum n'est pas correct");
+                    error.addError("- Votre prix minimum n'est pas un nombre");
                     errorCount++;
                 }
             }
 
             //nbProprios - FACULTATIF - Integer
             if(!txtNbProprios.getText().equals("")) {
-                if (controller.tryParseInt(txtNbProprios.getText()))
-                    transaction.setNbProprios(Integer.parseInt(txtNbProprios.getText()));
+                if (controller.tryParseInt(txtNbProprios.getText())){
+                    if(Integer.parseInt(txtNbProprios.getText()) < 0){
+                        error.addError("Votre nombre de propriétaire est inférieur à 0");
+                        errorCount++;
+                    }
+                    else{
+                        transaction.setNbProprios(Integer.parseInt(txtNbProprios.getText()));
+                    }
+                }
+
                 else {
-                    error.addError("- Votre nombre de propriétaire(s) n'est pas correct");
+                    error.addError("- Votre nombre de propriétaire(s) n'est pas un nombre");
                     errorCount++;
                 }
             }
@@ -296,8 +335,15 @@ public class AjoutPanel extends JPanel {
 
             //prixVente - PAS FACULTATIF - Float
             if(!txtPrixVente.getText().equals("")) {
-                if (controller.tryParseFloat(txtPrixVente.getText()))
-                    transaction.setPrixVente(Float.parseFloat(txtPrixVente.getText()));
+                if (controller.tryParseFloat(txtPrixVente.getText())){
+                    if(Float.parseFloat(txtPrixVente.getText()) < 0){
+                        error.addError("- Votre prix de vente est inférieur à 0");
+                        errorCount++;
+                    }
+                    else{
+                        transaction.setPrixVente(Float.parseFloat(txtPrixVente.getText()));
+                    }
+                }
                 else {
                     error.addError("- Votre prix de vente n'est pas correct");
                     errorCount++;
@@ -318,6 +364,16 @@ public class AjoutPanel extends JPanel {
                 errorCount++;
             }
 
+            if((((Date) spDateVente.getValue()).compareTo((Date) spDateArrivee.getValue())) > 0){
+                date.setTime((Date)spDateVente.getValue());
+                transaction.setDateVente(date);
+            }
+            else {
+                error.addError("- La date de vente est inférieure à la date d'arrivée");
+                errorCount++;
+            }
+
+
             //etat - PAS FACULTATIF - String
             transaction.setEtat((String)cbEtat.getSelectedItem());
             //Commercial (matricule) - PAS FACULTATIF - Integer
@@ -330,7 +386,7 @@ public class AjoutPanel extends JPanel {
                 try {
                     JOptionPane.showMessageDialog(w,controller.ajouteTransaction(transaction) + " transactions ajoutée", "Ajout à la BDD", JOptionPane.INFORMATION_MESSAGE);
                 }
-                catch (ConnectionException | AddTransactionException e){
+                catch (ConnectionException | AddTransactionException | TransactionFormException e){
                     JOptionPane.showMessageDialog(w,e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
             else
