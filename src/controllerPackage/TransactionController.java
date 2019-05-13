@@ -77,6 +77,10 @@ public class TransactionController {
         return manager.getAllModeles();
     }
 
+    public int getNextID() throws ConnectionException{
+        return manager.getNextID();
+    }
+
 
     //TESTS
 

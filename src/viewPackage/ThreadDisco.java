@@ -1,0 +1,55 @@
+package viewPackage;
+
+import exceptionPackage.ThreadException;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+
+import static java.awt.Color.*;
+
+public class ThreadDisco extends JFrame implements Runnable {
+
+        private Thread t1;
+        private PrincipalWindow w;
+        private Boolean exit = false;
+        private Boolean isRunning;
+        private Color [] couleurs = new Color[]{yellow,black,cyan,pink,gray,red,white,green};
+
+        public ThreadDisco(PrincipalWindow w){
+            this.w = w;
+
+        }
+
+        public void threadStart(){
+            this.exit = false;
+            t1 = new Thread(this);
+            t1.start();
+            this.isRunning = true;
+        }
+
+        public void threadStop(){
+            this.exit = true;
+            this.isRunning = false;
+        }
+
+        public boolean isRunning(){
+            return this.isRunning;
+        }
+
+        public void run(){
+           while(!exit){
+               for(int i = 0; i < couleurs.length; i++){
+                   w.getFrameContainer().setBackground(couleurs[i]);
+                   try{
+                       t1.sleep(1000);
+                   }
+                   catch(InterruptedException e) {
+                       JOptionPane.showMessageDialog(w, new ThreadException().getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+                   }
+               }
+           }
+           w.getFrameContainer().setBackground(UIManager.getColor("Panel.background"));
+        }
+    }
+

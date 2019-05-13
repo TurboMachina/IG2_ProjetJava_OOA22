@@ -14,6 +14,7 @@ public class PrincipalWindow extends JFrame {
     private JMenuItem accueil, exit, rechercheTrans, rechercheVente, rechercheModele;
     private Container frameContainer = this.getContentPane();
     private ConnectionController controller;
+
     public PrincipalWindow(){
         super("Accueil");
         setController(new ConnectionController());
@@ -34,6 +35,7 @@ public class PrincipalWindow extends JFrame {
         menuBar.add(whoMenu);
         whoMenu.addMouseListener(new whoMenuAction(this));
 
+        //Item Menu 1
         accueil = new JMenuItem("Accueil");
         accueil.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK));
         optionMenu.add(accueil);
@@ -41,14 +43,13 @@ public class PrincipalWindow extends JFrame {
         exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK));
         optionMenu.add(exit);
 
+        //Item Menu 2
         rechercheTrans = new JMenuItem("Recherche transaction commercial");
         rechercheTrans.setAccelerator((KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.ALT_DOWN_MASK )));
         rechercheMenu.add(rechercheTrans);
-
         rechercheModele = new JMenuItem("Recherche modéle vendu");
         rechercheModele.setAccelerator((KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.ALT_DOWN_MASK )));
         rechercheMenu.add(rechercheModele);
-
         rechercheVente = new JMenuItem("Recherche vente sur une période");
         rechercheVente.setAccelerator((KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.ALT_DOWN_MASK )));
         rechercheMenu.add(rechercheVente);

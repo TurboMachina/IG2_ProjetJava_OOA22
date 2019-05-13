@@ -54,8 +54,14 @@ public class TransactionManager {
 
     public int ajouteTransaction(Transaction transaction) throws ConnectionException, AddTransactionException, TransactionFormException {
         setDAOTransaction(new TransactionDBAccess());
-        Integer idMax = daoTransaction.getNextId();
+        Integer idMax = getNextID();
         return daoTransaction.ajouteTransaction(transaction, idMax);
+    }
+
+    public int getNextID() throws ConnectionException{
+        setDAOTransaction(new TransactionDBAccess());
+        Integer idMax = daoTransaction.getNextId();
+        return idMax;
     }
 
     public void updateTransaction(Transaction transaction) throws ConnectionException, UpdateTransactionException, TransactionFormException{

@@ -10,12 +10,14 @@ import java.awt.event.ActionListener;
 
 public class AccueilPanel extends JPanel {
     private PrincipalWindow w;
-    private JButton btnList, btnAjout;
+    private JButton btnList, btnAjout, btnDiscoFever;
     private JTextField texteBienvenue;
     private JLabel lblBienvenue;
     private ConnectionController controller;
+    private ThreadDisco discotime;
     public AccueilPanel(PrincipalWindow w){
-        setLayout(new GridLayout(2,1));
+        discotime = new ThreadDisco(w);
+        setLayout(new GridLayout(3,1));
         setController(new ConnectionController());
         this.w = w;
         lblBienvenue = new JLabel("<html> Bienvenue, veuillez choisir une option dans le menu ci-dessous. " +
@@ -23,8 +25,10 @@ public class AccueilPanel extends JPanel {
         texteBienvenue = new JTextField("Bienvenue, sélectionnez une option");
         btnList = new JButton("Lister les transactions (Donne accés à la modification/suppresion)");
         btnAjout = new JButton("Ajouter une transaction");
+        btnDiscoFever = new JButton("Disco fever");
         btnList.addActionListener(new BtnListeListener());
         btnAjout.addActionListener(new BtnAjoutListener());
+        btnDiscoFever.addActionListener(new DiscoFeverButton());
         try{
             controller.checkConnection();
         }
@@ -35,6 +39,7 @@ public class AccueilPanel extends JPanel {
         }
         this.add(btnList);
         this.add(btnAjout);
+        this.add(btnDiscoFever);
 
     }
 
@@ -42,6 +47,10 @@ public class AccueilPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent event) {
+            if(discotime.isRunning()) {
+                discotime.threadStop();
+                JOptionPane.showMessageDialog(w,"Le thread va s'arrêter", "Information thread", JOptionPane.INFORMATION_MESSAGE);
+            }
             new ListingPanel(w).setPanel();
         }
     }
@@ -49,6 +58,10 @@ public class AccueilPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent event) {
+            if(discotime.isRunning()) {
+                discotime.threadStop();
+                JOptionPane.showMessageDialog(w,"Le thread va s'arrêter", "Information thread", JOptionPane.INFORMATION_MESSAGE);
+            }
             new AjoutPanel(w).setPanel();
         }
     }
@@ -71,4 +84,11 @@ public class AccueilPanel extends JPanel {
     }
 
 
+    private class DiscoFeverButton implements ActionListener
+    {
+        public void actionPerformed(ActionEvent event) {
+            discotime.threadStart();
+        }
+
+    }
 }
