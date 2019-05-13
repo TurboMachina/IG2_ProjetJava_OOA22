@@ -77,7 +77,7 @@ public class AjoutPanel extends JPanel {
         txtNbProprios = new JTextField();
 
 
-        cbEtat = new JComboBox(listeEtat);
+        cbEtat = new JComboBox<>(listeEtat);
         cbCommercial = new JComboBox<>();
         cbCommercial.setModel(new DefaultComboBoxModel<>(listeCommerciaux.toArray(new Commercial[0])));
         cbNumChassis = new JComboBox<>();
