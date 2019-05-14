@@ -20,7 +20,7 @@ public class StatistiqueManager {
 
 
     public String getStatistiques() throws ConnectionException, GetTransactionException, GetMarqueException{
-        String marqueCourante = "";
+        String marqueCourante;
         StringBuilder stats = new StringBuilder();
         Integer nbVenduTot;
         Integer nbVendu = 0;
@@ -46,13 +46,13 @@ public class StatistiqueManager {
                    prixAchatTot += transaction.getPrixAchat();
                }
            }
-           stats.append(marqueCourante.toUpperCase() + ": \n" +
-                   "- Total vendus : " + String.format("%d", nbVendu) + "\n" +
-                   "- Part de marché : " + String.format("%.2f", getPartDeMarché(nbVendu,nbVenduTot)) + "%\n" +
-                   "- Prix moyen HTVA d'un véhicule de la marque : " + String.format("%.2f", getPrixMoyen(prixVenteTot - TVAMarque,nbVendu)) + "€\n" +
-                   "- Total des achats : " + String.format("%.2f", prixAchatTot) + "€\n" +
-                   "- Total des ventes : " + String.format("%.2f", prixVenteTot) + "€\n" +
-                   "- Total TVA des ventes : " + String.format("%.2f", TVAMarque) + "€\n");
+           stats.append(marqueCourante.toUpperCase()).append(": \n");
+           stats.append( "- Total vendus : ").append(String.format("%d", nbVendu)).append("\n");
+           stats.append("- Part de marché : ").append(String.format("%.2f", getPartDeMarche(nbVendu,nbVenduTot))).append("%\n");
+           stats.append("- Prix moyen de vente HTVA : ").append(String.format("%.2f", getPrixMoyen(prixVenteTot - TVAMarque,nbVendu))).append("€\n");
+           stats.append("- Total des achats : ").append(String.format("%.2f", prixAchatTot)).append("€\n");
+           stats.append("- Total des ventes : ").append(String.format("%.2f", prixVenteTot)).append("€\n");
+           stats.append("- Total TVA des ventes : ").append(String.format("%.2f", TVAMarque)).append("€\n");
            nbVendu = 0;
            TVAMarque =0.0;
            prixVenteTot = 0.0;
@@ -61,16 +61,16 @@ public class StatistiqueManager {
         return stats.toString();
     }
 
-    public Double getPrixMoyen(Double prix, Integer nbVehicules){
+    private Double getPrixMoyen(Double prix, Integer nbVehicules){
         return (nbVehicules > 0) ? prix/nbVehicules : 0.0;
     }
 
-    public Double getPartDeMarché(Integer nbVendu, Integer nbTot){
+    private Double getPartDeMarche(Integer nbVendu, Integer nbTot){
 
         return (nbVendu > 0) ? ((double)nbVendu/nbTot)*100 : 0.0;
     }
 
-    public Double getTVA(Double prix){
+    private Double getTVA(Double prix){
         return prix*TAUXTVA;
     }
 }
