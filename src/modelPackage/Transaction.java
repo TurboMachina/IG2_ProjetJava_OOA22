@@ -87,7 +87,7 @@ public class Transaction {
     }
 
     public String getEtat() {
-        return this.etat.toLowerCase();
+        return this.etat;
     }
 
     public void setCouleur(String couleur) {
@@ -95,7 +95,7 @@ public class Transaction {
     }
 
     public String getCouleur() {
-        return this.couleur.toLowerCase();
+        return this.couleur;
     }
 
     public void setDescription(String description){
@@ -103,7 +103,7 @@ public class Transaction {
     }
 
     public String getDescription() {
-        return this.description.toLowerCase();
+        return this.description;
     }
 
     public void setEstTVARecup(Integer estTVARecup) {
