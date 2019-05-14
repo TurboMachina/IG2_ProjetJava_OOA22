@@ -64,7 +64,7 @@ class AjoutPanel extends JPanel {
         lbNbProprios = new JLabel("Nombre de propriétaires (facultatif) : ");
         lbDureeGarantie = new JLabel("Durée de la garantie (en mois) : ");
         lbDescription = new JLabel("Description/Commentaire de la vente (facultatif) : ");
-        lbTVARecup = new JLabel("TVA Récuperable");
+        lbTVARecup = new JLabel("TVA Déduite ?");
         lblAjout = new JLabel("Ajout d'une transaction à la table");
 
         //Components

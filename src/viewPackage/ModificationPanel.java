@@ -68,7 +68,7 @@ public class ModificationPanel extends JPanel {
         lbNbProprios = new JLabel("Nombre de propriétaires (facultatif) : ");
         lbDureeGarantie = new JLabel("Durée de la garantie (en mois) : ");
         lbDescription = new JLabel("Description/Commentaire de la vente (facultatif) : ");
-        lbTVARecup = new JLabel("TVA Récuperable");
+        lbTVARecup = new JLabel("TVA Déduite ?");
         lbModify = new JLabel("Modification d'une transaction");
 
         //Components
