@@ -22,7 +22,7 @@ public class Transaction {
     }
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setKilometrage(Integer kilometrage) {
@@ -30,7 +30,7 @@ public class Transaction {
     }
 
     public Integer getKilometrage() {
-        return kilometrage;
+        return this.kilometrage;
     }
 
     public void setNbProprios(Integer nbProprios){
@@ -38,7 +38,7 @@ public class Transaction {
     }
 
     public Integer getNbProprios() {
-        return nbProprios;
+        return this.nbProprios;
     }
 
     public void setDureeGarantie(Integer dureeGarantie) {
@@ -46,7 +46,7 @@ public class Transaction {
     }
 
     public Integer getDureeGarantie() {
-        return dureeGarantie;
+        return this.dureeGarantie;
     }
 
     public void setPrixAchat(Double prixAchat) {
@@ -54,7 +54,7 @@ public class Transaction {
     }
 
     public Double getPrixAchat() {
-        return prixAchat;
+        return this.prixAchat;
     }
 
 
@@ -63,7 +63,7 @@ public class Transaction {
     }
 
     public Double getPrixVente() {
-        return prixVente;
+        return this.prixVente;
     }
 
     public void setPrixMin(Double prixMin){
@@ -71,7 +71,7 @@ public class Transaction {
     }
 
     public Double getPrixMin() {
-        return prixMin;
+        return this.prixMin;
     }
 
     public void setPrixDepart(Double prixDepart) {
@@ -79,15 +79,15 @@ public class Transaction {
     }
 
     public Double getPrixDepart() {
-        return prixDepart;
+        return this.prixDepart;
     }
 
     public void setEtat(String etat) {
-        this.etat = etat;
+        this.etat = etat.toLowerCase();
     }
 
     public String getEtat() {
-        return etat;
+        return this.etat.toLowerCase();
     }
 
     public void setCouleur(String couleur) {
@@ -95,15 +95,15 @@ public class Transaction {
     }
 
     public String getCouleur() {
-        return couleur;
+        return this.couleur.toLowerCase();
     }
 
     public void setDescription(String description){
-        this.description = description;
+        this.description = description.toLowerCase();
     }
 
     public String getDescription() {
-        return description;
+        return this.description.toLowerCase();
     }
 
     public void setEstTVARecup(Integer estTVARecup) {
@@ -111,7 +111,7 @@ public class Transaction {
     }
 
     public boolean isEstTVARecup() {
-        return estTVARecup;
+        return this.estTVARecup;
     }
 
     public void setDateArrivee(GregorianCalendar dateArrivee) {
@@ -119,7 +119,13 @@ public class Transaction {
     }
 
     public GregorianCalendar getDateArrivee() {
-        return dateArrivee;
+        return this.dateArrivee;
+    }
+
+    public String getDateArriveeStr() {
+        SimpleDateFormat temp = new SimpleDateFormat("dd-MM-YYYY");
+        temp.setCalendar(this.dateArrivee);
+        return temp.format(this.dateArrivee.getTime());
     }
 
     public void setDateVente(GregorianCalendar dateVente) {
@@ -127,7 +133,7 @@ public class Transaction {
     }
 
     public GregorianCalendar getDateVente() {
-        return dateVente;
+        return this.dateVente;
     }
 
     public String getDateVenteStr() {
@@ -137,7 +143,7 @@ public class Transaction {
     }
 
     public Client getClient() {
-        return client;
+        return this.client;
     }
 
     public void setClient(Client client) {
@@ -146,7 +152,7 @@ public class Transaction {
     }
 
     public FicheVehicule getFicheVehicule() {
-        return ficheVehicule;
+        return this.ficheVehicule;
     }
 
     public void setFicheVehicule(FicheVehicule ficheVehicule) {
@@ -155,7 +161,7 @@ public class Transaction {
     }
 
     public Commercial getCommercial() {
-        return commercial;
+        return this.commercial;
     }
 
     public void setCommercial(Commercial commercial) {

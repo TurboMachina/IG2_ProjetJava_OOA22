@@ -26,7 +26,7 @@ public class Modele {
     }
 
     public Integer getCylindree() {
-        return cylindree;
+        return this.cylindree;
     }
 
     public void setCylindre(int cylindre) {
@@ -34,7 +34,7 @@ public class Modele {
     }
 
     public Integer getCylindre() {
-        return cylindre;
+        return this.cylindre;
     }
 
     public void setVitesses(int vitesses) {
@@ -42,7 +42,7 @@ public class Modele {
     }
 
     public Integer getVitesses() {
-        return vitesses;
+        return this.vitesses;
     }
 
     public void setPoidAVide(int poidAVide) {
@@ -50,7 +50,7 @@ public class Modele {
     }
 
     public Integer getPoidAVide() {
-        return poidAVide;
+        return this.poidAVide;
     }
 
 
@@ -59,7 +59,7 @@ public class Modele {
     }
 
     public Integer getNbPortes() {
-        return nbPortes;
+        return this.nbPortes;
     }
 
     public void setConsoMixte(Double consoMixte) {
@@ -67,7 +67,7 @@ public class Modele {
     }
 
     public Double getConsoMixte() {
-        return consoMixte;
+        return this.consoMixte;
     }
 
     public void setConsoUrbain(Double consoUrbain) {
@@ -75,7 +75,7 @@ public class Modele {
     }
 
     public Double getConsoUrbain() {
-        return consoUrbain;
+        return this.consoUrbain;
     }
 
     public void setConsoExtraUrbain(Double consoExtraUrbain) {
@@ -84,29 +84,29 @@ public class Modele {
 
 
     public Double getConsoExtraUrbain() {
-        return consoExtraUrbain;
+        return this.consoExtraUrbain;
     }
 
     public void setLibelle(String libelle) {
-        this.libelle = libelle;
+        this.libelle = libelle.toLowerCase();
     }
 
     public String getLibelle(){return this.libelle;}
 
     public void setTransmission(String transmission) {
-        this.transmission = transmission;
+        this.transmission = transmission.toLowerCase();
     }
 
     public String getTransmission() {
-        return transmission;
+        return this.transmission;
     }
 
     public void setCarburant(String carburant) {
-        this.carburant = carburant;
+        this.carburant = carburant.toLowerCase();
     }
 
     public String getCarburant() {
-        return carburant;
+        return this.carburant;
     }
 
 

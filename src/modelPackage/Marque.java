@@ -7,7 +7,7 @@ public class Marque {
     }
 
     public void setLibelle(String libelle) {
-        this.libelle = libelle;
+        this.libelle = libelle.toLowerCase();
     }
 
     public String getLibelle(){

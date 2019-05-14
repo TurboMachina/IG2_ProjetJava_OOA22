@@ -13,7 +13,7 @@ public class Magasin {
     public Integer getId(){return this.id;}
 
     public void setNom(String nom){
-        this.nom = nom;
+        this.nom = nom.toLowerCase();
     }
 
     @Override

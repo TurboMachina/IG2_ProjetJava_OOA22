@@ -18,19 +18,19 @@ public class Commercial {
     public Integer getMatricule(){return this.matricule;}
 
     public void setNom(String nom) {
-        this.nom = nom;
+        this.nom = nom.toLowerCase();
     }
 
     public String getNom(){
-        return this.nom + " " + this.prenom;
+        return this.nom.substring(0, 1).toUpperCase() + this.nom.substring(1) + " " + this.prenom.substring(0, 1).toUpperCase() + this.prenom.substring(1);
     }
 
     public void setPrenom(String prenom) {
-        this.prenom = prenom;
+        this.prenom = prenom.toLowerCase();
     }
 
     public void setAdresseMail(String adresseMail) {
-        this.adresseMail = adresseMail;
+        this.adresseMail = adresseMail.toLowerCase();
     }
 
     public void setNumeroTel(String numeroTel) {
