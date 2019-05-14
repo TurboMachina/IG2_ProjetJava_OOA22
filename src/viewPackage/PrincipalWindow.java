@@ -1,11 +1,12 @@
 package viewPackage;
 
+import controllerPackage.ConnectionController;
+import exceptionPackage.CloseException;
+import exceptionPackage.ConnectionException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
-import controllerPackage.*;
-import exceptionPackage.CloseException;
 
 
 public class PrincipalWindow extends JFrame {
@@ -14,6 +15,7 @@ public class PrincipalWindow extends JFrame {
     private JMenuItem accueil, exit, rechercheTrans, rechercheVente, rechercheModele;
     private Container frameContainer = this.getContentPane();
     private ConnectionController controller;
+    private Boolean isConnectionOn = false;
 
     public PrincipalWindow(){
         super("Accueil");
@@ -87,7 +89,7 @@ public class PrincipalWindow extends JFrame {
             try{
                 controller.closeConnection();
             }
-            catch (CloseException e){
+            catch (CloseException | ConnectionException e){
                 JOptionPane.showMessageDialog(w,e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
             }
             System.exit(0);
@@ -107,7 +109,7 @@ public class PrincipalWindow extends JFrame {
             try{
                 controller.closeConnection();
             }
-            catch (CloseException e){
+            catch (CloseException | ConnectionException e){
                 JOptionPane.showMessageDialog(w,e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
             }
             System.exit(0);
