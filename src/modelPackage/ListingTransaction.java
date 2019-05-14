@@ -29,52 +29,105 @@ public class ListingTransaction {
         setClient(nomClient);
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
+    }
+
+    public void setKilometrage(Integer kilometrage) {
+        this.kilometrage = kilometrage;
     }
 
     public Integer getKilometrage() {
         return kilometrage;
     }
 
+    public void setNbProprios(Integer nbProprios){
+        this.nbProprios = nbProprios;
+    }
+
     public Integer getNbProprios() {
         return nbProprios;
+    }
+
+    public void setDureeGarantie(Integer dureeGarantie) {
+        this.dureeGarantie = dureeGarantie;
     }
 
     public Integer getDureeGarantie() {
         return dureeGarantie;
     }
 
+    public void setPrixAchat(Double prixAchat) {
+        this.prixAchat = prixAchat;
+    }
+
     public Double getPrixAchat() {
         return prixAchat;
+    }
+
+    public void setPrixVente(Double prixVente) {
+        this.prixVente = prixVente;
     }
 
     public Double getPrixVente() {
         return prixVente;
     }
 
+    public void setPrixMin(Double prixMin){
+        this.prixMin = prixMin;
+    }
+
     public Double getPrixMin() {
         return prixMin;
+    }
+
+    public void setPrixDepart(Double prixDepart) {
+        this.prixDepart = prixDepart;
     }
 
     public Double getPrixDepart() {
         return prixDepart;
     }
 
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
     public String getEtat() {
         return etat;
+    }
+
+    public void setCouleur(String couleur) {
+        this.couleur = couleur;
     }
 
     public String getCouleur() {
         return couleur;
     }
 
+    public void setDescription(String description){
+        this.description = description;
+    }
+
     public String getDescription() {
         return description;
     }
 
+    public void setEstTVARecup(String estTVARecup) {
+        this.estTVARecup = estTVARecup;
+    }
+
     public String estTVARecup() {
         return estTVARecup;
+    }
+
+    public void setDateArrivee(GregorianCalendar dateArrivee) {
+
+        this.dateArrivee = dateArrivee;
     }
 
     public String getDateArrivee() {
@@ -83,70 +136,17 @@ public class ListingTransaction {
         return temp.format(this.dateArrivee.getTime());
     }
 
-    public String getDateVente() {
-        SimpleDateFormat temp = new SimpleDateFormat("dd-MM-YYYY");
-        temp.setCalendar(this.dateVente);
-        return temp.format(this.dateVente.getTime());
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setKilometrage(Integer kilometrage) {
-        this.kilometrage = kilometrage;
-    }
-
-    public void setDureeGarantie(Integer dureeGarantie) {
-        this.dureeGarantie = dureeGarantie;
-    }
-
-    public void setPrixAchat(Double prixAchat) {
-        this.prixAchat = prixAchat;
-    }
-
-    public void setPrixVente(Double prixVente) {
-        this.prixVente = prixVente;
-    }
-
-    public void setPrixDepart(Double prixDepart) {
-        this.prixDepart = prixDepart;
-    }
-
-    public void setEtat(String etat) {
-        this.etat = etat;
-    }
-
-    public void setCouleur(String couleur) {
-        this.couleur = couleur;
-    }
-
-    public void setEstTVARecup(String estTVARecup) {
-        this.estTVARecup = estTVARecup;
-    }
-
-    public void setDateArrivee(GregorianCalendar dateArrivee) {
-
-        this.dateArrivee = dateArrivee;
-    }
 
     public void setDateVente(GregorianCalendar dateVente) {
 
         this.dateVente = dateVente;
     }
 
-    public void setPrixMin(Double prixMin){
-        this.prixMin = prixMin;
+    public String getDateVente() {
+        SimpleDateFormat temp = new SimpleDateFormat("dd-MM-YYYY");
+        temp.setCalendar(this.dateVente);
+        return temp.format(this.dateVente.getTime());
     }
-
-    public void setDescription(String description){
-        this.description = description;
-    }
-
-    public void setNbProprios(Integer nbProprios){
-        this.nbProprios = nbProprios;
-    }
-
 
     public void setClient(String client) {
         this.nomClient = client;

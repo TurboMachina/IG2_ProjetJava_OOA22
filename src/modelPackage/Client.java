@@ -18,11 +18,11 @@ public class Client {
 
     public Integer getId(){ return this.id; }
 
-    public String getNom(){return this.nom + " " + this.prenom;}
-
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+    public String getNom(){return this.nom + " " + this.prenom;}
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
