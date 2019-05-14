@@ -66,16 +66,15 @@ public class StatistiqueManager {
         return stats.toString();
     }
 
-    private Double getPrixMoyen(Double prix, Integer nbVehicules){
-        return (nbVehicules > 0) ? prix/nbVehicules : 0.0;
+    public Double getPrixMoyen(Double prixTot, Integer nbVehicules){
+        return (nbVehicules > 0) ? prixTot/nbVehicules : 0.0;
     }
 
-    private Double getPartDeMarche(Integer nbVendu, Integer nbTot){
-
+    public Double getPartDeMarche(Integer nbVendu, Integer nbTot){
         return (nbVendu > 0) ? ((double)nbVendu/nbTot)*100 : 0.0;
     }
 
-    private Double getTVA(Double prix){
+    public Double getTVA(Double prix){
         return prix*TAUXTVA;
     }
 }
