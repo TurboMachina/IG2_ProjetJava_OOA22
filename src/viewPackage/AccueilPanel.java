@@ -1,5 +1,6 @@
 package viewPackage;
 
+import com.mysql.cj.TransactionEventHandler;
 import controllerPackage.*;
 import exceptionPackage.ConnectionException;
 import exceptionPackage.GetMarqueException;
@@ -18,16 +19,12 @@ public class AccueilPanel extends JPanel {
     private ConnectionController controller; // A renommer connecController BITCONNEEECT
     private StatistiqueController statController;
     private ThreadDisco discotime;
+
     public AccueilPanel(PrincipalWindow w){
-        discotime = new ThreadDisco(w);
-        setLayout(new GridLayout(4,1));
-        setController(new ConnectionController());
-        try {
-            setStatController(new StatistiqueController());
-        }
-        catch(ConnectionException | GetTransactionException e){
-            JOptionPane.showMessageDialog(w,e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
-        }
+        this.discotime = new ThreadDisco(w);
+        this.setLayout(new GridLayout(4,1));
+        this.setController(new ConnectionController());
+        this.setStatController(new StatistiqueController());
         this.w = w;
         lblBienvenue = new JLabel("<html> Bienvenue, veuillez choisir une option dans le menu ci-dessous. " +
                 "<br/>Pour supprimer ou modifier une transacation vous devez passer par le listing </html>", SwingConstants.CENTER);
@@ -67,12 +64,13 @@ public class AccueilPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent event) {
             String stats = null;
+
             try{
-                stats = statController.getResultats();
+                stats = statController.getStatistiques();
             }
-            catch(ConnectionException | GetTransactionException | GetMarqueException e){
-            JOptionPane.showMessageDialog(w,e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
-        }
+            catch (ConnectionException | GetTransactionException | GetMarqueException e) {
+                JOptionPane.showMessageDialog(w, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
         JOptionPane.showMessageDialog(w, stats, "Statistiques", JOptionPane.INFORMATION_MESSAGE);
         }
     }

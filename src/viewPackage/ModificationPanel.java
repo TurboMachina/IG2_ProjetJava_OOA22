@@ -252,15 +252,15 @@ public class ModificationPanel extends JPanel {
                 errorCount++;
             }
 
-            //prixAchat - PAS FACULTATIF - Float
+            //prixAchat - PAS FACULTATIF - Double
             if(!txtPrixAchat.getText().equals("")) {
-                if (controller.tryParseFloat(txtPrixAchat.getText())) {
-                    if(Float.parseFloat(txtPrixAchat.getText()) < 0){
+                if (controller.tryParseDouble(txtPrixAchat.getText())) {
+                    if(Double.parseDouble(txtPrixAchat.getText()) < 0){
                         error.addError("- Votre prix d'achat est inférieur à 0");
                         errorCount++;
                     }
                     else{
-                        currentTransaction.setPrixAchat(Float.parseFloat(txtPrixAchat.getText()));
+                        currentTransaction.setPrixAchat(Double.parseDouble(txtPrixAchat.getText()));
                     }
                 }
                 else {
@@ -273,15 +273,15 @@ public class ModificationPanel extends JPanel {
                 errorCount++;
             }
 
-            //prixDepart - PAS FACULTATIF - Float
+            //prixDepart - PAS FACULTATIF - Double
             if(!txtPrixDepart.getText().equals("")) {
-                if (controller.tryParseFloat(txtPrixDepart.getText())){
-                    if(Float.parseFloat(txtPrixDepart.getText()) < 0){
+                if (controller.tryParseDouble(txtPrixDepart.getText())){
+                    if(Double.parseDouble(txtPrixDepart.getText()) < 0){
                         error.addError("- Votre prix est inférieur à 0");
                         errorCount++;
                     }
                     else{
-                        currentTransaction.setPrixDepart(Float.parseFloat(txtPrixDepart.getText()));
+                        currentTransaction.setPrixDepart(Double.parseDouble(txtPrixDepart.getText()));
                     }
                 }
                 else {
@@ -294,24 +294,24 @@ public class ModificationPanel extends JPanel {
                 errorCount++;
             }
 
-            //prixMin - FACULTATIF - Float
+            //prixMin - FACULTATIF - Double
             if(!txtPrixMin.getText().equals("")) {
-                if (controller.tryParseFloat(txtPrixMin.getText())){
-                    if(Float.parseFloat(txtPrixMin.getText()) < 0){
+                if (controller.tryParseDouble(txtPrixMin.getText())){
+                    if(Double.parseDouble(txtPrixMin.getText()) < 0){
                         error.addError("- Votre prix minimum est inférieur à 0");
                         errorCount++;
                     }
                     else{
-                        if(Float.parseFloat(txtPrixMin.getText()) > Float.parseFloat(txtPrixVente.getText())){
+                        if(Double.parseDouble(txtPrixMin.getText()) > Double.parseDouble(txtPrixVente.getText())){
                             error.addError("- Votre prix de vente est plus petit que le prix minimum");
                         }
 
-                        if(Float.parseFloat(txtPrixMin.getText()) > Float.parseFloat(txtPrixDepart.getText())){
+                        if(Double.parseDouble(txtPrixMin.getText()) > Double.parseDouble(txtPrixDepart.getText())){
                             error.addError("- Votre prix de départ est plus petit que le prix minimum");
                             errorCount++;
                         }
 
-                        currentTransaction.setPrixMin(Float.parseFloat(txtPrixMin.getText()));
+                        currentTransaction.setPrixMin(Double.parseDouble(txtPrixMin.getText()));
                     }
                 }
                 else {
@@ -360,15 +360,15 @@ public class ModificationPanel extends JPanel {
             if(cbxTVARecup.isSelected())
                 currentTransaction.setEstTVARecup(1);
 
-            //prixVente - PAS FACULTATIF - Float
+            //prixVente - PAS FACULTATIF - Double
             if(!txtPrixVente.getText().equals("")) {
-                if (controller.tryParseFloat(txtPrixVente.getText())){
-                    if(Float.parseFloat(txtPrixVente.getText()) < 0){
+                if (controller.tryParseDouble(txtPrixVente.getText())){
+                    if(Double.parseDouble(txtPrixVente.getText()) < 0){
                         error.addError("- Votre prix de vente est inférieur à 0");
                         errorCount++;
                     }
                     else{
-                        currentTransaction.setPrixVente(Float.parseFloat(txtPrixVente.getText()));
+                        currentTransaction.setPrixVente(Double.parseDouble(txtPrixVente.getText()));
                     }
                 }
 

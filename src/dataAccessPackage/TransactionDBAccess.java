@@ -26,7 +26,7 @@ public class TransactionDBAccess implements TransactionDataAccess {
             ResultSet rs = prepStat.executeQuery();
 
             Transaction transaction;
-            Float prixMin;
+            Double prixMin;
             String description;
             Integer nbProprios;
             java.sql.Date date;
@@ -40,16 +40,16 @@ public class TransactionDBAccess implements TransactionDataAccess {
                 transaction = new Transaction(rs.getInt(1));
                 transaction.setKilometrage(rs.getInt(2));
                 transaction.setCouleur(rs.getString(3));
-                transaction.setPrixAchat(rs.getFloat(4));
-                transaction.setPrixDepart(rs.getFloat(5));
+                transaction.setPrixAchat(rs.getDouble(4));
+                transaction.setPrixDepart(rs.getDouble(5));
                 transaction.setDateArrivee(cal1);
                 transaction.setDureeGarantie(rs.getInt(10));
                 transaction.setEstTVARecup(rs.getInt(11));
-                transaction.setPrixVente(rs.getFloat(12));
+                transaction.setPrixVente(rs.getDouble(12));
                 transaction.setDateVente(cal2);
                 transaction.setEtat(rs.getString(14));
 
-                prixMin = rs.getFloat(6) ;
+                prixMin = rs.getDouble(6) ;
                 if (!rs.wasNull())
                     transaction.setPrixMin(prixMin);
                 nbProprios = rs.getInt(7);
@@ -99,12 +99,12 @@ public class TransactionDBAccess implements TransactionDataAccess {
             PreparedStatement prepStat = connection.prepareStatement(query);
             prepStat.setInt(1,newTransaction.getKilometrage());
             prepStat.setString(2, newTransaction.getCouleur());
-            prepStat.setFloat(3, newTransaction.getPrixAchat());
-            prepStat.setFloat(4, newTransaction.getPrixDepart());
+            prepStat.setDouble(3, newTransaction.getPrixAchat());
+            prepStat.setDouble(4, newTransaction.getPrixDepart());
             prepStat.setDate(5, new java.sql.Date(newTransaction.getDateArrivee().getTimeInMillis()));
             prepStat.setInt(6, newTransaction.getDureeGarantie());
             prepStat.setInt(7, (newTransaction.isEstTVARecup() ? 1 : 0));
-            prepStat.setFloat(8, newTransaction.getPrixVente());
+            prepStat.setDouble(8, newTransaction.getPrixVente());
             prepStat.setDate(9, new java.sql.Date(newTransaction.getDateVente().getTimeInMillis()));
             prepStat.setString(10, newTransaction.getEtat());
             prepStat.setInt(11, newTransaction.getCommercial().getMatricule());
@@ -115,7 +115,7 @@ public class TransactionDBAccess implements TransactionDataAccess {
             if(newTransaction.getPrixMin()!= null){
                 query = "UPDATE transactions SET prixMin = ? where idTransaction = '" + nextId + "'";
                 prepStat = connection.prepareStatement(query);
-                prepStat.setFloat(1, newTransaction.getPrixMin());
+                prepStat.setDouble(1, newTransaction.getPrixMin());
                 prepStat.executeUpdate();
             }
 
@@ -149,12 +149,12 @@ public class TransactionDBAccess implements TransactionDataAccess {
             PreparedStatement prepStat = connection.prepareStatement(query);
             prepStat.setInt(1,upTransaction.getKilometrage());
             prepStat.setString(2, upTransaction.getCouleur());
-            prepStat.setFloat(3, upTransaction.getPrixAchat());
-            prepStat.setFloat(4, upTransaction.getPrixDepart());
+            prepStat.setDouble(3, upTransaction.getPrixAchat());
+            prepStat.setDouble(4, upTransaction.getPrixDepart());
             prepStat.setDate(5, new java.sql.Date(upTransaction.getDateArrivee().getTimeInMillis()));
             prepStat.setInt(6, upTransaction.getDureeGarantie());
             prepStat.setInt(7, (upTransaction.isEstTVARecup() ? 1 : 0));
-            prepStat.setFloat(8, upTransaction.getPrixVente());
+            prepStat.setDouble(8, upTransaction.getPrixVente());
             prepStat.setDate(9, new java.sql.Date(upTransaction.getDateVente().getTimeInMillis()));
             prepStat.setString(10, upTransaction.getEtat());
             prepStat.setInt(11, upTransaction.getCommercial().getMatricule());
@@ -165,13 +165,13 @@ public class TransactionDBAccess implements TransactionDataAccess {
             if(upTransaction.getPrixMin()!= null){
                 query = "UPDATE transactions SET prixMin = ? where idTransaction = '"+ upTransaction.getId() +"'";
                 prepStat = connection.prepareStatement(query);
-                prepStat.setFloat(1, upTransaction.getPrixMin());
+                prepStat.setDouble(1, upTransaction.getPrixMin());
                 prepStat.executeUpdate();
             }
             else{
                 query = "UPDATE transactions SET prixMin = ? where idTransaction = '"+ upTransaction.getId() +"'";
                 prepStat = connection.prepareStatement(query);
-                prepStat.setNull(1, Types.FLOAT);
+                prepStat.setNull(1, Types.DOUBLE);
                 prepStat.executeUpdate();
             }
 
@@ -239,19 +239,20 @@ public class TransactionDBAccess implements TransactionDataAccess {
         Connection connection = SingletonConnection.getConnexion();
         ArrayList<Transaction> transactions = new ArrayList<>();
         try{
-            String query = "SELECT idTransaction, prixVente, prixAchat, m.App_libelle FROM dbProjet.transactions\n" +
+            String query = "SELECT idTransaction, estTVARecup, prixVente, prixAchat, m.App_libelle FROM dbProjet.transactions\n" +
                     "INNER JOIN fichevehicule f on transactions.numChassis = f.numChassis\n" +
-                    "INNER JOIN modele m on f.idModele = m.idModele";
+                    "INNER JOIN modele m on f.idModele = m.idModele ORDER BY m.App_libelle ASC";
             PreparedStatement prepStat = connection.prepareStatement(query);
             ResultSet rs = prepStat.executeQuery();
             Transaction transaction;
             while (rs.next()){
                 transaction = new Transaction(rs.getInt(1));
-                transaction.setPrixVente(rs.getFloat(2));
-                transaction.setPrixAchat(rs.getFloat(3));
+                transaction.setEstTVARecup(rs.getInt(2));
+                transaction.setPrixVente(rs.getDouble(3));
+                transaction.setPrixAchat(rs.getDouble(4));
                 transaction.setFicheVehicule(new FicheVehicule(""));
                 transaction.getFicheVehicule().setModele(new Modele(0));
-                transaction.getFicheVehicule().getModele().setMarque(new Marque(rs.getString(4)));
+                transaction.getFicheVehicule().getModele().setMarque(new Marque(rs.getString(5)));
 
                 transactions.add(transaction);
             }

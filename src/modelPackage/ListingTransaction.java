@@ -6,11 +6,11 @@ import java.util.GregorianCalendar;
 
 public class ListingTransaction {
     private Integer id, kilometrage, nbProprios, dureeGarantie;
-    private Float prixAchat, prixVente, prixMin, prixDepart;
+    private Double prixAchat, prixVente, prixMin, prixDepart;
     private String etat, couleur, description, nomClient, numChassis,estTVARecup, nomCom;
     private GregorianCalendar dateArrivee, dateVente;
 
-    public ListingTransaction(Integer id, Integer km, String couleur, Float prixAchat, Float prixDepart, Float prixMin, Integer nbProprios, String description, GregorianCalendar dateArrivee, Integer dureeGarantie, String estTVARecup, Float prixVente, GregorianCalendar dateVente, String etat, String nomCom, String numChassis, String nomClient) {
+    public ListingTransaction(Integer id, Integer km, String couleur, Double prixAchat, Double prixDepart, Double prixMin, Integer nbProprios, String description, GregorianCalendar dateArrivee, Integer dureeGarantie, String estTVARecup, Double prixVente, GregorianCalendar dateVente, String etat, String nomCom, String numChassis, String nomClient) {
         setId(id);
         setKilometrage(km);
         setCouleur(couleur);
@@ -46,19 +46,19 @@ public class ListingTransaction {
         return dureeGarantie;
     }
 
-    public Float getPrixAchat() {
+    public Double getPrixAchat() {
         return prixAchat;
     }
 
-    public Float getPrixVente() {
+    public Double getPrixVente() {
         return prixVente;
     }
 
-    public Float getPrixMin() {
+    public Double getPrixMin() {
         return prixMin;
     }
 
-    public Float getPrixDepart() {
+    public Double getPrixDepart() {
         return prixDepart;
     }
 
@@ -102,15 +102,15 @@ public class ListingTransaction {
         this.dureeGarantie = dureeGarantie;
     }
 
-    public void setPrixAchat(Float prixAchat) {
+    public void setPrixAchat(Double prixAchat) {
         this.prixAchat = prixAchat;
     }
 
-    public void setPrixVente(Float prixVente) {
+    public void setPrixVente(Double prixVente) {
         this.prixVente = prixVente;
     }
 
-    public void setPrixDepart(Float prixDepart) {
+    public void setPrixDepart(Double prixDepart) {
         this.prixDepart = prixDepart;
     }
 
@@ -136,7 +136,7 @@ public class ListingTransaction {
         this.dateVente = dateVente;
     }
 
-    public void setPrixMin(Float prixMin){
+    public void setPrixMin(Double prixMin){
         this.prixMin = prixMin;
     }
 

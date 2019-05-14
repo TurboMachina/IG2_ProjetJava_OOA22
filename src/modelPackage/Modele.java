@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Modele {
     private Integer cylindree, cylindre, vitesses, poidAVide, nbPortes, id;
-    private float consoMixte, consoUrbain, consoExtraUrbain;
+    private Double consoMixte, consoUrbain, consoExtraUrbain;
     private String libelle, transmission, carburant;
     private Marque marque;
     private ArrayList<FicheVehicule> fichesVehicules = new ArrayList<>();
@@ -62,28 +62,28 @@ public class Modele {
         return nbPortes;
     }
 
-    public void setConsoMixte(float consoMixte) {
+    public void setConsoMixte(Double consoMixte) {
         this.consoMixte = consoMixte;
     }
 
-    public float getConsoMixte() {
+    public Double getConsoMixte() {
         return consoMixte;
     }
 
-    public void setConsoUrbain(float consoUrbain) {
+    public void setConsoUrbain(Double consoUrbain) {
         this.consoUrbain = consoUrbain;
     }
 
-    public float getConsoUrbain() {
+    public Double getConsoUrbain() {
         return consoUrbain;
     }
 
-    public void setConsoExtraUrbain(float consoExtraUrbain) {
+    public void setConsoExtraUrbain(Double consoExtraUrbain) {
         this.consoExtraUrbain = consoExtraUrbain;
     }
 
 
-    public float getConsoExtraUrbain() {
+    public Double getConsoExtraUrbain() {
         return consoExtraUrbain;
     }
 

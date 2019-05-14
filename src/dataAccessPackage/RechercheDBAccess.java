@@ -32,7 +32,7 @@ public class RechercheDBAccess implements RechercheDataAccess {
             java.sql.Date date;
             while(rs.next()){
                 transaction = new Transaction(rs.getInt(1));
-                transaction.setPrixVente(rs.getFloat(2));
+                transaction.setPrixVente(rs.getDouble(2));
 
                 date = rs.getDate(3);
                 GregorianCalendar cal1 = new GregorianCalendar();
@@ -81,7 +81,7 @@ public class RechercheDBAccess implements RechercheDataAccess {
                 transaction = new Transaction(rs.getInt(1));
                 transaction.setKilometrage(rs.getInt(2));
                 transaction.setCouleur(rs.getString(3));
-                transaction.setPrixVente(rs.getFloat(4));
+                transaction.setPrixVente(rs.getDouble(4));
                 transaction.setDureeGarantie(rs.getInt(5));
                 transaction.setEstTVARecup(rs.getInt(6));
                 transaction.setEtat(rs.getString(7));
@@ -100,9 +100,9 @@ public class RechercheDBAccess implements RechercheDataAccess {
                 modele.setVitesses(rs.getInt(12));
                 modele.setPoidAVide(rs.getInt(13));
                 modele.setCarburant(rs.getString(14));
-                modele.setConsoMixte(rs.getFloat(15));
-                modele.setConsoUrbain(rs.getFloat(16));
-                modele.setConsoExtraUrbain(rs.getFloat(17));
+                modele.setConsoMixte(rs.getDouble(15));
+                modele.setConsoUrbain(rs.getDouble(16));
+                modele.setConsoExtraUrbain(rs.getDouble(17));
                 modele.setNbPortes(rs.getInt(18));
                 transaction.getFicheVehicule().setModele(modele);
 
@@ -134,7 +134,7 @@ public class RechercheDBAccess implements RechercheDataAccess {
             java.sql.Date date;
             while(rs.next()){
                 transaction = new Transaction(rs.getInt(1));
-                transaction.setPrixVente(rs.getFloat(2));
+                transaction.setPrixVente(rs.getDouble(2));
                 date = rs.getDate(3);
                 GregorianCalendar cal1 = new GregorianCalendar();
                 cal1.setTime(date);

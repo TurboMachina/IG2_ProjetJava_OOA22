@@ -25,9 +25,9 @@ CREATE TABLE IF NOT EXISTS Modele
 	, vitesses INT NOT NULL CHECK (vitesses > 1)
 	, poidAVide INT NOT NULL
 	, carburant VARCHAR(255) NOT NULL
-	, consoMixte FLOAT NOT NULL
-	, consoUrbain FLOAT NOT NULL
-	, consoExtraUrbain FLOAT NOT NULL
+	, consoMixte DOUBLE NOT NULL
+	, consoUrbain DOUBLE NOT NULL
+	, consoExtraUrbain DOUBLE NOT NULL
 	, nbPortes INT NOT NULL CHECK (nbPortes > 1)
 	, App_libelle VARCHAR(255) NOT NULL
 	 
@@ -60,15 +60,15 @@ CREATE TABLE IF NOT EXISTS Transactions
 	( idTransaction INT PRIMARY KEY AUTO_INCREMENT 
 	, kilometrage INT NOT NULL
 	, couleur VARCHAR(255) NOT NULL
-	, prixAchat FLOAT NOT NULL CHECK(prixAchat > 0)
-	, prixDepart FLOAT NOT NULL CHECK(prixDepart > 0)
-	, prixMin FLOAT NULL CHECK(prixMin > 0)
+	, prixAchat DOUBLE NOT NULL CHECK(prixAchat > 0)
+	, prixDepart DOUBLE NOT NULL CHECK(prixDepart > 0)
+	, prixMin DOUBLE NULL CHECK(prixMin > 0)
 	, nbProprios INT NULL CHECK (nbProprios > -1)
 	, description VARCHAR(255) NULL
 	, dateArrivee DATE NOT NULL
 	, dureeGarantie INT NOT NULL CHECK (dureeGarantie > -1)
 	, estTVARecup BOOLEAN NOT NULL
-	, prixVente FLOAT NOT NULL CHECK(prixVente > 0)
+	, prixVente DOUBLE NOT NULL CHECK(prixVente > 0)
 	, dateVente DATE NOT NULL
 	, etat VARCHAR(255) NOT NULL
 	, matricule INT NOT NULL

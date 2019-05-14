@@ -96,10 +96,10 @@ public class TransactionController {
         }
     }
 
-    public boolean tryParseFloat(String value) {
+    public boolean tryParseDouble(String value) {
         try {
-            Float.parseFloat(value);
-            if(Float.parseFloat(value) < 0){
+            Double.parseDouble(value);
+            if(Double.parseDouble(value) < 0){
                 return false;
             }
             return true;

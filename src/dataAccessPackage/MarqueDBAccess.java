@@ -12,7 +12,7 @@ public class MarqueDBAccess implements MarqueDataAccess {
         Connection connection = SingletonConnection.getConnexion();
         ArrayList<Marque> marques = new ArrayList<>();
         try{
-            String query = "SELECT marque.libelle FROM dbprojet.marque";
+            String query = "SELECT marque.libelle FROM dbprojet.marque ORDER BY libelle ASC";
             PreparedStatement prepStat = connection.prepareStatement(query);
             ResultSet rs = prepStat.executeQuery();
             Marque marque;

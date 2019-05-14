@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 
 public class Transaction {
     private Integer id, kilometrage, nbProprios, dureeGarantie;
-    private Float prixAchat, prixVente, prixMin, prixDepart;
+    private Double prixAchat, prixVente, prixMin, prixDepart;
     private String etat, couleur, description;
     private boolean estTVARecup;
     private GregorianCalendar dateArrivee, dateVente;
@@ -33,19 +33,19 @@ public class Transaction {
         return dureeGarantie;
     }
 
-    public Float getPrixAchat() {
+    public Double getPrixAchat() {
         return prixAchat;
     }
 
-    public Float getPrixVente() {
+    public Double getPrixVente() {
         return prixVente;
     }
 
-    public Float getPrixMin() {
+    public Double getPrixMin() {
         return prixMin;
     }
 
-    public Float getPrixDepart() {
+    public Double getPrixDepart() {
         return prixDepart;
     }
 
@@ -85,15 +85,15 @@ public class Transaction {
         this.dureeGarantie = dureeGarantie;
     }
 
-    public void setPrixAchat(Float prixAchat) {
+    public void setPrixAchat(Double prixAchat) {
         this.prixAchat = prixAchat;
     }
 
-    public void setPrixVente(Float prixVente) {
+    public void setPrixVente(Double prixVente) {
         this.prixVente = prixVente;
     }
 
-    public void setPrixDepart(Float prixDepart) {
+    public void setPrixDepart(Double prixDepart) {
         this.prixDepart = prixDepart;
     }
 
@@ -117,7 +117,7 @@ public class Transaction {
         this.dateVente = dateVente;
     }
 
-    public void setPrixMin(Float prixMin){
+    public void setPrixMin(Double prixMin){
         this.prixMin = prixMin;
     }
 

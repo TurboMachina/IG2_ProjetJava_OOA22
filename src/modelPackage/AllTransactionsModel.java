@@ -135,11 +135,11 @@ public class AllTransactionsModel extends AbstractTableModel {
                 break;
             case 2 : c = String.class;
                 break;
-            case 3 : c = Float.class;
+            case 3 : c = Double.class;
                 break;
-            case 4 : c = Float.class;
+            case 4 : c = Double.class;
                 break;
-            case 5 : c = Float.class;
+            case 5 : c = Double.class;
                 break;
             case 6 : c = Integer.class;
                 break;
@@ -151,7 +151,7 @@ public class AllTransactionsModel extends AbstractTableModel {
                 break;
             case 10 : c = String.class;
                 break;
-            case 11 : c = Float.class;
+            case 11 : c = Double.class;
                 break;
             case 12 : c = String.class;
                 break;

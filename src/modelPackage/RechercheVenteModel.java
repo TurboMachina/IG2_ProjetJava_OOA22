@@ -65,7 +65,7 @@ public class RechercheVenteModel extends AbstractTableModel {
                 break;
             case 1 : c = String.class;
                 break;
-            case 2 : c = Float.class;
+            case 2 : c = Double.class;
                 break;
             case 3 : c = String.class;
                 break;

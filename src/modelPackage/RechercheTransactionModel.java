@@ -63,7 +63,7 @@ public class RechercheTransactionModel extends AbstractTableModel {
         switch (columnIndex){
             case 0 : c = Integer.class;
                 break;
-            case 1 : c = Float.class;
+            case 1 : c = Double.class;
                 break;
             case 2 : c = String.class;
                 break;

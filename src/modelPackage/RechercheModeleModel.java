@@ -109,7 +109,7 @@ public class RechercheModeleModel extends AbstractTableModel {
                 break;
             case 2 : c = String.class;
                 break;
-            case 3 : c = Float.class;
+            case 3 : c = Double.class;
                 break;
             case 4 : c = Integer.class;
                 break;
@@ -133,11 +133,11 @@ public class RechercheModeleModel extends AbstractTableModel {
                 break;
             case 14 : c = String.class;
                 break;
-            case 15 : c = Float.class;
+            case 15 : c = Double.class;
                 break;
-            case 16 : c = Float.class;
+            case 16 : c = Double.class;
                 break;
-            case 17 : c = Float.class;
+            case 17 : c = Double.class;
                 break;
             case 18 : c = Integer.class;
                 break;
