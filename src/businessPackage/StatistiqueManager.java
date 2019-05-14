@@ -24,30 +24,11 @@ public class StatistiqueManager {
         this.resultats = new StringBuilder();
         nombreVehiculeVendu();
         resultats.append("\n");
-        prixMoyenMarque();
-        resultats.append("\n");
-        partDeMarche();
+        prixMoyenPartMarche();
         resultats.append("\n");
         return resultats.toString();
     }
 
-    private void prixMoyenMarque(){
-        float prixMoyen = 0;
-        int nbVehicule = 0;
-        String marqueCourante = transactions.get(0).getFicheVehicule().getModele().getMarque().getLibelle();
-        resultats.append(marqueCourante).append(" ");
-        for(Transaction transaction : transactions){
-            if(transaction.getFicheVehicule().getModele().getMarque().getLibelle() != marqueCourante){
-                resultats.append(marqueCourante).append(" : ");
-                resultats.append(prixMoyen / nbVehicule).append("€").append("\n");
-                prixMoyen = 0;
-                nbVehicule = 1;
-                marqueCourante = transaction.getFicheVehicule().getModele().getMarque().getLibelle();
-            }
-            nbVehicule++;
-            prixMoyen += transaction.getPrixVente();
-        }
-    }
     private void nombreVehiculeVendu() throws ConnectionException, GetTransactionException {
         int nbVehiculeVendu = 0;
         for(Transaction transaction : transactions){
@@ -57,25 +38,35 @@ public class StatistiqueManager {
         }
         resultats.append("Nombre de véhicules vendus : ").append(nbVehiculeVendu).append("\n");
     }
-    private void partDeMarche() throws ConnectionException, GetMarqueException {
+
+    private void prixMoyenPartMarche() throws ConnectionException, GetMarqueException {
         float prixTotal = 0;
-        float moyenne;
+        float moyenne = 0;
+        float prixMoyen = 0;
+        int nbVehicule = 0;
+        float prixMarqueCourante = 0;
+        String marqueCourante = null;
         for(Transaction transaction : transactions){
             prixTotal+=transaction.getPrixVente();
         }
-        float prixMarqueCourante = 0;
-        String marqueCourante = transactions.get(0).getFicheVehicule().getModele().getMarque().getLibelle();
+
         for(Transaction transaction : transactions){
-            if(transaction.getFicheVehicule().getModele().getMarque().getLibelle() != marqueCourante){
+            prixMarqueCourante+= transaction.getPrixVente();
+            nbVehicule++;
+            prixMoyen += transaction.getPrixVente();
+            if(!transaction.getFicheVehicule().getModele().getMarque().getLibelle().equals(marqueCourante)){
+
                 moyenne = (prixMarqueCourante/prixTotal)*100;
-                resultats.append(transaction.getFicheVehicule().getModele().getMarque().getLibelle()).append(" ");
+                resultats.append(transaction.getFicheVehicule().getModele().getMarque().getLibelle()).append("\n");
+                resultats.append(prixMoyen / nbVehicule).append("€").append("\n");
                 resultats.append(String.format("%.2f", moyenne));
                 resultats.append(" %\n");
+
+                prixMoyen = 0;
+                nbVehicule = 1;
                 prixMarqueCourante = 0;
                 marqueCourante = transaction.getFicheVehicule().getModele().getMarque().getLibelle();
             }
-                prixMarqueCourante+= transaction.getPrixVente();
         }
     }
-
 }
