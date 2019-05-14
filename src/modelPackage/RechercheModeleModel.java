@@ -62,7 +62,7 @@ public class RechercheModeleModel extends AbstractTableModel {
             case 2:
                 return transaction.getCouleur();
             case 3:
-                return transaction.getPrixVente();
+                return transaction.getPrixVente() +" €";
             case 4:
                 return transaction.getDureeGarantie();
             case 5:
@@ -109,7 +109,7 @@ public class RechercheModeleModel extends AbstractTableModel {
                 break;
             case 2 : c = String.class;
                 break;
-            case 3 : c = Double.class;
+            case 3 : c = String.class;
                 break;
             case 4 : c = Integer.class;
                 break;
