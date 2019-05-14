@@ -1,11 +1,16 @@
 package businessPackage;
 
-import dataAccessPackage.*;
-import exceptionPackage.*;
-import modelPackage.*;
+import dataAccessPackage.MarqueDBAccess;
+import dataAccessPackage.MarqueDataAccess;
+import dataAccessPackage.TransactionDBAccess;
+import dataAccessPackage.TransactionDataAccess;
+import exceptionPackage.ConnectionException;
+import exceptionPackage.GetMarqueException;
+import exceptionPackage.GetTransactionException;
+import modelPackage.Marque;
+import modelPackage.Transaction;
 
-import java.text.DecimalFormat;
-import java.util.*;
+import java.util.ArrayList;
 
 public class StatistiqueManager {
     private static final Double TAUXTVA = 0.21;
@@ -19,7 +24,7 @@ public class StatistiqueManager {
     private void setDAOMarques(MarqueDataAccess daoMarques){this.daoMarque = daoMarques;}
 
 
-    public String getStatistiques() throws ConnectionException, GetTransactionException, GetMarqueException{
+    public String getStatistiques() throws ConnectionException, GetTransactionException, GetMarqueException {
         String marqueCourante;
         StringBuilder stats = new StringBuilder();
         Integer nbVenduTot;

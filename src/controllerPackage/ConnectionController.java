@@ -1,9 +1,8 @@
 package controllerPackage;
 
-import businessPackage.*;
+import businessPackage.ConnectionManager;
 import exceptionPackage.CloseException;
 import exceptionPackage.ConnectionException;
-import modelPackage.*;
 
 public class ConnectionController {
     private ConnectionManager manager;
@@ -12,7 +11,7 @@ public class ConnectionController {
         setManager(new ConnectionManager());
     }
 
-    public void setManager(ConnectionManager manager) {
+    private void setManager(ConnectionManager manager) {
         this.manager = manager;
     }
 

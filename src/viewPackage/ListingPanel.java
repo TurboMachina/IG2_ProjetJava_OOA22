@@ -1,12 +1,10 @@
 package viewPackage;
 
 import javax.swing.*;
-import javax.swing.plaf.SeparatorUI;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import controllerPackage.*;
 import exceptionPackage.ConnectionException;
-import exceptionPackage.DeleteFormException;
 import exceptionPackage.DeleteTransactionException;
 import exceptionPackage.GetTransactionException;
 import modelPackage.*;
@@ -96,7 +94,7 @@ public class ListingPanel extends JPanel {
                 controller.deleteTransaction(transactions.get(getSelectedIndex()).getId());
                 JOptionPane.showMessageDialog(w, "Transaction supprimée", "Suppresion", JOptionPane.INFORMATION_MESSAGE);
             }
-            catch (ConnectionException | DeleteTransactionException | DeleteFormException e){
+            catch (ConnectionException | DeleteTransactionException e){
                 JOptionPane.showMessageDialog(w,e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
             }
             new ListingPanel(w).setPanel();

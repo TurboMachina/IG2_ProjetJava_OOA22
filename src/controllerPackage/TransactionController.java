@@ -1,18 +1,9 @@
 package controllerPackage;
 
-import businessPackage.*;
-import dataAccessPackage.MagasinDBAccess;
-import dataAccessPackage.MarqueDBAccess;
-import dataAccessPackage.RechercheDBAccess;
-import dataAccessPackage.SingletonConnection;
+import businessPackage.TransactionManager;
 import exceptionPackage.*;
 import modelPackage.*;
 
-import java.sql.Connection;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.DateTimeException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -32,7 +23,7 @@ public class TransactionController {
         return manager.getAllTransactions();
     }
 
-    public ArrayList<Client> getAllClients() throws ConnectionException, GetClientException{
+    public ArrayList<Client> getAllClients() throws ConnectionException, GetClientException {
         return manager.getAllClients();
     }
 
@@ -52,7 +43,7 @@ public class TransactionController {
         manager.updateTransaction(transaction);
     }
 
-    public void deleteTransaction(Integer idTransaction) throws ConnectionException, DeleteTransactionException, DeleteFormException{
+    public void deleteTransaction(Integer idTransaction) throws ConnectionException, DeleteTransactionException{
         manager.deleteTransaction(idTransaction);
     }
 
@@ -86,11 +77,7 @@ public class TransactionController {
 
     public boolean tryParseInt(String value) {
         try {
-            Integer.parseInt(value);
-           if(Integer.parseInt(value) < 0){
-               return false;
-           }
-           return true;
+            return Integer.parseInt(value) > 0;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -98,11 +85,7 @@ public class TransactionController {
 
     public boolean tryParseDouble(String value) {
         try {
-            Double.parseDouble(value);
-            if(Double.parseDouble(value) < 0){
-                return false;
-            }
-            return true;
+            return Double.parseDouble(value) > 0;
         } catch (NumberFormatException e) {
             return false;
         }

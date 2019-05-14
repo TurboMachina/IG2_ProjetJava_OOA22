@@ -1,7 +1,6 @@
 package dataAccessPackage;
 
 import exceptionPackage.ConnectionException;
-import exceptionPackage.DeleteTransactionException;
 import exceptionPackage.RechercheException;
 import modelPackage.*;
 

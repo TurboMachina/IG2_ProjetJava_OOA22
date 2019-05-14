@@ -1,10 +1,10 @@
 package controllerPackage;
 
 
-import exceptionPackage.*;
-import modelPackage.*;
-import viewPackage.*;
-import businessPackage.*;
+import businessPackage.StatistiqueManager;
+import exceptionPackage.ConnectionException;
+import exceptionPackage.GetMarqueException;
+import exceptionPackage.GetTransactionException;
 
 public class StatistiqueController {
     private StatistiqueManager manager;
@@ -13,7 +13,7 @@ public class StatistiqueController {
         this.manager = manager;
     }
 
-    public String getStatistiques() throws ConnectionException, GetTransactionException, GetMarqueException{
+    public String getStatistiques() throws ConnectionException, GetTransactionException, GetMarqueException {
         setManager(new StatistiqueManager());
         return manager.getStatistiques();
     }

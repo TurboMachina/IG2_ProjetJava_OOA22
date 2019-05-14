@@ -12,7 +12,7 @@ public class Client {
         setId(id);
     }
 
-    public void setId(Integer id){
+    private void setId(Integer id){
         this.id = id;
     }
 
@@ -38,10 +38,6 @@ public class Client {
 
     public void ajouteTransaction(Transaction newTransaction) {
         transactions.add(newTransaction);
-    }
-
-    public Transaction getTransaction(Integer index) {
-        return transactions.get(index);
     }
 
     @Override

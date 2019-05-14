@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class AjoutPanel extends JPanel {
+class AjoutPanel extends JPanel {
     private PrincipalWindow w;
     private JTextField txtKilometrage, txtCouleur, txtPrixAchat, txtPrixDepart, txtPrixMin, txtPrixVente, txtNbProprios;
     private JComboBox<String> cbEtat;
@@ -73,7 +73,7 @@ public class AjoutPanel extends JPanel {
         txtPrixAchat = new JTextField();
         txtPrixDepart = new JTextField();
         txtPrixMin= new JTextField();
-        txtPrixVente= new JTextField();;
+        txtPrixVente= new JTextField();
         txtNbProprios = new JTextField();
 
 
@@ -176,7 +176,7 @@ public class AjoutPanel extends JPanel {
         fc.revalidate();
     }
 
-    public void setController(TransactionController controller){
+    private void setController(TransactionController controller){
         this.controller = controller;
     }
 

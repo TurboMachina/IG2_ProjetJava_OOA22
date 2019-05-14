@@ -1,6 +1,4 @@
-import viewPackage.ListingPanel;
 import viewPackage.PrincipalWindow;
-import viewPackage.ThreadDisco;
 
 public class Main{
 

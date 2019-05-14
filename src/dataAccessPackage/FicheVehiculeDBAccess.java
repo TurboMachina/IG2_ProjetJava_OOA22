@@ -27,9 +27,4 @@ public class FicheVehiculeDBAccess implements FicheVehiculeDataAccess {
         }
         return listeNumChassis;
     }
-
-    public ArrayList<FicheVehicule> getAllFichesVeh() throws ConnectionException, GetFicheVehException{
-        Connection connection = SingletonConnection.getConnexion();
-        return null;
-    }
 }

@@ -8,26 +8,6 @@ import java.util.ArrayList;
 
 public class CommercialDBAccess implements CommercialDataAccess {
 
-    public Commercial getCommercial(Integer matriculeCom)  throws ConnectionException, GetCommercialException {
-        Connection connection = SingletonConnection.getConnexion();
-        Commercial commercial = new Commercial(matriculeCom);
-        try{
-            String query = "SELECT nom, prenom, numTel, email FROM dbprojet.commercial WHERE matricule = ?";
-            PreparedStatement prepStat = connection.prepareStatement(query);
-            prepStat.setInt(1,matriculeCom);
-            ResultSet rs = prepStat.executeQuery();
-            commercial.setNom(rs.getString(1));
-            commercial.setPrenom(rs.getString(2));
-            commercial.setNumeroTel(rs.getString(3));
-            commercial.setAdresseMail(rs.getString(4));
-            commercial.setMagasin(new Magasin(rs.getInt(5)));
-        }
-        catch (SQLException e){
-            throw new GetCommercialException();
-        }
-        return commercial;
-    }
-
     public ArrayList<Commercial> getAllCommerciaux() throws ConnectionException, GetCommercialException{
         Connection connection = SingletonConnection.getConnexion();
         ArrayList<Commercial> listeCommerciaux = new ArrayList<>();

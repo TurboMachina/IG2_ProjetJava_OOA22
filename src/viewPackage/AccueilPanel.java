@@ -1,34 +1,31 @@
 package viewPackage;
 
-import com.mysql.cj.TransactionEventHandler;
 import controllerPackage.*;
 import exceptionPackage.ConnectionException;
 import exceptionPackage.GetMarqueException;
 import exceptionPackage.GetTransactionException;
-import modelPackage.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AccueilPanel extends JPanel {
+class AccueilPanel extends JPanel {
     private PrincipalWindow w;
-    private JButton btnList, btnAjout, btnDiscoFever, btnStats;
-    private JTextField texteBienvenue;
     private JLabel lblBienvenue;
-    private ConnectionController controller; // A renommer connecController BITCONNEEECT
+    private JButton btnList, btnAjout, btnDiscoFever, btnStats;
+    private ConnectionController connectionController; // A renommer connecController BITCONNEEECT
     private StatistiqueController statController;
     private ThreadDisco discotime;
 
-    public AccueilPanel(PrincipalWindow w){
+    AccueilPanel(PrincipalWindow w){
         this.discotime = new ThreadDisco(w);
         this.setLayout(new GridLayout(4,1));
-        this.setController(new ConnectionController());
+        this.setConnectionController(new ConnectionController());
         this.setStatController(new StatistiqueController());
         this.w = w;
         lblBienvenue = new JLabel("<html> Bienvenue, veuillez choisir une option dans le menu ci-dessous. " +
                 "<br/>Pour supprimer ou modifier une transacation vous devez passer par le listing </html>", SwingConstants.CENTER);
-        texteBienvenue = new JTextField("Bienvenue, sélectionnez une option");
         btnList = new JButton("Lister les transactions (Donne accés à la modification/suppresion)");
         btnAjout = new JButton("Ajouter une transaction");
         btnStats = new JButton("Statistiques");
@@ -38,7 +35,7 @@ public class AccueilPanel extends JPanel {
         btnStats.addActionListener(new BtnStatsListener());
         btnDiscoFever.addActionListener(new DiscoFeverButton());
         try{
-            controller.checkConnection();
+            connectionController.checkConnection();
         }
         catch (ConnectionException e){
             btnList.setEnabled(false);
@@ -82,7 +79,7 @@ public class AccueilPanel extends JPanel {
         }
     }
 
-    public void setPanel(){
+    void setPanel(){
         Container fc = w.getFrameContainer();
         fc.removeAll();
         fc.add(this, BorderLayout.SOUTH);
@@ -95,10 +92,10 @@ public class AccueilPanel extends JPanel {
         fc.revalidate();
     }
 
-    public void setController(ConnectionController controller){
-        this.controller = controller;
+    private void setConnectionController(ConnectionController connectionController){
+        this.connectionController = connectionController;
     }
-    public void setStatController(StatistiqueController statController ) {this.statController = statController; }
+    private void setStatController(StatistiqueController statController ) {this.statController = statController; }
 
     private class DiscoFeverButton implements ActionListener
     {

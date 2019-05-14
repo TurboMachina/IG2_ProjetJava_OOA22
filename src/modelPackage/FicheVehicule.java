@@ -44,9 +44,6 @@ public class FicheVehicule {
     public void ajouteTransaction(Transaction newTransaction){
         transactions.add(newTransaction);
     }
-    public Transaction getTransaction(int index){
-        return transactions.get(index);
-    }
 
     @Override
     public String toString(){

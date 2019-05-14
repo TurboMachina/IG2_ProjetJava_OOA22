@@ -156,11 +156,6 @@ public class Transaction {
         commercial.ajouteTransactions(this);
     }
 
-    public String getDateArriveeStr() {
-        SimpleDateFormat temp = new SimpleDateFormat("dd-MM-YYYY");
-        temp.setCalendar(this.dateArrivee);
-        return temp.format(this.dateArrivee.getTime());
-    }
 
     public String getDateVenteStr() {
         SimpleDateFormat temp = new SimpleDateFormat("dd-MM-YYYY");

@@ -1,15 +1,8 @@
 package modelPackage;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
-import modelPackage.*;
-
 import javax.swing.table.AbstractTableModel;
-import javax.xml.crypto.dsig.TransformService;
 
-import controllerPackage.*;
 
 public class AllTransactionsModel extends AbstractTableModel {
     private ArrayList<String> columnNames;
@@ -32,7 +25,7 @@ public class AllTransactionsModel extends AbstractTableModel {
         columnNames.add("Description");
         columnNames.add("Date d'arrivée");
         columnNames.add("Durée de la garantie");
-        columnNames.add("TVA récupérable");
+        columnNames.add("TVA récupérée");
         columnNames.add("Prix de vente (en €)");
         columnNames.add("Date de vente");
         columnNames.add("Etat de la vente");

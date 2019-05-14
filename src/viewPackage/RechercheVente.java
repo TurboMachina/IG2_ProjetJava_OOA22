@@ -97,7 +97,6 @@ public class RechercheVente extends JPanel {
     }
 
     public void setPanel(){
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         Container fc = w.getFrameContainer();
         fc.removeAll();
         fc.add(this.lblObjectif, BorderLayout.NORTH);
@@ -105,7 +104,7 @@ public class RechercheVente extends JPanel {
         fc.add(this.btnRecherche, BorderLayout.SOUTH);
         w.setTitle("Recherche des transactions");
         w.setSize(500,300);
-        w.setLocationRelativeTo(null);;
+        w.setLocationRelativeTo(null);
         fc.repaint();
         fc.revalidate();
         filtering();

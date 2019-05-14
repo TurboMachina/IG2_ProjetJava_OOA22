@@ -1,10 +1,9 @@
 package businessPackage;
 
-import controllerPackage.ConnectionController;
-import dataAccessPackage.*;
+
+import dataAccessPackage.SingletonConnection;
 import exceptionPackage.CloseException;
 import exceptionPackage.ConnectionException;
-import modelPackage.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;

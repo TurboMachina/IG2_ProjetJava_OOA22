@@ -4,13 +4,11 @@ import exceptionPackage.ThreadException;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-
 import static java.awt.Color.*;
 
 public class ThreadDisco extends JFrame implements Runnable {
 
-        private Thread t1;
+        private Thread disco;
         private PrincipalWindow w;
         private Boolean isRunning = false;
         private Color [] couleurs = new Color[]{yellow,black,cyan,pink,gray,red,white,green};
@@ -21,26 +19,18 @@ public class ThreadDisco extends JFrame implements Runnable {
 
         public void threadStart(){
             if(!this.isRunning){
-                t1 = new Thread(this);
+                disco = new Thread(this);
                 this.isRunning = true;
-                t1.start();
+                disco.start();
             }
-        }
-
-        public void threadStop(){
-            this.isRunning = false;
-        }
-
-        public boolean isRunning(){
-            return this.isRunning;
         }
 
         public void run(){
            while(true){
-               for(int i = 0; i < couleurs.length; i++){
-                   w.getFrameContainer().setBackground(couleurs[i]);
+               for(Color couleur : couleurs){
+                   w.getFrameContainer().setBackground(couleur);
                    try{
-                       t1.sleep(1000);
+                       disco.sleep(1000);
                    }
                    catch(InterruptedException e) {
                        JOptionPane.showMessageDialog(w, new ThreadException().getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);

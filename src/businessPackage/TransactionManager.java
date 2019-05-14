@@ -1,12 +1,13 @@
 package businessPackage;
 
 
+
+
 import dataAccessPackage.*;
 import exceptionPackage.*;
 import modelPackage.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class TransactionManager {
@@ -52,7 +53,7 @@ public class TransactionManager {
         return daoFicheVeh.getAllNumChassis();
     }
 
-    public int ajouteTransaction(Transaction transaction) throws ConnectionException, AddTransactionException, TransactionFormException {
+    public Integer ajouteTransaction(Transaction transaction) throws ConnectionException, AddTransactionException {
         setDAOTransaction(new TransactionDBAccess());
         Integer idMax = getNextID();
         return daoTransaction.ajouteTransaction(transaction, idMax);
@@ -60,16 +61,15 @@ public class TransactionManager {
 
     public int getNextID() throws ConnectionException{
         setDAOTransaction(new TransactionDBAccess());
-        Integer idMax = daoTransaction.getNextId();
-        return idMax;
+        return daoTransaction.getNextId();
     }
 
-    public void updateTransaction(Transaction transaction) throws ConnectionException, UpdateTransactionException, TransactionFormException{
+    public void updateTransaction(Transaction transaction) throws ConnectionException, UpdateTransactionException{
         setDAOTransaction(new TransactionDBAccess());
         daoTransaction.updateTransaction(transaction);
     }
 
-    public void deleteTransaction(Integer idTransaction) throws ConnectionException, DeleteTransactionException, DeleteFormException{
+    public void deleteTransaction(Integer idTransaction) throws ConnectionException, DeleteTransactionException{
         setDAOTransaction(new TransactionDBAccess());
         daoTransaction.deleteTransaction(idTransaction);
     }

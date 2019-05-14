@@ -77,7 +77,6 @@ public class RechercheModele extends JPanel {
     }
 
     public void setPanel(){
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         Container fc = w.getFrameContainer();
         fc.removeAll();
         fc.add(this.lblObjectif, BorderLayout.NORTH);

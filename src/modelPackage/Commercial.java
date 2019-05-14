@@ -13,7 +13,7 @@ public class Commercial {
         this.transactions = new ArrayList<>();
     }
 
-    public void setMatricule(Integer matricule){ this.matricule = matricule; }
+    private void setMatricule(Integer matricule){ this.matricule = matricule; }
 
     public Integer getMatricule(){return this.matricule;}
 
@@ -38,14 +38,9 @@ public class Commercial {
 
     public void setMagasin(Magasin newMagasin){
         this.magasin = newMagasin;
-        newMagasin.ajouteCommercial(this);
     }
     public void ajouteTransactions(Transaction newTransaction){
         transactions.add(newTransaction);
-    }
-
-    public Transaction getTransactions(int index) {
-        return transactions.get(index);
     }
 
     @Override

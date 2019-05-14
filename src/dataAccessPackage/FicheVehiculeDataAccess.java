@@ -7,5 +7,4 @@ import java.util.ArrayList;
 
 public interface FicheVehiculeDataAccess {
     ArrayList<FicheVehicule> getAllNumChassis() throws ConnectionException, GetFicheVehException;
-    ArrayList<FicheVehicule> getAllFichesVeh() throws ConnectionException, GetFicheVehException;
 }

@@ -9,11 +9,6 @@ import java.util.GregorianCalendar;
 
 public class TransactionDBAccess implements TransactionDataAccess {
 
-    public Transaction getTransaction(Integer idTransaction) throws ConnectionException, GetTransactionException{
-        Connection connection = SingletonConnection.getConnexion();
-        return null;
-    }
-
     public ArrayList<Transaction> getAllTransactions() throws ConnectionException, GetTransactionException {
         Connection connexion = SingletonConnection.getConnexion();
         ArrayList<Transaction> allTransactions = new ArrayList<>();
@@ -134,14 +129,13 @@ public class TransactionDBAccess implements TransactionDataAccess {
             }
         }
         catch (SQLException e) {
-            System.out.println(e.toString());
+            throw new AddTransactionException();
         }
         return insertedLineNumber;
     }
 
     public void updateTransaction(Transaction upTransaction) throws ConnectionException, UpdateTransactionException{
         Connection connection = SingletonConnection.getConnexion();
-        int insertedLineNumber = 0;
         try{
             String query = "UPDATE dbprojet.transactions SET kilometrage = ?,couleur = ?,prixAchat = ?,prixDepart = ?,dateArrivee = ?" +
                     ", dureeGarantie = ?,estTVARecup = ?,prixVente = ?,dateVente = ?,etat = ?, matricule = ?, numChassis = ?, idClient = ? " +
@@ -160,7 +154,6 @@ public class TransactionDBAccess implements TransactionDataAccess {
             prepStat.setInt(11, upTransaction.getCommercial().getMatricule());
             prepStat.setString(12, upTransaction.getFicheVehicule().getNumChassis());
             prepStat.setInt(13, upTransaction.getClient().getId());
-            insertedLineNumber = prepStat.executeUpdate();
 
             if(upTransaction.getPrixMin()!= null){
                 query = "UPDATE transactions SET prixMin = ? where idTransaction = '"+ upTransaction.getId() +"'";
