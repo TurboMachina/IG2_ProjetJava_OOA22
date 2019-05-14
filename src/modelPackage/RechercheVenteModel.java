@@ -12,7 +12,7 @@ public class RechercheVenteModel extends AbstractTableModel {
         columnNames = new ArrayList<>();
         columnNames.add("ID de la transaction");
         columnNames.add("Numéro de chassis");
-        columnNames.add("Prix de vente (en €)");
+        columnNames.add("Prix de vente");
         columnNames.add("Date de vente");
         columnNames.add("Commercial");
         columnNames.add("Client");
@@ -45,7 +45,7 @@ public class RechercheVenteModel extends AbstractTableModel {
             case 1:
                 return transaction.getFicheVehicule().getNumChassis();
             case 2:
-                return transaction.getPrixVente();
+                return transaction.getPrixVente() +" €";
             case 3:
                 return transaction.getDateVenteStr();
             case 4:
@@ -65,7 +65,7 @@ public class RechercheVenteModel extends AbstractTableModel {
                 break;
             case 1 : c = String.class;
                 break;
-            case 2 : c = Double.class;
+            case 2 : c = String.class;
                 break;
             case 3 : c = String.class;
                 break;
