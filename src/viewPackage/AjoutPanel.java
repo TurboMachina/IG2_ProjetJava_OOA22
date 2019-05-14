@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-class AjoutPanel extends JPanel {
+public class AjoutPanel extends JPanel {
     private PrincipalWindow w;
     private JTextField txtKilometrage, txtCouleur, txtPrixAchat, txtPrixDepart, txtPrixMin, txtPrixVente, txtNbProprios;
     private JComboBox<String> cbEtat;

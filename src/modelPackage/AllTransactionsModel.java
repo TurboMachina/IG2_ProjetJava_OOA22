@@ -25,7 +25,7 @@ public class AllTransactionsModel extends AbstractTableModel {
         columnNames.add("Description");
         columnNames.add("Arrivée le");
         columnNames.add("Garantie (mois)");
-        columnNames.add("TVA récupérée");
+        columnNames.add("TVA Déd.");
         columnNames.add("Prix Vente (en €)");
         columnNames.add("Vendue le");
         columnNames.add("Etat Vente");
@@ -79,7 +79,7 @@ public class AllTransactionsModel extends AbstractTableModel {
             case 10:
                 return (transaction.isEstTVARecup()) ? "Oui" : "Non";
             case 11:
-                return transaction.getPrixVente();
+                return (transaction.getPrixVente() != null) ? transaction.getPrixVente() +" €" : "---";
             case 12:
                 return transaction.getDateVenteStr();
             case 13:

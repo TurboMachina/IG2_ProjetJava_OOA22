@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class AccueilPanel extends JPanel {
+public class AccueilPanel extends JPanel {
     private PrincipalWindow w;
     private JLabel lblBienvenue;
     private JButton btnList, btnAjout, btnDiscoFever, btnStats;
@@ -18,7 +18,7 @@ class AccueilPanel extends JPanel {
     private StatistiqueController statController;
     private ThreadDisco discotime;
 
-    AccueilPanel(PrincipalWindow w){
+    public AccueilPanel(PrincipalWindow w){
         this.discotime = new ThreadDisco(w);
         this.setLayout(new GridLayout(4,1));
         this.setConnectionController(new ConnectionController());

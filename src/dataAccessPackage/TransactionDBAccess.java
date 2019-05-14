@@ -154,6 +154,7 @@ public class TransactionDBAccess implements TransactionDataAccess {
             prepStat.setInt(11, upTransaction.getCommercial().getMatricule());
             prepStat.setString(12, upTransaction.getFicheVehicule().getNumChassis());
             prepStat.setInt(13, upTransaction.getClient().getId());
+            prepStat.executeUpdate();
 
             if(upTransaction.getPrixMin()!= null){
                 query = "UPDATE transactions SET prixMin = ? where idTransaction = '"+ upTransaction.getId() +"'";

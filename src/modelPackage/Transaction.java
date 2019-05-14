@@ -83,7 +83,7 @@ public class Transaction {
     }
 
     public void setEtat(String etat) {
-        this.etat = etat.toLowerCase();
+        this.etat = etat;
     }
 
     public String getEtat() {
@@ -99,7 +99,7 @@ public class Transaction {
     }
 
     public void setDescription(String description){
-        this.description = description.toLowerCase();
+        this.description = description;
     }
 
     public String getDescription() {
