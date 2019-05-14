@@ -16,8 +16,10 @@ public class Magasin {
         this.nom = nom.toLowerCase();
     }
 
+    public String getNom(){ return this.nom.substring(0,1).toUpperCase() + nom.substring(1);}
+
     @Override
     public String toString(){
-        return this.nom;
+        return getNom();
     }
 }

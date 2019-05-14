@@ -91,7 +91,7 @@ public class Modele {
         this.libelle = libelle.toLowerCase();
     }
 
-    public String getLibelle(){return this.libelle;}
+    public String getLibelle(){return this.libelle.substring(0,1).toUpperCase() + libelle.substring(1);}
 
     public void setTransmission(String transmission) {
         this.transmission = transmission.toLowerCase();
@@ -123,6 +123,6 @@ public class Modele {
 
     @Override
     public String toString(){
-        return this.libelle;
+        return getLibelle();
     }
 }

@@ -11,13 +11,13 @@ public class Marque {
     }
 
     public String getLibelle(){
-        return this.libelle;
+        return this.libelle.substring(0,1).toUpperCase() + libelle.substring(1);
     }
 
 
     @Override
     public String toString(){
-        return this.libelle;
+        return getLibelle();
     }
 
 }
