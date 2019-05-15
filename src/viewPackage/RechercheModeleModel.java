@@ -1,4 +1,6 @@
-package modelPackage;
+package viewPackage;
+
+import modelPackage.Transaction;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
