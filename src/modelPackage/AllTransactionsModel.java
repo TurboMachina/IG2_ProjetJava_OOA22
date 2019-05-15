@@ -2,6 +2,7 @@ package modelPackage;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 
 public class AllTransactionsModel extends AbstractTableModel {
@@ -101,29 +102,29 @@ public class AllTransactionsModel extends AbstractTableModel {
         switch (columnIndex){
             case 0 : c = Integer.class;
                 break;
-            case 1 : c = String.class;
+            case 1 : c = Integer.class;
                 break;
             case 2 : c = String.class;
                 break;
-            case 3 : c = String.class;
+            case 3 : c = Double.class;
                 break;
-            case 4 : c = String.class;
+            case 4 : c = Double.class;
                 break;
-            case 5 : c = String.class;
+            case 5 : c = Double.class;
                 break;
             case 6 : c = Integer.class;
                 break;
             case 7 : c = String.class;
                 break;
-            case 8 : c = String.class;
+            case 8 : c = GregorianCalendar.class;
                 break;
             case 9 : c = Integer.class;
                 break;
-            case 10 : c = String.class;
+            case 10 : c = Boolean.class;
                 break;
             case 11 : c = Double.class;
                 break;
-            case 12 : c = String.class;
+            case 12 : c = GregorianCalendar.class;
                 break;
             case 13 : c = String.class;
                 break;
@@ -131,7 +132,7 @@ public class AllTransactionsModel extends AbstractTableModel {
                 break;
             case 15 : c = String.class;
                 break;
-            case 16 : c = String.class;
+            case 16 : c = Integer.class;
                 break;
             default : c = String.class;
                 break;

@@ -77,7 +77,7 @@ public class TransactionController {
 
     public boolean tryParseInt(String value) {
         try {
-            return Integer.parseInt(value) > 0;
+            return Integer.parseInt(value) >= 0;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -85,7 +85,7 @@ public class TransactionController {
 
     public boolean tryParseDouble(String value) {
         try {
-            return Double.parseDouble(value) > 0;
+            return Double.parseDouble(value) >= 0;
         } catch (NumberFormatException e) {
             return false;
         }
