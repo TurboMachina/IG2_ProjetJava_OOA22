@@ -1,8 +1,11 @@
 package viewPackage;
 
 import controllerPackage.ConnectionController;
+import controllerPackage.StatistiqueController;
 import exceptionPackage.CloseException;
 import exceptionPackage.ConnectionException;
+import exceptionPackage.GetMarqueException;
+import exceptionPackage.GetTransactionException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,15 +14,17 @@ import java.awt.event.*;
 
 public class PrincipalWindow extends JFrame {
     private JMenuBar menuBar;
-    private JMenu optionMenu, rechercheMenu, whoMenu;
-    private JMenuItem accueil, exit, rechercheTrans, rechercheVente, rechercheModele;
+    private JMenu optionMenu, rechercheMenu, actionMenu, whoMenu;
+    private JMenuItem accueil, exit, rechercheTrans, rechercheVente, rechercheModele, listing, ajouter, statistiques;
     private Container frameContainer = this.getContentPane();
     private ConnectionController controller;
+    private StatistiqueController statController;
     private Boolean isConnectionOn = false;
 
     public PrincipalWindow(){
         super("Accueil");
         setController(new ConnectionController());
+        setStatController(new StatistiqueController());
         new AccueilPanel(this).setPanel();
         // MENU
         menuBar = new JMenuBar();
@@ -27,6 +32,10 @@ public class PrincipalWindow extends JFrame {
         optionMenu = new JMenu("Option");
         optionMenu.setMnemonic('O');
         menuBar.add(optionMenu);
+
+        actionMenu = new JMenu("Action");
+        actionMenu.setMnemonic('C');
+        menuBar.add(actionMenu);
 
         rechercheMenu = new JMenu("Recherche");
         rechercheMenu.setMnemonic('R');
@@ -39,13 +48,25 @@ public class PrincipalWindow extends JFrame {
 
         //Item Menu 1
         accueil = new JMenuItem("Accueil");
-        accueil.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK));
+        accueil.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK));
         optionMenu.add(accueil);
         exit = new JMenuItem("Exit");
         exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK));
         optionMenu.add(exit);
 
-        //Item Menu 2
+        // Item Menu 2
+
+        listing = new JMenuItem("Listing");
+        listing.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_DOWN_MASK));
+        actionMenu.add(listing);
+        ajouter = new JMenuItem("Ajout");
+        ajouter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, InputEvent.CTRL_DOWN_MASK));
+        actionMenu.add(ajouter);
+        statistiques = new JMenuItem("Statistiques");
+        statistiques.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
+        actionMenu.add(statistiques);
+
+        //Item Menu 3
         rechercheTrans = new JMenuItem("Recherche transaction commercial");
         rechercheTrans.setAccelerator((KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.ALT_DOWN_MASK )));
         rechercheMenu.add(rechercheTrans);
@@ -63,9 +84,19 @@ public class PrincipalWindow extends JFrame {
         // Bouton Menu
         accueil.addActionListener(new MenuAccueil(this));
         exit.addActionListener(new MenuExit(this));
+        ajouter.addActionListener(new MenuAjout(this));
+        listing.addActionListener(new MenuListing(this));
+        statistiques.addActionListener(new MenuStatistiques(this));
         rechercheTrans.addActionListener(new MenuRechercheTransaction(this));
         rechercheModele.addActionListener(new MenuRechercheModele(this));
         rechercheVente.addActionListener(new MenuRechercheVente(this));
+        try{
+            controller.checkConnection();
+        }
+        catch (ConnectionException e){
+            actionMenu.setEnabled(false);
+            JOptionPane.showMessageDialog(this,"Connection à la base de données impossible\n Verifier la connection puis redémarrer le programme", "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public Container getFrameContainer(){
@@ -127,7 +158,43 @@ public class PrincipalWindow extends JFrame {
             if (!(w.getFrameContainer() instanceof AccueilPanel))
                 new AccueilPanel(w).setPanel();
         }
+    }
+    private class MenuListing implements ActionListener
+    {
+        PrincipalWindow w;
+        public MenuListing(PrincipalWindow w) { this.w = w; }
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            if (!(w.getFrameContainer() instanceof ListingPanel))
+                new ListingPanel(w).setPanel();
+        }
+    }
+    private class MenuAjout implements ActionListener
+    {
+        PrincipalWindow w;
+        public MenuAjout(PrincipalWindow w) { this.w = w; }
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            if (!(w.getFrameContainer() instanceof ListingPanel))
+                new AjoutPanel(w).setPanel();
+        }
+    }
+    private class MenuStatistiques implements ActionListener
+    {
+        PrincipalWindow w;
+        public MenuStatistiques(PrincipalWindow w) { this.w = w; }
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            String stats = null;
 
+            try{
+                stats = statController.getStatistiques();
+            }
+            catch (ConnectionException | GetTransactionException | GetMarqueException e) {
+                JOptionPane.showMessageDialog(w, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
+            JOptionPane.showMessageDialog(w, stats, "Statistiques", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     private class whoMenuAction implements MouseListener {
@@ -199,5 +266,6 @@ public class PrincipalWindow extends JFrame {
         }
 
     }
+    private void setStatController(StatistiqueController statController ) {this.statController = statController; }
 }
 
