@@ -80,7 +80,7 @@ public class AllTransactionsModel extends AbstractTableModel {
             case 9:
                 return transaction.getDureeGarantie();
             case 10:
-                return (transaction.isEstTVARecup()) ? "Oui" : "Non";
+                return transaction.isEstTVARecup();
             case 11:
                 return (transaction.getPrixVente() != null) ? transaction.getPrixVente() +" €" : "---";
             case 12:
